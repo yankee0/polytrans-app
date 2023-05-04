@@ -19,7 +19,6 @@ Dashboard
                   <div class="col mt-0">
                     <h5 class="card-title">Livraisons</h5>
                   </div>
-
                   <div class="col-auto">
                     <div class="stat text-primary">
                       <i class="align-middle" data-feather="box"></i>

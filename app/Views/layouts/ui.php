@@ -34,7 +34,7 @@ session()->root = $root;
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
   <title>POLYTRANS <?= $this->renderSection('titre'); ?></title>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="<?= base_url('css/app.css') ?>" rel="stylesheet">
 
@@ -55,7 +55,7 @@ session()->root = $root;
           <ul class="sidebar-nav">
 
             <li class="sidebar-item active">
-              <a class="sidebar-link" href="index.html">
+              <a class="sidebar-link" href="<?=base_url($root)?>">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
               </a>
             </li>
@@ -265,7 +265,7 @@ session()->root = $root;
         </footer>
       </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url('js/app.js') ?>"></script>
 
 
