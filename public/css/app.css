@@ -12729,3 +12729,19 @@ body{
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.notif {
+  opacity: 0;
+  animation: fadein 0.3s ease-in-out forwards;
+}
+
+@keyframes fadein {
+  from {
+    transform: translateY(1cm);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0cm);
+    opacity: 1;
+  }
+}

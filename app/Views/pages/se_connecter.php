@@ -57,8 +57,9 @@ Se connecter
                     <label class="form-label">Mot de passe</label>
                     <input class="form-control form-control-lg" type="password" name="mot_de_passe" placeholder="Votre mot de passe" />
                     <small>
-                      <a href="index.html">Mot de pase oublié?</a>
+                      <a href="index.html">Mot de passe oublié?</a>
                     </small>
+                    <?= csrf_field() ?>
                   </div>
 
                   <div class="text-center mt-3">
@@ -81,5 +82,6 @@ Se connecter
     </div>
   </div>
 </main>
+
 
 <?= $this->endSection(); ?>

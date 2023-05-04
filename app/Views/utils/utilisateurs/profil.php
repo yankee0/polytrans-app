@@ -59,12 +59,8 @@ Profil
 
           <!-- notif -->
           <div class="d-flex align-items-start">
-            <div class="stat text-primary">
-              <i class="align-middle" data-feather="truck"></i>
-            </div>
-            <div class="p-1"></div>
+          
             <div class="flex-grow-1">
-              <small class="float-end text-navy">[temps passé depuis l'action]</small>
               <strong>[Titre de l'activité]</strong> [petite description de l'activité]<br />
               <small class="text-muted">[date et heure]</small><br />
             </div>
@@ -72,12 +68,8 @@ Profil
           <hr />
           <!-- notif -->
           <div class="d-flex align-items-start">
-            <div class="stat text-primary">
-              <i class="align-middle" data-feather="truck"></i>
-            </div>
-            <div class="p-1"></div>
+          
             <div class="flex-grow-1">
-              <small class="float-end text-navy">[temps passé depuis l'action]</small>
               <strong>[Titre de l'activité]</strong> [petite description de l'activité]<br />
               <small class="text-muted">[date et heure]</small><br />
             </div>
@@ -85,12 +77,8 @@ Profil
           <hr />
           <!-- notif -->
           <div class="d-flex align-items-start">
-            <div class="stat text-primary">
-              <i class="align-middle" data-feather="truck"></i>
-            </div>
-            <div class="p-1"></div>
+          
             <div class="flex-grow-1">
-              <small class="float-end text-navy">[temps passé depuis l'action]</small>
               <strong>[Titre de l'activité]</strong> [petite description de l'activité]<br />
               <small class="text-muted">[date et heure]</small><br />
             </div>
@@ -98,12 +86,8 @@ Profil
           <hr />
           <!-- notif -->
           <div class="d-flex align-items-start">
-            <div class="stat text-primary">
-              <i class="align-middle" data-feather="truck"></i>
-            </div>
-            <div class="p-1"></div>
+          
             <div class="flex-grow-1">
-              <small class="float-end text-navy">[temps passé depuis l'action]</small>
               <strong>[Titre de l'activité]</strong> [petite description de l'activité]<br />
               <small class="text-muted">[date et heure]</small><br />
             </div>
@@ -123,7 +107,7 @@ Profil
 
 
   <!-- Modal -->
-  <div class="modal fade" id="modifierProfil" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modifierProfilLabel" aria-hidden="true">
+  <div class="modal fade" id="modifierProfil" tabindex="-1" aria-labelledby="modifierProfilLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

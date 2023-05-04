@@ -41,8 +41,14 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
     $routes->group('/super-admin', function($routes)
     {
         $routes->get('/','SuperAdmin::index');
-        $routes->get('mon-profil/(:segment)','Utilisateurs::profil/$1');
+        $routes->get('profil/(:segment)','Utilisateurs::profil/$1');
+        $routes->get('utilisateurs','Utilisateurs::liste');
+        $routes->post('utilisateurs','Utilisateurs::ajout');
+        $routes->post('utilisateurs/supprimer','Utilisateurs::supprimer');
     });
+
+    //routes communs
+
 });
 
 

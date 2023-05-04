@@ -7,6 +7,16 @@ use App\Models\Utilisateurs as ModelsUtilisateurs;
 
 class Utilisateurs extends BaseController
 {
+
+    public function envoyer_email(array $donnee)
+    {
+        $email = \Config\Services::email();
+        $email->setTo($donnee['email']);
+        $email->setSubject($donnee['objet']);
+        $email->setMessage($donnee['message']);
+        return $email->send();
+    }
+
     public function profil(int $id)
     {
         $utilisateur = (new ModelsUtilisateurs())->find($id);
@@ -22,4 +32,68 @@ class Utilisateurs extends BaseController
             ]);
         }
     }
+
+    public function liste(){
+        session()->set('position','utilisateurs');
+        $donnee = [
+            'liste' => (new ModelsUtilisateurs())->findAll(),
+        ];
+        return view('utils/utilisateurs/liste',$donnee);
+    }
+
+    public function ajout(){
+        $donnee = $this->request->getVar();
+        
+        // filter
+        $teste = explode('@',$donnee['email']);
+        // $resultat = in_array('poly-trans.sn',$teste);
+        // dd($resultat);
+
+        $donnee['prenom'] = ucwords($donnee['prenom']);
+        $donnee['nom'] = ucwords($donnee['nom']);
+
+        $rules = [
+            'email' => [
+                'rules' => 'is_unique[utilisateurs.email]'
+            ],
+            'telephone' => [
+                'rules' =>  'is_unique[utilisateurs.telephone]|min_length[9]'
+            ],
+            'profil' => [
+                'rules' => 'min_length[3]'
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->with('operation',false);
+        } else {
+
+            if ((new ModelsUtilisateurs())->insert($donnee)) {
+                $courriel = [
+                    'email' => $donnee['email'],
+                    'objet' => 'Activation de compte',
+                    'message' => base_url('/activer/'.$donnee['email']),
+                ];
+                if ($this->envoyer_email($courriel)) {
+                    return redirect()->back()->with('operation',true)->with('email',true);
+                } else {
+                    return redirect()->back()->with('operation',true)->with('email',false);
+                }
+            }else {
+                return redirect()->back()->with('operation',false);
+            } 
+        }
+    }
+
+
+    public function supprimer(){
+        $id = $this->request->getPost('id');
+        if ((new ModelsUtilisateurs())->where('id',$id)->delete()) {
+            return redirect()->back()->with('notif',true)->with('message','Suppression réussie.');
+        } else {
+            return redirect()->back()->with('notif',false)->with('message','Echec de la suppression.');
+        }
+    }
+
+    
 }

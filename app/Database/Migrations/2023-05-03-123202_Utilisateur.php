@@ -45,6 +45,16 @@ class Utilisateur extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'pp_url' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+                'default' => 'avatar.jpg'
+            ],
+            'compte_actif' => [
+                'type' => 'ENUM("oui","non")',
+                'default' => 'non',
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
