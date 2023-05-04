@@ -14,13 +14,13 @@ class Utilisateurs extends Seeder
             'SUPER ADMIN',
         ];
 
-        for ($i=0; $i < sizeof($profils); $i++) { 
+        for ($i=0; $i < 20; $i++) { 
             $donnee[$i] = [
                 'prenom' => $faker->firstName(),
                 'nom' => $faker->lastName(),
                 'email' => $faker->firstName().'@poly-trans.sn',
                 'telephone' => $faker->phoneNumber(),
-                'profil' => $profils[$i],
+                'profil' => $profils[0],
                 'mot_de_passe' => sha1('yankee'),
             ];
         }

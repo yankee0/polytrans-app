@@ -66,8 +66,30 @@ Liste des utilisateurs
 
   <div class="card flex-fill">
     <div class="card-header">
-      <h5 class="card-title">Liste de utilisateurs</h5>
-      <div class="d-none d-xl-flex gap-2 align-items-center">Action groupée<button type="submit" class="btn btn-primary">Supprimer</button></div>
+      <h5 class="card-title">Liste de utilisateurs <span class="text-primary">(<?= sizeof($liste) ?>)</span></h5>
+
+      <div class="d-none d-xl-flex gap-2 align-items-center">Action groupée<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#groupdelete" class="btn btn-primary">Supprimer</button></div>
+      <!-- Modal -->
+      <div class="modal fade" id="groupdelete" tabindex="-1" aria-labelledby="groupdeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="groupdeleteLabel">Supprimer profil</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Confirmez-vous la suppression groupée des utilisateurs cochés?
+            </div>
+            <div class="modal-footer">
+              <form id="group" action="<?= base_url(session()->root . '/utilisateurs/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
+                <?= csrf_field() ?>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
+                <button type="submit" class="btn btn-primary">Oui, supprimer!</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <table id="tableau" class="table table-hover my-0">
       <thead>
@@ -86,7 +108,7 @@ Liste des utilisateurs
         <?php foreach ($liste as $ligne) : ?>
 
           <tr class=" align-items-center">
-            <td class="d-none d-xl-table-cell"><input class="form-check-input" name="liste[]" id="id-<?= $ligne['id'] ?>" type="checkbox" value="<?= $ligne['id'] ?>"></td>
+            <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['id'] ?>" type="checkbox" value="<?= $ligne['id'] ?>"></td>
             <td class="d-table-cell d-xl-none "><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['profil'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['prenom'] ?></td>
@@ -112,7 +134,7 @@ Liste des utilisateurs
                   <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?=base_url(session()->root.'/utilisateurs/supprimer/')?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url(session()->root . '/utilisateurs/supprimer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, supprimer!</button>
@@ -134,7 +156,7 @@ Liste des utilisateurs
                   <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?=base_url(session()->root.'/utilisateurs/activer/')?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url(session()->root . '/utilisateurs/activer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, activer le compte!</button>
@@ -147,6 +169,11 @@ Liste des utilisateurs
         <?php endforeach ?>
       </tbody>
     </table>
+
+    <div class="card-footer text-muted">
+      <div class="d-none d-xl-flex gap-2 align-items-center">Action groupée<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#groupdelete" class="btn btn-primary">Supprimer</button></div>
+    </div>
+
 
 
 

@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\Utilisateurs as ModelsUtilisateurs;
 
+use function PHPSTORM_META\type;
+
 class Utilisateurs extends BaseController
 {
 
@@ -98,8 +100,20 @@ class Utilisateurs extends BaseController
         }
     }
 
-    public function suppression_groupe()
+    public function supprimer_groupe()
     {
+        $ids = $this->request->getPost();
+        $modele = new ModelsUtilisateurs();
+        foreach ($ids as $id) {
+            try {
+                $modele->delete($id);
+            } catch (\Throwable $th) {
+                continue;
+            }
+        }
+
+        return redirect()->back()->with('notif', true)->with('message',' Suppressions réussies.');
+
     }
 
     public function activer_compte()
