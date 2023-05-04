@@ -26,19 +26,29 @@ Se connecter
                 </div>
 
                 <?php if (session()->has('erreurs')) : ?>
-                  <?php if (session()->erreurs) : ?>
-                    <div data-aos="fade-up" class="mb-3">
-                      <div class="card" >
-                        <div class="card-body">
-                          <h5 class="card-title text-primary">Erreur 403</h5>
-                          <p class="card-text">les identifiants saisies sont incorrectes</p>
-                        </div>
+                  <div data-aos="fade-up" class="mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Erreur 403</h5>
+                        <p class="card-text">les identifiants saisies sont incorrects.</p>
                       </div>
                     </div>
-                  <?php endif ?>
+                  </div>
                 <?php endif ?>
 
-                <form action="<?=base_url('/')?>" method="post">
+                <?php if (session()->has('erreur_session')) : ?>
+                  <?php session()->remove('erreur_session') ?>
+                  <div data-aos="fade-up" class="mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title text-warning">Erreur 500</h5>
+                        <p class="card-text">Session expirée, veuillez vous reconnecter.</p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif ?>
+
+                <form action="<?= base_url('/') ?>" method="post">
                   <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input class="form-control form-control-lg" type="email" name="email" placeholder=" exemple@poly-trans.sn" />

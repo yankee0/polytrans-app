@@ -12,22 +12,43 @@ class Auth extends BaseController
         return view('pages/se_connecter');
     }
 
-    public function se_connecter() {
+    public function se_connecter()
+    {
 
         $identifiants = $this->request->getPost();
 
         $modele = new Utilisateurs();
 
         $resultat = $modele
-            ->where('email',$identifiants['email'])
+            ->where('email', $identifiants['email'])
             ->where('mot_de_passe', sha1($identifiants['mot_de_passe']))
-        ->first();
+            ->first();
 
         if (!$resultat) {
-            return redirect()->back()->with('erreurs',true);
+            return redirect()->back()->with('erreurs', true);
         } else {
-            return 'ok';
+            session()->donnee_utilisateur = $resultat;
+            return redirect()->to('/dispatcher');
         }
+    }
 
+    public function dispatcher()
+    {
+        $profil = session()->donnee_utilisateur['profil'];
+        switch ($profil) {
+            case 'SUPER ADMIN':
+                return redirect()->to('/super-admin');
+                break;
+
+            default:
+                $this->se_deconnecter();
+                break;
+        }
+    }
+
+    public function se_deconnecter()
+    {
+        session()->remove('donnee_utilisateur');
+        return redirect()->to('/');
     }
 }

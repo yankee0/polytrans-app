@@ -31,6 +31,19 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
 $routes->post('/' , 'Auth::se_connecter');
+$routes->get('/dispatcher', 'Auth::dispatcher');
+$routes->get('/se_deconnecter', 'Auth::se_deconnecter');
+
+//il faudra s'authentifier pour acceder à ces routes
+$routes->group('',['filter' => 'authentifie'], function($routes)
+{
+    //routes du super admins
+    $routes->group('/super-admin', function($routes)
+    {
+        $routes->get('/','SuperAdmin::index');
+        $routes->get('mon-profil/(:segment)','Utilisateurs::profil/$1');
+    });
+});
 
 
 /*
