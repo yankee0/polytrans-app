@@ -12732,16 +12732,24 @@ body{
 
 .notif {
   opacity: 0;
-  animation: fadein 0.3s ease-in-out forwards;
+  animation: fadein 5s ease-in-out forwards;
 }
 
 @keyframes fadein {
-  from {
+  0% {
     transform: translateY(1cm);
     opacity: 0;
   }
-  to {
+  20% {
     transform: translateY(0cm);
     opacity: 1;
+  }
+  80% {
+    transform: translateY(0cm);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(1cm);
+    opacity: 0;
   }
 }

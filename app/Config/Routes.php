@@ -45,6 +45,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
         $routes->get('utilisateurs','Utilisateurs::liste');
         $routes->post('utilisateurs','Utilisateurs::ajout');
         $routes->post('utilisateurs/supprimer','Utilisateurs::supprimer');
+        $routes->post('utilisateurs/activer','Utilisateurs::activer_compte');
     });
 
     //routes communs

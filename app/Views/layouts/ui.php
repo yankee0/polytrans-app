@@ -267,12 +267,11 @@ session()->root = $root;
 
   <?php if (session()->has('notif')) : ?>
     
-    <div onclick="(this).fadout()" class="p-3 position-fixed bottom-0 start-0 notif">
+    <div class="p-3 position-fixed bottom-0 start-0 notif">
       <div class="card w-100" style="max-width:300px;">
         <div class="card-body">
           <h5 class="card-title text-<?= (session()->notif) ? 'success' : 'danger' ?>"><?= (session()->notif) ? 'Succés' : 'Echec' ?></h5>
           <p class="card-text"><?=session('message')?></p>
-          <span class=" text-sm text-muted">Cliquez pour masquer.</span>
         </div>
       </div>
     </div>

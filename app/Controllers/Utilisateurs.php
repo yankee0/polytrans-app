@@ -21,31 +21,33 @@ class Utilisateurs extends BaseController
     {
         $utilisateur = (new ModelsUtilisateurs())->find($id);
         if ($utilisateur) {
-            
+
             $donnee = [
                 'u' => (new ModelsUtilisateurs())->find($id)
             ];
-            return view('utils/utilisateurs/profil',$donnee);
+            return view('utils/utilisateurs/profil', $donnee);
         } else {
-            return view('errors/html/error_404',[
+            return view('errors/html/error_404', [
                 'message' => 'Cette utilisateur n\'existe pas',
             ]);
         }
     }
 
-    public function liste(){
-        session()->set('position','utilisateurs');
+    public function liste()
+    {
+        session()->set('position', 'utilisateurs');
         $donnee = [
             'liste' => (new ModelsUtilisateurs())->findAll(),
         ];
-        return view('utils/utilisateurs/liste',$donnee);
+        return view('utils/utilisateurs/liste', $donnee);
     }
 
-    public function ajout(){
+    public function ajout()
+    {
         $donnee = $this->request->getVar();
-        
+
         // filter
-        $teste = explode('@',$donnee['email']);
+        $teste = explode('@', $donnee['email']);
         // $resultat = in_array('poly-trans.sn',$teste);
         // dd($resultat);
 
@@ -65,35 +67,51 @@ class Utilisateurs extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('operation',false);
+            return redirect()->back()->with('operation', false);
         } else {
 
             if ((new ModelsUtilisateurs())->insert($donnee)) {
                 $courriel = [
                     'email' => $donnee['email'],
                     'objet' => 'Activation de compte',
-                    'message' => base_url('/activer/'.$donnee['email']),
+                    'message' => base_url('/activer/' . $donnee['email']),
                 ];
                 if ($this->envoyer_email($courriel)) {
-                    return redirect()->back()->with('operation',true)->with('email',true);
+                    return redirect()->back()->with('operation', true)->with('email', true);
                 } else {
-                    return redirect()->back()->with('operation',true)->with('email',false);
+                    return redirect()->back()->with('operation', true)->with('email', false);
                 }
-            }else {
-                return redirect()->back()->with('operation',false);
-            } 
+            } else {
+                return redirect()->back()->with('operation', false);
+            }
         }
     }
 
 
-    public function supprimer(){
+    public function supprimer()
+    {
         $id = $this->request->getPost('id');
-        if ((new ModelsUtilisateurs())->where('id',$id)->delete()) {
-            return redirect()->back()->with('notif',true)->with('message','Suppression réussie.');
+        if ((new ModelsUtilisateurs())->where('id', $id)->delete()) {
+            return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie.');
         } else {
-            return redirect()->back()->with('notif',false)->with('message','Echec de la suppression.');
+            return redirect()->back()->with('notif', false)->with('message', 'Echec de la suppression.');
         }
     }
 
-    
+    public function suppression_groupe()
+    {
+    }
+
+    public function activer_compte()
+    {
+        $id = $this->request->getPost('id');
+        $db = \Config\Database::connect();
+        $requete = $db->query('UPDATE utilisateurs SET compte_actif = ? WHERE id = ?', ['oui', $id]);
+        if ($requete) {
+            return redirect()->back()->with('notif', true)->with('message', 'Activation réussie.');
+        } else {
+            return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'activation.');
+        }
+
+    }
 }

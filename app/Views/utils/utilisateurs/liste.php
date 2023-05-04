@@ -95,16 +95,16 @@ Liste des utilisateurs
             <td class="d-none d-lg-table-cell"><a href="tel:<?= $ligne['telephone'] ?>" title="Appeller"><?= $ligne['telephone'] ?></a></td>
             <td class="flex gap-0 ">
               <a class="btn" href="<?= base_url(session()->root . '/profil/' . $ligne['id']) ?>" role="button" title="Voir le profil"><i class="align-middle" data-feather="folder"></i></a>
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modifierProfil<?= $ligne['id'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
-              <a class="btn <?= ($ligne['compte_actif'] == 'non') ? 'text-primary' : 'text-muted border-0 disabled' ?>" href="<?= base_url(session()->root . '/utilisateurs/activer/' . $ligne['email']) ?>" role="button" title="Activer le compte"><i class="align-middle" data-feather="power"></i></a>
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#SupprimerProfil<?= $ligne['id'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
+              <button type="button" class="btn <?= ($ligne['compte_actif'] == 'non') ? 'text-primary' : 'text-muted border-0 disabled' ?>" data-bs-toggle="modal" data-bs-target="#ActiverProfil<?= $ligne['id'] ?>" role="button" title="Activer le compte"><i class="align-middle" data-feather="power"></i></button>
             </td>
           </tr>
           <!-- Modal -->
-          <div class="modal fade" id="modifierProfil<?= $ligne['id'] ?>" tabindex="-1" aria-labelledby="modifierProfil<?= $ligne['id'] ?>Label" aria-hidden="true">
+          <div class="modal fade" id="SupprimerProfil<?= $ligne['id'] ?>" tabindex="-1" aria-labelledby="SupprimerProfil<?= $ligne['id'] ?>Label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title fs-5" id="modifierProfil<?= $ligne['id'] ?>Label">Supprimer profil</h3>
+                  <h3 class="modal-title fs-5" id="SupprimerProfil<?= $ligne['id'] ?>Label">Supprimer profil</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -116,6 +116,28 @@ Liste des utilisateurs
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, supprimer!</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="ActiverProfil<?= $ligne['id'] ?>" tabindex="-1" aria-labelledby="ActiverProfil<?= $ligne['id'] ?>Label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title fs-5" id="ActiverProfil<?= $ligne['id'] ?>Label">Activation</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Activer le compte de l'utilisateur:</p>
+                  <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
+                </div>
+                <div class="modal-footer">
+                  <form action="<?=base_url(session()->root.'/utilisateurs/activer/')?>" class="d-flex gap-3" method="post">
+                    <?= csrf_field() ?>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
+                    <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, activer le compte!</button>
                   </form>
                 </div>
               </div>
