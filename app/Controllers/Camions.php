@@ -16,4 +16,23 @@ class Camions extends BaseController
         ];
         return view('utils/camions/liste',$donnee);
     }
+
+    public function ajout(){
+        $donnee = $this->request->getPost();
+        $rules = [
+            'immatriculation' => [
+                'rules' => 'is_unique[camions.immatriculation]|min_length[3]',
+            ],
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->back()->with('notif',false)->with('message','Identifiants en doublons');
+        } else {
+            $donnee['immatriculation'] = strtoupper($donnee['immatriculation']);
+            if ((new ModelsCamions())->insert($donnee) == 0) {
+                return redirect()->back()->with('notif',true)->with('message','Ajout réussi.');
+            }else{
+                return redirect()->back()->with('notif',false)->with('message','Echec de l\'ajout.');
+            }
+        }
+    }
 }
