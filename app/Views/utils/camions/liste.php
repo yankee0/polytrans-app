@@ -35,7 +35,7 @@ Liste des camions
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
-            <i class="align-middle" data-feather="user-plus"></i>
+            <i class="align-middle" data-feather="plus"></i>
             Ajouter le camion
           </button>
         </div>
@@ -94,13 +94,14 @@ Liste des camions
             <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['immatriculation'] ?>" type="checkbox" value="<?= $ligne['immatriculation'] ?>"></td>
             <!-- <td class="d-table-cell "><span class="badge bg-primary me-1 my-1">yankee</span></td> -->
             <td class="d-table-cell "><?= $ligne['immatriculation'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['vt_debut'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['vt_fin'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['as_debut'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['as_fin'] ?></td>
+            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_debut'])) ? $ligne['vt_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_fin'])) ? $ligne['vt_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_debut'])) ? $ligne['as_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
-              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimercamion<?= $ligne['immatriculation'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/' . $ligne['immatriculation']) ?>" role="button" title="Voir le dossier"><i class="align-middle" data-feather="folder"></i></a>
+              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimercamion<?= $ligne['immatriculation'] ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
             </td>
           </tr>
           <!-- Modal -->
