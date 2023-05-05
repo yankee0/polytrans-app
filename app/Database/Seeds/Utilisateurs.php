@@ -14,7 +14,7 @@ class Utilisateurs extends Seeder
             'SUPER ADMIN',
         ];
 
-        for ($i=0; $i < 300; $i++) { 
+        for ($i=0; $i < 10; $i++) { 
             $donnee[$i] = [
                 'prenom' => $faker->firstName(),
                 'nom' => $faker->lastName(),

@@ -43,11 +43,25 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
     {
         $routes->get('/','SuperAdmin::index');
         $routes->get('profil/(:segment)','Utilisateurs::profil/$1');
-        $routes->get('utilisateurs','Utilisateurs::liste');
-        $routes->post('utilisateurs','Utilisateurs::ajout');
-        $routes->post('utilisateurs/supprimer','Utilisateurs::supprimer');
-        $routes->post('utilisateurs/supprimer_groupe','Utilisateurs::supprimer_groupe');
-        $routes->post('utilisateurs/activer','Utilisateurs::activer_compte');
+
+        $routes->group('utilisateurs', function($routes)
+        {
+            $routes->get('/','Utilisateurs::liste');
+            $routes->post('/','Utilisateurs::ajout');
+            $routes->post('supprimer','Utilisateurs::supprimer');
+            $routes->post('supprimer_groupe','Utilisateurs::supprimer_groupe');
+            $routes->post('activer','Utilisateurs::activer_compte');
+        });
+
+        $routes->group('chauffeurs', function($routes)
+        {
+            $routes->get('/','Chauffeurs::liste');
+            $routes->post('/','Chauffeurs::ajout');
+            $routes->post('supprimer','Chauffeurs::supprimer');
+            $routes->post('supprimer_groupe','Chauffeurs::supprimer_groupe');
+        });
+
+
     });
 
     //routes communs

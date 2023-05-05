@@ -79,10 +79,11 @@ session()->root = $root;
 
           <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
             <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Chauffeurs</span>
+              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
             </a>
           </li>
 
+          
 
         </ul>
 
