@@ -39,7 +39,7 @@ class Utilisateurs extends BaseController
     {
         session()->set('position', 'utilisateurs');
         $donnee = [
-            'liste' => (new ModelsUtilisateurs())->findAll(),
+            'liste' => (new ModelsUtilisateurs())->orderBy('nom','ASC')->findAll(),
         ];
         return view('utils/utilisateurs/liste', $donnee);
     }
@@ -71,7 +71,7 @@ class Utilisateurs extends BaseController
         if (!$this->validate($rules)) {
             return redirect()->back()->with('operation', false);
         } else {
-
+            $donnee['mot_de_passe'] = DEFAULT_PWD;
             if ((new ModelsUtilisateurs())->insert($donnee)) {
                 $courriel = [
                     'email' => $donnee['email'],
@@ -94,6 +94,9 @@ class Utilisateurs extends BaseController
     {
         $id = $this->request->getPost('id');
         if ((new ModelsUtilisateurs())->where('id', $id)->delete()) {
+            if ($id == session()->donnee_utilisateur['id']) {
+                session()->remove('donnee_utilisateur');
+            }
             return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie.');
         } else {
             return redirect()->back()->with('notif', false)->with('message', 'Echec de la suppression.');
@@ -107,13 +110,15 @@ class Utilisateurs extends BaseController
         foreach ($ids as $id) {
             try {
                 $modele->delete($id);
+                if ($id == session()->donnee_utilisateur['id']) {
+                    session()->remove('donnee_utilisateur');
+                }
             } catch (\Throwable $th) {
                 continue;
             }
         }
 
-        return redirect()->back()->with('notif', true)->with('message',' Suppressions réussies.');
-
+        return redirect()->back()->with('notif', true)->with('message', ' Suppressions réussies.');
     }
 
     public function activer_compte()
@@ -126,6 +131,16 @@ class Utilisateurs extends BaseController
         } else {
             return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'activation.');
         }
+    }
 
+    public function lien_activation(string $email)
+    {
+        $db = \Config\Database::connect();
+        $requete = $db->query('UPDATE utilisateurs SET compte_actif = ? WHERE email = ?', ['oui', $email]);
+        if ($requete) {
+            return redirect()->to('/')->with('notif', true)->with('message', 'Activation réussie.');
+        } else {
+            return redirect()->to('/')->with('notif', false)->with('message', 'Echec de l\'activation.');
+        }
     }
 }

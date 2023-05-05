@@ -12751,5 +12751,20 @@ body{
   100%{
     transform: translateY(1cm);
     opacity: 0;
+    display: none;
   }
 }
+
+.slidy{
+  padding: 10px 10px 10px 10px;
+  max-width: 600px;
+  margin: auto;
+  overflow-x: scroll;
+  width: 100%;
+  justify-content: center;
+}
+
+.card-footer{
+  overflow-x: hidden ;
+}
+

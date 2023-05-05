@@ -27,8 +27,12 @@ class Auth extends BaseController
         if (!$resultat) {
             return redirect()->back()->with('erreurs', true);
         } else {
-            session()->donnee_utilisateur = $resultat;
-            return redirect()->to('/dispatcher');
+            if ($resultat['compte_actif'] == 'non') {
+                return redirect()->back()->with('activation', true);
+            }else {
+                session()->donnee_utilisateur = $resultat;
+                return redirect()->to('/dispatcher');
+            }
         }
     }
 

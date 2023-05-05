@@ -5,32 +5,26 @@ Se connecter
 
 <?= $this->section('contenu'); ?>
 
-<main class="d-flex w-100">
+<main class="d-flex w-100 bg-black" style="background-image: url(<?=base_url('img/photos/dock.jpg')?>); background-size: cover; background-repeat: no-repeat">
   <div class="container d-flex flex-column">
     <div class="row vh-100">
       <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
         <div class="d-table-cell align-middle">
 
-          <div class="text-center mt-4">
-            <h1 class="h2">Bienvenue</h1>
-            <p class="lead">
-              Veuillez vous connecter pour continuer.
-            </p>
-          </div>
-
+          
           <div class="card">
             <div class="card-body">
               <div class="m-sm-4">
                 <div class="text-center mb-3">
                   <img src="" alt="Logo poly-trans" class="img-fluid " width="132" height="132" />
                 </div>
-
+                
                 <?php if (session()->has('erreurs')) : ?>
                   <div data-aos="fade-up" class="mb-3">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title text-primary">Erreur 403</h5>
-                        <p class="card-text">les identifiants saisies sont incorrects.</p>
+                        <p class="card-text">Les identifiants saisis sont incorrects.</p>
                       </div>
                     </div>
                   </div>
@@ -47,6 +41,20 @@ Se connecter
                     </div>
                   </div>
                 <?php endif ?>
+
+                <?php if (session()->has('activation')) : ?>
+                  <?php session()->remove('activation') ?>
+
+                  <div data-aos="fade-up" class="mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title text-warning">Erreur 403</h5>
+                        <p class="card-text">Votre compte n'est pas encore activé <a class="link" href="<?=base_url('/support')?>">veuillez vous adresser à un technicien </a>pour les directives d'activation.</p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif ?>
+                
 
                 <form action="<?= base_url('/') ?>" method="post">
                   <div class="mb-3">
@@ -82,6 +90,8 @@ Se connecter
     </div>
   </div>
 </main>
+
+
 
 
 <?= $this->endSection(); ?>

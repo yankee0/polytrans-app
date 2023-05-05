@@ -3,6 +3,18 @@
 Liste des utilisateurs
 <?= $this->endSection(); ?>
 <?= $this->section('contenu'); ?>
+
+<script>
+
+  $(document).ready(function () {
+    
+    $('#recherche').keyup(function() {
+      searchTable('tableau', 'recherche');
+    });
+    paginateTable('tableau', 15);
+  });
+</script>
+
 <div class="container-fluid p-0">
 
   <h1 class="h3 mb-3"><strong>Gestion</strong> Utitlisateurs</h1>
@@ -33,6 +45,7 @@ Liste des utilisateurs
           </div>
         <?php endif ?>
       <?php endif ?>
+
       <form class="row" action="<?= base_url(session()->root . '/utilisateurs/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-4">
           <select class="form-select " name="profil" id="profil" required>
@@ -66,7 +79,10 @@ Liste des utilisateurs
 
   <div class="card flex-fill">
     <div class="card-header">
-      <h5 class="card-title">Liste de utilisateurs <span class="text-primary">(<?= sizeof($liste) ?>)</span></h5>
+      <div class="d-grid gap-3 d-sm-flex justify-content-between align-items-center">
+        <h5 class="card-title">Liste de utilisateurs <span class="text-primary">(<?= sizeof($liste) ?>)</span></h5>
+        <input type="search" class=" form-control flex-grow-0" style="max-width: 250px;" id="recherche" placeholder="Rechercher un utilisateur">
+      </div>
 
       <div class="d-none d-xl-flex gap-2 align-items-center">Action groupée<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#groupdelete" class="btn btn-primary">Supprimer</button></div>
       <!-- Modal -->
@@ -115,10 +131,10 @@ Liste des utilisateurs
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
             <td class="d-none d-sm-table-cell"><a href="mailto:<?= $ligne['email'] ?>" title="Envoyer un mail"><?= $ligne['email'] ?></a></td>
             <td class="d-none d-lg-table-cell"><a href="tel:<?= $ligne['telephone'] ?>" title="Appeller"><?= $ligne['telephone'] ?></a></td>
-            <td class="flex gap-0 ">
-              <a class="btn" href="<?= base_url(session()->root . '/profil/' . $ligne['id']) ?>" role="button" title="Voir le profil"><i class="align-middle" data-feather="folder"></i></a>
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#SupprimerProfil<?= $ligne['id'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
-              <button type="button" class="btn <?= ($ligne['compte_actif'] == 'non') ? 'text-primary' : 'text-muted border-0 disabled' ?>" data-bs-toggle="modal" data-bs-target="#ActiverProfil<?= $ligne['id'] ?>" role="button" title="Activer le compte"><i class="align-middle" data-feather="power"></i></button>
+            <td class="d-flex gap-3 ">
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/profil/' . $ligne['id']) ?>" role="button" title="Voir le profil"><i class="align-middle" data-feather="folder"></i></a>
+              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#SupprimerProfil<?= $ligne['id'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
+              <button type="button" class=" flex-grow-0 px-0 btn <?= ($ligne['compte_actif'] == 'non') ? 'text-primary' : 'text-muted border-0 disabled' ?>" data-bs-toggle="modal" data-bs-target="#ActiverProfil<?= $ligne['id'] ?>" role="button" title="Activer le compte"><i class="align-middle" data-feather="power"></i></button>
             </td>
           </tr>
           <!-- Modal -->
@@ -170,8 +186,8 @@ Liste des utilisateurs
       </tbody>
     </table>
 
-    <div class="card-footer text-muted">
-      <div class="d-none d-xl-flex gap-2 align-items-center">Action groupée<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#groupdelete" class="btn btn-primary">Supprimer</button></div>
+    <div id="footer" class="card-footer text-muted">
+
     </div>
 
 
@@ -180,8 +196,5 @@ Liste des utilisateurs
   </div>
 </div>
 
-<script>
-  // let table = new DataTable('#tableau');
-</script>
 
 <?= $this->endSection(); ?>

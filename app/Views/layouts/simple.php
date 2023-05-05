@@ -24,7 +24,17 @@
 <body>
 
   <?= $this->renderSection('contenu'); ?>
-
+  <?php if (session()->has('notif')) : ?>
+    
+    <div class="p-3 position-fixed bottom-0 start-0 notif">
+      <div class="card w-100" style="max-width:300px;">
+        <div class="card-body">
+          <h5 class="card-title text-<?= (session()->notif) ? 'success' : 'danger' ?>"><?= (session()->notif) ? 'Succés' : 'Echec' ?></h5>
+          <p class="card-text"><?=session('message')?></p>
+        </div>
+      </div>
+    </div>
+  <?php endif ?>
   <script src="<?= base_url('js/app.js') ?>"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

@@ -33,6 +33,7 @@ $routes->get('/', 'Auth::index');
 $routes->post('/' , 'Auth::se_connecter');
 $routes->get('/dispatcher', 'Auth::dispatcher');
 $routes->get('/se_deconnecter', 'Auth::se_deconnecter');
+$routes->get('/activer/(:segment)','Utilisateurs::lien_activation/$1');
 
 //il faudra s'authentifier pour acceder à ces routes
 $routes->group('',['filter' => 'authentifie'], function($routes)

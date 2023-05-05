@@ -7,8 +7,6 @@ switch (session()->donnee_utilisateur['profil']) {
     $root  = '/super-admin';
     break;
 
-
-
   default:
     $root = null;
     break;
@@ -24,9 +22,9 @@ session()->root = $root;
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-  <meta name="author" content="AdminKit">
-  <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+  <meta name="description" content="POLY-TRANS APP">
+  <meta name="author" content="POLY-TRANS DEV TEAM">
+  <meta name="keywords" content="polytrans , poly-trans">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="shortcut icon" href="<?= base_url('img/icons/icon-48x48.png') ?>" />
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
@@ -34,12 +32,23 @@ session()->root = $root;
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
   <link href="<?= base_url('css/app.css') ?>" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="<?= base_url('js/table.js') ?>"></script>
 </head>
 
-<bod class="position-relative">
+<body class="position-relative">
+<script>
+    $('#tableau').on({
+      ajaxStart: function() {
+        // $("#loadingModal").modal("show");
+        console.log('load');
+      },
+      ajaxStop: function() {
+        // $("#loadingModal").modal("hide");
+        console.log('end');
+      }
+    });
+  </script>
 
   <div class="wrapper">
 
@@ -65,6 +74,12 @@ session()->root = $root;
           <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
             <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
+            <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Chauffeurs</span>
             </a>
           </li>
 
@@ -266,23 +281,37 @@ session()->root = $root;
   </div>
 
   <?php if (session()->has('notif')) : ?>
-    
+
     <div class="p-3 position-fixed bottom-0 start-0 notif">
       <div class="card w-100" style="max-width:300px;">
         <div class="card-body">
           <h5 class="card-title text-<?= (session()->notif) ? 'success' : 'danger' ?>"><?= (session()->notif) ? 'Succés' : 'Echec' ?></h5>
-          <p class="card-text"><?=session('message')?></p>
+          <p class="card-text"><?= session('message') ?></p>
         </div>
       </div>
     </div>
   <?php endif ?>
+  <!-- Le modal -->
+  <!-- <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Chargement en cours...</span>
+          </div>
+          <p class="mt-3">Chargement en cours...</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
   <script src="<?= base_url('js/app.js') ?>"></script>
+  
+
   <script>
     $('.notif').fadeIn();
   </script>
 
-</body>
+  </body>
 
 </html>
