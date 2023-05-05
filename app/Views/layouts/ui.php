@@ -83,7 +83,11 @@ session()->root = $root;
             </a>
           </li>
 
-          
+          <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
+            <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
+            </a>
+          </li>
 
         </ul>
 

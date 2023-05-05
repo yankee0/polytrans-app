@@ -10,9 +10,6 @@ class Chauffeurs extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        $profils = [
-            'SUPER ADMIN',
-        ];
 
         for ($i=0; $i < 30; $i++) { 
             $donnee[$i] = [
