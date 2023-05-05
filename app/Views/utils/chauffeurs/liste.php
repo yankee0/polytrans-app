@@ -54,7 +54,7 @@ Liste des chauffeurs
           <input type="text" class="form-control" required name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required name="permis" id="permis" aria-describedby="helpId" placeholder="email @poly-trans.sn">
+          <input type="text" class="form-control" required name="permis" id="permis" aria-describedby="helpId" placeholder="Numéro du permis de conduire">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
@@ -64,7 +64,6 @@ Liste des chauffeurs
         </div>
         <?= csrf_field() ?>
       </form>
-      <h6 class="card-subtitle mb-2 text-muted"><span class="badge bg-primary">NB:</span> Une fois le compte créé, un lien d'activation sera envoyé sur l'email <code class=" badge bg-light text-primary">@polytrans.sn</code> du chauffeur concerné.</h6>
     </div>
   </div>
 

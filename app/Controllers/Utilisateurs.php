@@ -79,12 +79,12 @@ class Utilisateurs extends BaseController
                     'message' => base_url('/activer/' . $donnee['email']),
                 ];
                 if ($this->envoyer_email($courriel)) {
-                    return redirect()->back()->with('operation', true)->with('email', true);
+                    return redirect()->back()->with('notif', true)->with('message', 'Création du compte réussie, un email d\'activation a été envoyez à l\'utilisateur concerné.');
                 } else {
-                    return redirect()->back()->with('operation', true)->with('email', false);
+                    return redirect()->back()->with('notif', true)->with('message', 'Création du compte réussie, par contre echec de l\'envois du mail d\'activation.');
                 }
             } else {
-                return redirect()->back()->with('operation', false);
+                return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'opération.');;
             }
         }
     }

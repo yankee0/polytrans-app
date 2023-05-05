@@ -15,4 +15,28 @@ class Chauffeurs extends BaseController
         ];
         return view('utils/chauffeurs/liste',$donnee);
     }
+
+    public function ajout(){
+        $donnee = $this->request->getVar();
+        $donnee['prenom'] = ucwords($donnee['prenom']);
+        $donnee['nom'] = ucwords($donnee['nom']);
+        $donnee['permis'] = strtoupper($donnee['permis']);
+
+        $rules = [
+            'permis' => [
+                'rules' => 'is_unique[chauffeurs.permis]|min_length[3]'
+            ]
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublon.');
+        }else {
+            $modele = new ModelsChauffeurs();
+            if ($modele->insert($donnee) == 0) {
+                return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');;
+            }else{
+                return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');;
+            }
+        }
+    }
 }
