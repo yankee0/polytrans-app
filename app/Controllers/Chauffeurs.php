@@ -33,10 +33,31 @@ class Chauffeurs extends BaseController
         }else {
             $modele = new ModelsChauffeurs();
             if ($modele->insert($donnee) == 0) {
-                return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');;
+                return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');
             }else{
-                return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');;
+                return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');
             }
         }
     }
+
+    public function supprimer(){
+        $id = $this->request->getVar('id');
+        $modele = new ModelsChauffeurs();
+        if ($modele->delete($id)) {
+            return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie.');
+        } else {
+            return redirect()->back()->with('notif', false)->with('message', 'Echec de la suppression.');
+        }
+    }
+
+    public function supprimer_groupe(){
+        $ids = $this->request->getVar('liste');
+        $modele = new ModelsChauffeurs();
+        if ($modele->delete($ids)) {
+            return redirect()->back()->with('notif', true)->with('message', 'Suppressions réussies.');
+        } else {
+            return redirect()->back()->with('notif', false)->with('message', 'Echec des suppressions.');
+        }
+    }
+
 }
