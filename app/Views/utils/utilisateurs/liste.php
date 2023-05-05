@@ -39,7 +39,7 @@ Liste des utilisateurs
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title text-success">Succès 201</h5>
-                <p class="card-text">Création du compte réussi, <?= (session()->email) ? 'un lien d\'activation a été envoyé à l\'adresse email de l\'utilisateur concerné.' : '<span class="text-danger" >par contre échec de l\'envoi du mail d\'activation. Procédez à une activation manuelle!</span>' ?></p>
+                <p class="card-text">Création du compte réussie, <?= (session()->email) ? 'un lien d\'activation a été envoyé à l\'adresse email de l\'utilisateur concerné.' : '<span class="text-danger" >par contre échec de l\'envoi du mail d\'activation. Procédez à une activation manuelle!</span>' ?></p>
               </div>
             </div>
           </div>
