@@ -60,4 +60,36 @@ class Chauffeurs extends BaseController
         }
     }
 
+    public function modifier(string $permis){
+        $modele = new ModelsChauffeurs();
+        $donnee = [
+            'chauffeur' => $modele->find($permis),
+        ];
+        return view('utils/chauffeurs/modifier',$donnee);
+    }
+
+    public function enregistrer(){
+        $donnee = $this->request->getVar();
+        $donnee['prenom'] = ucwords($donnee['prenom']);
+        $donnee['nom'] = ucwords($donnee['nom']);
+        $donnee['permis'] = strtoupper($donnee['permis']);
+
+        $rules = [
+            'permis' => [
+                'rules' => 'is_unique[chauffeurs.permis,permis,'.$donnee['permis'].']|min_length[3]'
+            ]
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublon.');
+        }else {
+            $modele = new ModelsChauffeurs();
+            if ($modele->update($donnee['permis'],$donnee)) {
+                return redirect()->to(session()->root.'/chauffeurs')->with('notif', true)->with('message', 'Modification réussie.');
+            } else {
+                return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
+            }
+        }
+    }
+
 }

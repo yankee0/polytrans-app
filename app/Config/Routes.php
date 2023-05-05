@@ -59,7 +59,11 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
             $routes->post('/','Chauffeurs::ajout');
             $routes->post('supprimer','Chauffeurs::supprimer');
             $routes->post('supprimer_groupe','Chauffeurs::supprimer_groupe');
+            $routes->get('modifier/(:segment)','Chauffeurs::modifier/$1');
+            $routes->post('modifier','Chauffeurs::enregistrer');
         });
+
+
 
 
     });

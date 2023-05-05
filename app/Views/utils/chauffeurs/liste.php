@@ -22,29 +22,6 @@ Liste des chauffeurs
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Ajouter un chauffeur</h5>
-      <?php if (session()->has('operation')) : ?>
-        <?php if (!session()->operation) : ?>
-
-          <div class="mb-3 notif">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Erreur 400</h5>
-                <p class="card-text">Echec de la création, identifiants incorrects ou en doublon.</p>
-              </div>
-            </div>
-          </div>
-        <?php else : ?>
-          <!-- FALSE -->
-          <div class="mb-3 notif">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-success">Succès 201</h5>
-                <p class="card-text">Création réussie</p>
-              </div>
-            </div>
-          </div>
-        <?php endif ?>
-      <?php endif ?>
 
       <form class="row" action="<?= base_url(session()->root . '/chauffeurs/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
@@ -118,7 +95,7 @@ Liste des chauffeurs
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['permis'] ?></td>
             <td class="d-flex gap-3 ">
-              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/' . $ligne['permis']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/modifier/' . $ligne['permis']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
               <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerchauffeur<?= $ligne['permis'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
             </td>
           </tr>
