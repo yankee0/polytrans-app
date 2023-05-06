@@ -76,4 +76,8 @@ class Camions extends BaseController
             }
         }
     }
+
+    public function dossier(){
+        return 'Gotta finish';
+    }
 }

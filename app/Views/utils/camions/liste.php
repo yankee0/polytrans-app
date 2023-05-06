@@ -93,7 +93,7 @@ Liste des camions
             <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
-              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/' . $ligne['immatriculation']) ?>" role="button" title="Voir le dossier"><i class="align-middle" data-feather="folder"></i></a>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/dossier/' . $ligne['immatriculation']) ?>" role="button" title="Voir le dossier"><i class="align-middle" data-feather="folder"></i></a>
               <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimercamion<?= $ligne['immatriculation'] ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
             </td>
           </tr>

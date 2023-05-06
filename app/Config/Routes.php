@@ -71,6 +71,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
             $routes->post('supprimer_groupe','Camions::supprimer_groupe');
             $routes->get('modifier/(:segment)','Camions::modifier/$1');
             $routes->post('modifier','Camions::enregistrer');
+            $routes->get('dossier/(:segment)','Camions::dossier/$1');
         });
 
 
