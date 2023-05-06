@@ -5,9 +5,8 @@ Liste des camions
 <?= $this->section('contenu'); ?>
 
 <script>
+  $(document).ready(function() {
 
-  $(document).ready(function () {
-    
     $('#recherche').keyup(function() {
       searchTable('tableau', 'recherche');
     });

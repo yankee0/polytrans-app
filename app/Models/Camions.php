@@ -8,7 +8,7 @@ class Camions extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'camions';
-    protected $primaryKey       = 'immatricucation';
+    protected $primaryKey       = 'immatriculation';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;

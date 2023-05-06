@@ -35,4 +35,14 @@ class Camions extends BaseController
             }
         }
     }
+
+    public function supprimer(){
+        $id = $this->request->getVar('id');
+        $modele = new ModelsCamions();
+        if ($modele->delete($id)) {
+            return redirect()->back()->with('notif',true)->with('message','Suppression réussie');
+        } else {
+            return redirect()->back()->with('notif',false)->with('message','Echec de la suppression');
+        }
+    }
 }
