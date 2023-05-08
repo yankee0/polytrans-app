@@ -48,6 +48,18 @@ class Camions extends BaseController
         }
     }
 
+    public function supprimer_groupe(){
+        $ids = $this->request->getPost('liste');
+        // dd($ids);
+        $modele = new ModelsCamions();
+
+        if($modele->delete($ids)){
+            return redirect()->back()->with('notif',true)->with('message','Suppressions réussies.');
+        } else {
+            return redirect()->back()->with('notif',false)->with('message','Echec des suppressions.');
+        }
+    }
+
     public function modifier(string $id)
     {
         $donnee = [
