@@ -74,6 +74,17 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
             $routes->get('dossier/(:segment)','Camions::dossier/$1');
         });
 
+        $routes->group('livraisons', function($routes)
+        {
+            $routes->get('/','Livraisons::liste');
+            $routes->post('/','Livraisons::ajout');
+            $routes->post('supprimer','Livraisons::supprimer');
+            $routes->post('supprimer_groupe','Livraisons::supprimer_groupe');
+            $routes->get('modifier/(:segment)','Livraisons::modifier/$1');
+            $routes->post('modifier','Livraisons::enregistrer');
+            $routes->get('dossier/(:segment)','Livraisons::dossier/$1');
+        });
+
 
 
 
