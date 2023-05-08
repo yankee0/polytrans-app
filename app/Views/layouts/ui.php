@@ -37,7 +37,7 @@ session()->root = $root;
 </head>
 
 <body class="position-relative">
-<script>
+  <script>
     $('#tableau').on({
       ajaxStart: function() {
         // $("#loadingModal").modal("show");
@@ -67,7 +67,7 @@ session()->root = $root;
           </li>
 
           <li class="sidebar-header">
-            Gestion
+            Gestion du personnel et de la flotte
           </li>
 
 
@@ -86,6 +86,21 @@ session()->root = $root;
           <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
             <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
+            Gestion des opérations
+          </li>
+
+          <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
+            <a class="sidebar-link" href="<?= base_url($root . '/livraisons') ?>">
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
+            </a>
+          </li>
+          <li class="sidebar-item <?= (session()->position == 'transferts') ? 'active' : '' ?>">
+            <a class="sidebar-link" href="<?= base_url($root . '/transferts') ?>">
+              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Transferts</span>
             </a>
           </li>
 
@@ -311,12 +326,12 @@ session()->root = $root;
   </div> -->
 
   <script src="<?= base_url('js/app.js') ?>"></script>
-  
+
 
   <script>
     $('.notif').fadeIn();
   </script>
 
-  </body>
+</body>
 
 </html>
