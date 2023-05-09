@@ -82,7 +82,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
             $routes->post('supprimer_groupe','Livraisons::supprimer_groupe');
             $routes->get('modifier/(:segment)','Livraisons::modifier/$1');
             $routes->post('modifier','Livraisons::enregistrer');
-            $routes->get('dossier/(:segment)','Livraisons::dossier/$1');
+            $routes->get('info/(:segment)','Livraisons::info/$1');
         });
 
 

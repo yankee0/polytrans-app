@@ -122,9 +122,29 @@ class Liv extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'depart' => [
+                'type' => 'DATE',
+                'null' => true,
+            ],
+            'arrive' => [
+                'type' => 'DATE',
+                'null' => true,
+            ],
             'auteur' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => true,
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
                 'null' => true,
             ],
         ]);

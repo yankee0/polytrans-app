@@ -118,8 +118,8 @@ Liste des livraisons
                 <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
               </label>
               <label class=" form-label d-grid">
-                <span class="text-sm">Remarque</span>
-                <textarea value="<?= set_value('remarque', '') ?>" class="form-control" name="" id="" rows="3"></textarea>
+                <span class="text-sm">Commentaire</span>
+                <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
               </label>
               <h6 class=" mt-3 text-primary">Paiement</h6>
               <label class="form-label d-grid">
@@ -172,15 +172,7 @@ Liste des livraisons
         </form>
       </div>
     </div>
-    <div class="col-md-6">
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Enregistrement du (<span class="text-primary"><?= date('m-d-Y') ?></span>)</h5>
-
-        </div>
-      </div>
-    </div>
     <div class="col-md-6">
       <div class="card flex-fill">
         <div class="card-header">
@@ -189,15 +181,20 @@ Liste des livraisons
         <table id="tableau" class="table table-hover my-0">
           <thead>
             <tr>
-              <th class="d-none d-xl-table-cell"></th>
-              <th class="d-table-cell d-xl-none">Nom</th>
-              <th class="d-none d-xl-table-cell">Prénom</th>
-              <th class="d-none d-xl-table-cell">Nom</th>
-              <th class="d-none d-sm-table-cell">Numéros de permis</th>
-              <th></th>
+              <th class="d-xl-table-cell"></th>
+              <th class="d-table-cell">Conteneur</th>
+              <th class="d-table-cell">Client</th>
             </tr>
           </thead>
           <tbody>
+            <?php foreach ($liste_non_paye as $ligne) : ?>
+              <tr>
+                <td class="d-table-cell"><input type="checkbox" class=" form-check-input" name=""></td>
+                <td class="d-table-cell"><a href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>"><?= $ligne['conteneur'] ?></a></td>
+                <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
+              </tr>
+            <?php endforeach ?>
+
           </tbody>
         </table>
       </div>
@@ -206,41 +203,34 @@ Liste des livraisons
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Générer un rapport</h5>
-          <p>Télécharger le rapport des enregistrements effectués aujourd'hui:</p>
-          <a class="btn btn-primary mb-3" href="#" role="button">Télécharger le rapport d'aujourd'hui</a>
-          <p>Ou Télécharger un rapport personnalisé:</p>
+          <p>Générer un rapport</p>
           <form method="post" class="d-grid gap-1">
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="rapport" type="radio" value="checkedValue" aria-label="Text for screen reader"> Hebdomadaire
+                <input class="form-check-input" name="rapport" type="radio" value="j"> Journalier
               </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="rapport" type="radio" value="checkedValue" aria-label="Text for screen reader"> Mensuel
+                <input class="form-check-input" name="rapport" type="radio" value="h"> Hebdomadaire
               </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="rapport" type="radio" value="checkedValue" aria-label="Text for screen reader"> Annuel
+                <input class="form-check-input" name="rapport" type="radio" value="m"> Mensuel
               </label>
+            </div>
+            <?= csrf_field() ?>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name="rapport" type="radio" value="a"> Annuel
+              </label>
+            </div>
+            <div class="form-label d-flex gap-2">
+              <input type="date" name="date" id="" class="form-control">
+              <button type="button" class="d-flex gap-2 align-items-center justify-content-center btn btn-primary "><i class="align-middle" data-feather="download"></i> Télécharger</button>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card flex-fill">
-        <div class="card-header">
-
-          <h5 class="card-title mb-0">Calendrier</h5>
-        </div>
-        <div class="card-body d-flex">
-          <div class="align-self-center w-100">
-            <div class="chart">
-              <div id="datetimepicker-dashboard"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -250,17 +240,6 @@ Liste des livraisons
 
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-    var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-    document.getElementById("datetimepicker-dashboard").flatpickr({
-      inline: true,
-      prevArrow: "<span title=\"Mois précédant\">&laquo;</span>",
-      nextArrow: "<span title=\"Mois suivant\">&raquo;</span>",
-      defaultDate: defaultDate
-    });
-  });
-
   $(document).ready(function() {
     $('#reglement').on('change', function() {
       let value = $(this).val();

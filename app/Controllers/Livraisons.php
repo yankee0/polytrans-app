@@ -46,4 +46,11 @@ class Livraisons extends BaseController
             }
         }
     }
+
+    public function info(string $id){
+        $donnee = [
+            'livraison' => (new ModelsLivraisons())->where('conteneur',$id)->find() 
+        ];
+        return view('utils/livraisons/info',$donnee);
+    }
 }

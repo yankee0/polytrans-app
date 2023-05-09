@@ -33,6 +33,18 @@ class Livraisons extends Seeder
                 'chauffeur' => $faker->name('M'),
                 'camion' => 'RAND'.$faker->numberBetween(),
                 'commentaire' => $faker->text(),
+                'created_at' => [
+                    'type' => 'DATETIME',
+                    'null' => true,
+                ],
+                'updated_at' => [
+                    'type' => 'DATETIME',
+                    'null' => true,
+                ],
+                'deleted_at' => [
+                    'type' => 'DATETIME',
+                    'null' => true,
+                ],
             ];
         }
 
