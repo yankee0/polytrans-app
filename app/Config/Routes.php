@@ -77,7 +77,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
         $routes->group('livraisons', function($routes)
         {
             $routes->get('/','Livraisons::liste');
-            $routes->post('/','Livraisons::ajout');
+            $routes->post('ajout','Livraisons::ajout');
             $routes->post('supprimer','Livraisons::supprimer');
             $routes->post('supprimer_groupe','Livraisons::supprimer_groupe');
             $routes->get('modifier/(:segment)','Livraisons::modifier/$1');

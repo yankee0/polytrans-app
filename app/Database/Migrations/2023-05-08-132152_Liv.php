@@ -48,6 +48,16 @@ class Liv extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'eir' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'scan_eir' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
             'deadline' => [
                 'type' => 'DATE',
                 'null' => true,
@@ -57,7 +67,7 @@ class Liv extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
-            'contact' => [
+            'nom_contact' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
@@ -73,7 +83,7 @@ class Liv extends Migration
                 'null' => true,
             ],
             'paiement' => [
-                'type' => 'ENUM("PAYÉ","EN ATTENTE")',
+                'type' => 'ENUM("oui","non")',
 
             ],
             'reglement' => [
@@ -112,18 +122,24 @@ class Liv extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'auteur' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addUniqueKey([
-            'bl',
-            'bo',
+        $this->forge->addUniqueKey([  
+            'eir',  
+            'scan_eir',
             'scan_bl',
             'scan_bo',
         ]);
 
         $this->forge->addForeignKey('chauffeur','chauffeurs','permis','CASCADE','NO ACTION');
         $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','NO ACTION');
+        $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','NO ACTION');
 
         $this->forge->createTable('livraisons',true);
     }
