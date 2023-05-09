@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Livraisons extends Migration
+class Liv extends Migration
 {
     public function up()
     {
@@ -22,8 +22,6 @@ class Livraisons extends Migration
             ],
             'type' => [
                 'type' => 'ENUM("20","40")',
-                'constraint' => 255,
-                'null' => true,
             ],
             'compagnie' => [
                 'type' => 'VARCHAR',
@@ -33,22 +31,22 @@ class Livraisons extends Migration
             'bl' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                // 'null' => true,
+                'null' => true,
             ],
             'scan_bl' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                // 'null' => true,
+                'null' => true,
             ],
             'do' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                // 'null' => true,
+                'null' => true,
             ],
             'scan_do' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                // 'null' => true,
+                'null' => true,
             ],
             'deadline' => [
                 'type' => 'DATE',
@@ -76,27 +74,22 @@ class Livraisons extends Migration
             ],
             'paiement' => [
                 'type' => 'ENUM("PAYÉ","EN ATTENTE")',
-                'constraint' => 255,
-                'null' => true,
+
             ],
             'reglement' => [
                 'type' => 'ENUM("COMPTANT","À CRÉDIT")',
-                'constraint' => 255,
-                'null' => true,
+
             ],
-            'date_de_paiement' => [
+            'date_paiement' => [
                 'type' => 'DATE',
-                'constraint' => 255,
                 'null' => true,
             ],
             'date_sortie' => [
                 'type' => 'DATETIME',
-                'constraint' => 255,
                 'null' => true,
             ],
             'date_retour' => [
                 'type' => 'DATETIME',
-                'constraint' => 255,
                 'null' => true,
             ],
             'zone' => [
