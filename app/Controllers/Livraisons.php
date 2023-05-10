@@ -9,6 +9,7 @@ use App\Models\Livraisons as ModelsLivraisons;
 
 class Livraisons extends BaseController
 {
+
     public function liste()
     {
         session()->position = "livraisons";
@@ -66,8 +67,13 @@ class Livraisons extends BaseController
                 ->join('utilisateurs', 'livraisons.auteur = utilisateurs.email')
                 ->findAll(),
         ];
-        // dd($donnee);
-        return view('utils/livraisons/info', $donnee);
+        if (empty($donnee['livraison'])) {
+            return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Informations indisponibles ou supprimées.');
+        } else {
+
+            // dd($donnee);
+            return view('utils/livraisons/info', $donnee);
+        }
     }
 
     public function supprimer(string $id)
@@ -77,5 +83,20 @@ class Livraisons extends BaseController
         } else {
             return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie');
         }
+    }
+
+    public function recherche()
+    {
+
+        $recherche = $this->request->getGet('recherche');
+        $modele = new ModelsLivraisons();
+        $resultat = $modele->like('conteneur', strtoupper(''.$recherche))->paginate(10);
+        $page = $modele->pager;
+        $donnee = [
+            'resultat' => $resultat,
+            'page' => $page
+        ];
+        return view('utils/livraisons/recherche',$donnee);
+
     }
 }

@@ -83,6 +83,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
             $routes->get('modifier/(:segment)','Livraisons::modifier/$1');
             $routes->post('modifier','Livraisons::enregistrer');
             $routes->get('info/(:segment)','Livraisons::info/$1');
+            $routes->get('recherche','Livraisons::recherche');
         });
 
 
