@@ -105,8 +105,8 @@ Information conteneur
               <span class="text-primary"><?= (!empty($l['commentaire'])) ? $l['commentaire'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
             </p>
             <p class="d-grid">
-              <span class="text-sm">Modifié dernièrement par:</span>
-              <span class="text-primary"><?= (!empty($l['auteur'])) ? $l['prenom_utilisateur'] . ' ' . $l['nom_utilisateur'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+              <span class="text-sm">Créé le:</span>
+              <span class="text-primary"><?= (!empty($l['auteur'])) ? $l['created_at'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
             </p>
           </div>
         </div>
