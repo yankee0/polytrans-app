@@ -126,8 +126,13 @@ class Liv extends Migration
                 'type' => 'DATE',
                 'null' => true,
             ],
-            'arrive' => [
+            'arrivee' => [
                 'type' => 'DATE',
+                'null' => true,
+            ],
+            'litre_carburant' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
                 'null' => true,
             ],
             'auteur' => [

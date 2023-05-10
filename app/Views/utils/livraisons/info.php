@@ -111,9 +111,7 @@ Information conteneur
           </div>
         </div>
         <div class="d-grid d-sm-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-          <a class="btn btn-warning d-flex align-items-center justify-content-center gap-2" href="#" role="button"><i class="align-middle" data-feather="edit"></i>Modifier</a>
           <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#modalId"><i class="align-middle" data-feather="trash"></i>Supprimer</button>
-
           <!-- Modal Body -->
           <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
           <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">

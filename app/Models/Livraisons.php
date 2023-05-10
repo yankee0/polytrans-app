@@ -38,7 +38,8 @@ class Livraisons extends Model
         'camion',
         'commentaire',
         'depart',
-        'arrive',
+        'arrivee',
+        'litre_carburant',
         'auteur',
 
     ];
