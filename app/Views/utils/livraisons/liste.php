@@ -16,7 +16,7 @@ Liste des livraisons
 
 <div class="container-fluid p-0">
 
-  <h1 class="h3 mb-3"><strong>Gestion</strong> Livraison</h1>
+  <h1 class="h3 mb-3"><strong>Gestion</strong> livraisons</h1>
 
   <div class="row">
 
@@ -181,17 +181,17 @@ Liste des livraisons
         <table id="tableau" class="table table-hover my-0">
           <thead>
             <tr>
-              <th class="d-xl-table-cell"></th>
               <th class="d-table-cell">Conteneur</th>
               <th class="d-table-cell">Client</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($liste_non_paye as $ligne) : ?>
               <tr>
-                <td class="d-table-cell"><input type="checkbox" class=" form-check-input" name=""></td>
-                <td class="d-table-cell"><a href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>"><?= $ligne['conteneur'] ?></a></td>
+                <td class="d-table-cell"><?= $ligne['conteneur'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
+                <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>" role="button">Consulter</a></td>
               </tr>
             <?php endforeach ?>
 

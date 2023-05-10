@@ -67,15 +67,19 @@ session()->root = $root;
           </li>
 
           <li class="sidebar-header">
-            Gestion du personnel et de la flotte
+            Administration
+            <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
+                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
+              </a>
+            </li>
+          </li>
+
+          <li class="sidebar-header">
+            Flotte
           </li>
 
 
-          <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
-            </a>
-          </li>
 
           <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
             <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
@@ -90,7 +94,7 @@ session()->root = $root;
           </li>
 
           <li class="sidebar-header">
-            Gestion des opérations
+            Opérations
           </li>
 
           <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">

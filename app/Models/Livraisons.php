@@ -12,8 +12,36 @@ class Livraisons extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = false;
-    protected $allowedFields    = [];
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'conteneur',
+        'type',
+        'compagnie',
+        'bl',
+        'scan_bl',
+        'do',
+        'scan_do',
+        'eir',
+        'scan_eir',
+        'deadline',
+        'client',
+        'nom_contact',
+        'tel_contact',
+        'email_contact',
+        'paiement',
+        'reglement',
+        'date_paiement',
+        'date_sortie',
+        'date_retour',
+        'zone',
+        'chauffeur',
+        'camion',
+        'commentaire',
+        'depart',
+        'arrive',
+        'auteur',
+
+    ];
 
     // Dates
     protected $useTimestamps = true;

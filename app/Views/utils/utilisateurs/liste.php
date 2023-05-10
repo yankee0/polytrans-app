@@ -22,29 +22,6 @@ Liste des utilisateurs
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Créer un compte utilisateur</h5>
-      <?php if (session()->has('operation')) : ?>
-        <?php if (!session()->operation) : ?>
-
-          <div class="mb-3 notif">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Erreur 400</h5>
-                <p class="card-text">Echec de la création du compte, identifiants incorrects ou en doublon.</p>
-              </div>
-            </div>
-          </div>
-        <?php else : ?>
-          <!-- FALSE -->
-          <div class="mb-3 notif">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-success">Succès 201</h5>
-                <p class="card-text">Création du compte réussie, <?= (session()->email) ? 'un lien d\'activation a été envoyé à l\'adresse email de l\'utilisateur concerné.' : '<span class="text-danger" >par contre échec de l\'envoi du mail d\'activation. Procédez à une activation manuelle!</span>' ?></p>
-              </div>
-            </div>
-          </div>
-        <?php endif ?>
-      <?php endif ?>
 
       <form class="row" action="<?= base_url(session()->root . '/utilisateurs/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-4">
