@@ -124,7 +124,7 @@ Information conteneur
                 <div class="modal-body">
                   Vous souhaitez supprimer la livraison <span class="text-primary"><?= $l['conteneur'] ?></span> du <span class="text-primary"><?= $l['created_at'] ?></span>?
                 </div>
-                <form method="post" action="<?= base_url(session()->root . '/livraisons/supprimer/' . $l['id']) ?>" class="modal-footer">
+                <form method="post" action="<?= base_url('index.php' . session()->root . '/livraisons/supprimer/' . $l['id']) ?>" class="modal-footer">
                   <?= csrf_field() ?>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non! Annuler</button>
                   <button type="submit" class="btn btn-primary">Oui! Supprimer</button>

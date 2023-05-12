@@ -5,9 +5,8 @@ Liste des chauffeurs
 <?= $this->section('contenu'); ?>
 
 <script>
+  $(document).ready(function() {
 
-  $(document).ready(function () {
-    
     $('#recherche').keyup(function() {
       searchTable('tableau', 'recherche');
     });
@@ -23,15 +22,15 @@ Liste des chauffeurs
     <div class="card-body">
       <h5 class="card-title">Modifer les informations du chauffeur</h5>
 
-      <form class="row" action="<?= base_url(session()->root . '/chauffeurs/modifier') ?>" method="post">
+      <form class="row" action="<?= base_url('index.php' . session()->root . '/chauffeurs/modifier') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required value="<?= set_value('prenom',$chauffeur['prenom']) ?>" name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
+          <input type="text" class="form-control" required value="<?= set_value('prenom', $chauffeur['prenom']) ?>" name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required value="<?= set_value('nom',$chauffeur['nom']) ?>" name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
+          <input type="text" class="form-control" required value="<?= set_value('nom', $chauffeur['nom']) ?>" name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required value="<?= set_value('permis',$chauffeur['permis']) ?>" name="permis" id="permis" aria-describedby="helpId" placeholder="Numéro du permis de conduire">
+          <input type="text" class="form-control" required value="<?= set_value('permis', $chauffeur['permis']) ?>" name="permis" id="permis" aria-describedby="helpId" placeholder="Numéro du permis de conduire">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">

@@ -24,7 +24,7 @@ Liste des livraisons
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Rechercher une livraison</h5>
-          <form action="<?= base_url(session()->root . '/livraisons/recherche/') ?>" class="d-flex gap-2">
+          <form action="<?= base_url('index.php' . session()->root . '/livraisons/recherche/') ?>" class="d-flex gap-2">
             <input type="search" class="form-control" name="recherche" id="recherche" placeholder="Numéro du conteneur">
             <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center gap-2"><i class="align-middle" data-feather="search"></i><span class="d-none d-md-flex">Rechercher</span></button>
           </form>
@@ -34,7 +34,7 @@ Liste des livraisons
     </div>
     <div class="col-md-12">
       <div class="card">
-        <form class="card-body" action="<?= base_url(session()->root . '/livraisons/ajout') ?>" method="post">
+        <form class="card-body" action="<?= base_url('index.php' . session()->root . '/livraisons/ajout') ?>" method="post">
           <h5 class="card-title">Enregistrer une nouvelle livraison</h5>
           <?= csrf_field() ?>
           <?php if (empty($liste_camion) or empty($liste_chauffeur)) : ?>
@@ -211,7 +211,7 @@ Liste des livraisons
         <div class="card-body">
           <h5 class="card-title">Générer un rapport</h5>
           <p>Générer un rapport</p>
-          <form method="post" action="<?= base_url(session()->root . '/rapports/livraison') ?>" class="d-grid gap-1">
+          <form method="post" action="<?= base_url('index.php' . session()->root . '/rapports/livraison') ?>" class="d-grid gap-1">
             <?= csrf_field() ?>
             <div class="form-check">
               <label class="form-check-label">

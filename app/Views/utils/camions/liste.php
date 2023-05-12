@@ -22,7 +22,7 @@ Liste des camions
     <div class="card-body">
       <h5 class="card-title">Ajouter un camion</h5>
 
-      <form class="row" action="<?= base_url(session()->root . '/camions/') ?>" method="post">
+      <form class="row" action="<?= base_url('index.php' . session()->root . '/camions/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
           <input type="text" class="form-control" required name="immatriculation" id="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
         </div>
@@ -57,7 +57,7 @@ Liste des camions
               Confirmez-vous la suppression groupée des camions cochés?
             </div>
             <div class="modal-footer">
-              <form id="group" action="<?= base_url(session()->root . '/camions/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
+              <form id="group" action="<?= base_url('index.php' . session()->root . '/camions/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
                 <?= csrf_field() ?>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                 <button type="submit" class="btn btn-primary">Oui, supprimer!</button>
@@ -110,7 +110,7 @@ Liste des camions
                   <h6 class="text-primary"><?= $ligne['immatriculation'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?= base_url(session()->root . '/camions/supprimer/') ?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url('index.php' . session()->root . '/camions/supprimer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['immatriculation'] ?>" class="btn btn-primary">Oui, supprimer!</button>

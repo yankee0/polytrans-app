@@ -22,7 +22,7 @@ Liste des utilisateurs
     <div class="card-body">
       <h5 class="card-title">Créer un compte utilisateur</h5>
 
-      <form class="row" action="<?= base_url(session()->root . '/utilisateurs/') ?>" method="post">
+      <form class="row" action="<?= base_url('index.php' . session()->root . '/utilisateurs/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-4">
           <select class="form-select " name="profil" id="profil" required>
             <option disabled selected>Choisir un profil</option>
@@ -73,7 +73,7 @@ Liste des utilisateurs
               Confirmez-vous la suppression groupée des utilisateurs cochés?
             </div>
             <div class="modal-footer">
-              <form id="group" action="<?= base_url(session()->root . '/utilisateurs/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
+              <form id="group" action="<?= base_url('index.php' . session()->root . '/utilisateurs/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
                 <?= csrf_field() ?>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                 <button type="submit" class="btn btn-primary">Oui, supprimer!</button>
@@ -126,7 +126,7 @@ Liste des utilisateurs
                   <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?= base_url(session()->root . '/utilisateurs/supprimer/') ?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url('index.php' . session()->root . '/utilisateurs/supprimer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, supprimer!</button>
@@ -148,7 +148,7 @@ Liste des utilisateurs
                   <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?= base_url(session()->root . '/utilisateurs/activer/') ?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url('index.php' . session()->root . '/utilisateurs/activer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Oui, activer le compte!</button>

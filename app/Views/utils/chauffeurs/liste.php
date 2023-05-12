@@ -22,7 +22,7 @@ Liste des chauffeurs
     <div class="card-body">
       <h5 class="card-title">Ajouter un chauffeur</h5>
 
-      <form class="row" action="<?= base_url(session()->root . '/chauffeurs/') ?>" method="post">
+      <form class="row" action="<?= base_url('index.php' . session()->root . '/chauffeurs/') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
           <input type="text" class="form-control" required name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
@@ -63,7 +63,7 @@ Liste des chauffeurs
               Confirmez-vous la suppression groupée des chauffeurs cochés?
             </div>
             <div class="modal-footer">
-              <form id="group" action="<?= base_url(session()->root . '/chauffeurs/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
+              <form id="group" action="<?= base_url('index.php' . session()->root . '/chauffeurs/supprimer_groupe/') ?>" class="d-flex gap-3" method="post">
                 <?= csrf_field() ?>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                 <button type="submit" class="btn btn-primary">Oui, supprimer!</button>
@@ -111,7 +111,7 @@ Liste des chauffeurs
                   <h6 class="text-primary"><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></h6>
                 </div>
                 <div class="modal-footer">
-                  <form action="<?= base_url(session()->root . '/chauffeurs/supprimer/') ?>" class="d-flex gap-3" method="post">
+                  <form action="<?= base_url('index.php' . session()->root . '/chauffeurs/supprimer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
                     <button type="submit" name="id" value="<?= $ligne['permis'] ?>" class="btn btn-primary">Oui, supprimer!</button>

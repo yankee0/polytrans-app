@@ -22,7 +22,7 @@ Liste des camions
     <div class="card-body">
       <h5 class="card-title">Modifier le immatriculation du camion</h5>
 
-      <form class="row" action="<?= base_url(session()->root . '/camions/modifier') ?>" method="post">
+      <form class="row" action="<?= base_url('index.php/' . session()->root . '/camions/modifier') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
           <input type="text" class="form-control" value="<?= set_value('immatriculation', $camion['immatriculation']) ?>" required name="immatriculation" id="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
         </div>
