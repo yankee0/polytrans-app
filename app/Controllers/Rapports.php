@@ -62,7 +62,7 @@ class Rapports extends BaseController
                 break;
 
             default:
-                return redirect()->to(session()->root)->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->to(session()->root.'/livraisons')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
 
@@ -124,7 +124,7 @@ class Rapports extends BaseController
                 $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date) . '.xls';
                 break;
             default:
-                return redirect()->to(session()->root)->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->to(session()->root.'/livraisons')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
         header('Content-Type: application/vnd.ms-excel');
@@ -133,7 +133,9 @@ class Rapports extends BaseController
         $writer = new Xls($spreadsheet);
         if ($writer->save('php://output')) {
 
-            return redirect()->to(session()->root)->with('notif', true)->with('message', 'Téléchargement lancé.');
+            return redirect()->to(session()->root.'/livraisons')->with('notif', true)->with('message', 'Téléchargement lancé.');
+        }else {
+            return redirect()->to(session()->root.'/livraisons')->with('notif', true)->with('message', 'Echec lors du téléchargement.');
         }
     }
 
