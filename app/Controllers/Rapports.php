@@ -124,6 +124,7 @@ class Rapports extends BaseController
                 $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date) . '.xls';
                 break;
             default:
+                dd($timing);
                 return redirect()->to(session()->root.'/livraisons')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
