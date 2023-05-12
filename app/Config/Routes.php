@@ -88,7 +88,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
 
         $routes->group('rapports', function($routes)
         {  
-            $routes->post('livraison','Rapports::livraison');
+            $routes->add('livraison','Rapports::livraison');
         });
 
 
