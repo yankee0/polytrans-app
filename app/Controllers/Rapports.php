@@ -124,7 +124,7 @@ class Rapports extends BaseController
 
             return redirect()->to(session()->root . '/livraisons')->with('notif', true)->with('message', 'Téléchargement lancé.');
         } else {
-            return redirect()->to(session()->root . '/livraisons')->with('notif', true)->with('message', 'Echec lors du téléchargement.');
+            return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Echec lors du téléchargement.');
         }
     }
 
