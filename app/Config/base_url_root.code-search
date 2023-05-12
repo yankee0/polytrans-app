@@ -1,0 +1,11 @@
+# Query: base_url($root
+# Flags: CaseSensitive
+
+5 results - 1 file
+
+app/Views/layouts/ui.php:
+   72:               <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/utilisateurs') ?>">
+   85:             <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/chauffeurs') ?>">
+   91:             <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/camions') ?>">
+  101:             <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/livraisons') ?>">
+  106:             <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/transferts') ?>">

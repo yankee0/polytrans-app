@@ -39,7 +39,7 @@ Liste des livraisons
           <?= csrf_field() ?>
           <?php if (empty($liste_camion) or empty($liste_chauffeur)) : ?>
             <div class="alert alert-warning" role="alert">
-              <strong>Urgent!</strong> Aucun véhicule ou chauffeur n'a été enregistré dans la base de donnée. Merci de vous reférer à l'utilisateur disposant des droits de gestion de la flotte, sinon contacter <a href="<?= base_url('/support') ?>" class=" alert-link">le support.</a>
+              <strong>Urgent!</strong> Aucun véhicule ou chauffeur n'a été enregistré dans la base de donnée. Merci de vous reférer à l'utilisateur disposant des droits de gestion de la flotte, sinon contacter <a href="<?= base_url('index.php'.'/support') ?>" class=" alert-link">le support.</a>
             </div>
             <?php else: ?>
               <div class="row">
@@ -198,7 +198,7 @@ Liste des livraisons
               <tr>
                 <td class="d-table-cell"><?= $ligne['conteneur'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
-                <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>" role="button">Consulter</a></td>
+                <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url('index.php/'.session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>" role="button">Consulter</a></td>
               </tr>
             <?php endforeach ?>
 

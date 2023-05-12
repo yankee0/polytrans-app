@@ -25,12 +25,12 @@ Liste des livraisons
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title mb-3">Résultat de la recherche (<?=sizeof($resultat)?>)</h5>
+          <h5 class="card-title mb-3">Résultat de la recherche (<?= sizeof($resultat) ?>)</h5>
           <?php foreach ($resultat as $r) : ?>
-            
+
             <div class="d-grid">
-              <a href="<?=base_url(session()->root.'/livraisons/info/').$r['conteneur']?>" class="link fs-3"><span>Conteneur <span class="text-primary fw-bold"><?=$r['conteneur']?></span> pour le client <span class="text-primary fw-bold"><?= $r['client'] ?></span></span></a>
-              <span class="text-sm text-secondary">Date de création: <?=$r['created_at']?></span>
+              <a href="<?= base_url('index.php/' . session()->root . '/livraisons/info/') . $r['conteneur'] ?>" class="link fs-3"><span>Conteneur <span class="text-primary fw-bold"><?= $r['conteneur'] ?></span> pour le client <span class="text-primary fw-bold"><?= $r['client'] ?></span></span></a>
+              <span class="text-sm text-secondary">Date de création: <?= $r['created_at'] ?></span>
               <hr>
             </div>
           <?php endforeach ?>

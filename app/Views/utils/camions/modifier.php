@@ -24,7 +24,7 @@ Liste des camions
 
       <form class="row" action="<?= base_url(session()->root . '/camions/modifier') ?>" method="post">
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" value="<?=set_value('immatriculation',$camion['immatriculation'])?>" required name="immatriculation" id="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
+          <input type="text" class="form-control" value="<?= set_value('immatriculation', $camion['immatriculation']) ?>" required name="immatriculation" id="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">

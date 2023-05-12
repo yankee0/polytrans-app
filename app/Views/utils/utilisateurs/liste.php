@@ -5,9 +5,8 @@ Liste des utilisateurs
 <?= $this->section('contenu'); ?>
 
 <script>
+  $(document).ready(function() {
 
-  $(document).ready(function () {
-    
     $('#recherche').keyup(function() {
       searchTable('tableau', 'recherche');
     });
@@ -109,7 +108,7 @@ Liste des utilisateurs
             <td class="d-none d-sm-table-cell"><a href="mailto:<?= $ligne['email'] ?>" title="Envoyer un mail"><?= $ligne['email'] ?></a></td>
             <td class="d-none d-lg-table-cell"><a href="tel:<?= $ligne['telephone'] ?>" title="Appeller"><?= $ligne['telephone'] ?></a></td>
             <td class="d-flex gap-3 ">
-              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/profil/' . $ligne['id']) ?>" role="button" title="Voir le profil"><i class="align-middle" data-feather="folder"></i></a>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url('index.php/'.session()->root . '/profil/' . $ligne['id']) ?>" role="button" title="Voir le profil"><i class="align-middle" data-feather="folder"></i></a>
               <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#SupprimerProfil<?= $ligne['id'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
               <button type="button" class=" flex-grow-0 px-0 btn <?= ($ligne['compte_actif'] == 'non') ? 'text-primary' : 'text-muted border-0 disabled' ?>" data-bs-toggle="modal" data-bs-target="#ActiverProfil<?= $ligne['id'] ?>" role="button" title="Activer le compte"><i class="align-middle" data-feather="power"></i></button>
             </td>

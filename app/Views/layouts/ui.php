@@ -61,7 +61,7 @@ session()->root = $root;
         <ul class="sidebar-nav">
 
           <li class="sidebar-item <?= (session()->position == 'dashboard') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root) ?>">
+            <a class="sidebar-link" href="<?= base_url('index.php/'.$root) ?>">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
@@ -69,7 +69,7 @@ session()->root = $root;
           <li class="sidebar-header">
             Administration
             <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
-              <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
+              <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/utilisateurs') ?>">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
               </a>
             </li>
@@ -82,13 +82,13 @@ session()->root = $root;
 
 
           <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
+            <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/chauffeurs') ?>">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
             </a>
           </li>
 
           <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
+            <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/camions') ?>">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
             </a>
           </li>
@@ -98,12 +98,12 @@ session()->root = $root;
           </li>
 
           <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/livraisons') ?>">
+            <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/livraisons') ?>">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
             </a>
           </li>
           <li class="sidebar-item <?= (session()->position == 'transferts') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/transferts') ?>">
+            <a class="sidebar-link" href="<?= base_url('index.php/'.$root . '/transferts') ?>">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Transferts</span>
             </a>
           </li>

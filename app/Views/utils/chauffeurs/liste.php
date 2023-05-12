@@ -5,9 +5,8 @@ Liste des chauffeurs
 <?= $this->section('contenu'); ?>
 
 <script>
+  $(document).ready(function() {
 
-  $(document).ready(function () {
-    
     $('#recherche').keyup(function() {
       searchTable('tableau', 'recherche');
     });
@@ -95,7 +94,7 @@ Liste des chauffeurs
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['permis'] ?></td>
             <td class="d-flex gap-3 ">
-              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/modifier/' . $ligne['permis']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url('index.php/' . session()->root . '/chauffeurs/modifier/' . $ligne['permis']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
               <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerchauffeur<?= $ligne['permis'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
             </td>
           </tr>
