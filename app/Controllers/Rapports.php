@@ -125,7 +125,7 @@ class Rapports extends BaseController
                 $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date) . '.xls';
                 break;
             default:
-                return redirect()->back()->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->to(session()->root)->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
         header('Content-Type: application/vnd.ms-excel');
@@ -134,7 +134,7 @@ class Rapports extends BaseController
         $writer = new Xls($spreadsheet);
         if ($writer->save('php://output')) {
 
-            return redirect()->back()->with('notif', true)->with('message','Téléchargement lancé.');
+            return redirect()->to(session()->root)->with('notif', true)->with('message', 'Téléchargement lancé.');
         }
     }
 
