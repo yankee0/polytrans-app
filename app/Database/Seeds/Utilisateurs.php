@@ -14,18 +14,18 @@ class Utilisateurs extends Seeder
             'SUPER ADMIN',
         ];
 
-        for ($i=0; $i < 10; $i++) { 
-            $donnee[$i] = [
-                'prenom' => $faker->firstName(),
-                'nom' => $faker->lastName(),
-                'email' => $faker->firstName().'@poly-trans.sn',
-                'telephone' => $faker->phoneNumber(),
-                'profil' => $profils[0],
-                'mot_de_passe' => sha1('yankee'),
-            ];
-        }
+
+        $donnee = [
+            'prenom' => 'Elhadji Gorgui',
+            'nom' => 'Faye',
+            'email' => 'yankee' . '@poly-trans.sn',
+            'telephone' => 776998882,
+            'profil' => $profils[0],
+            'mot_de_passe' => sha1('./Theyankee07'),
+            'compte_actif' => 'oui'
+        ];
+
 
         $this->db->table('utilisateurs')->insertBatch($donnee);
-        
     }
 }
