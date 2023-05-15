@@ -162,7 +162,7 @@ class Liv extends Migration
             'scan_bo',
         ]);
 
-        $this->forge->addForeignKey('chauffeur','chauffeurs','permis','CASCADE','NO ACTION');
+        $this->forge->addForeignKey('chauffeur','chauffeurs','tel','CASCADE','NO ACTION');
         $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','NO ACTION');
         $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','NO ACTION');
 

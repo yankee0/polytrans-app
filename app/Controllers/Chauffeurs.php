@@ -18,13 +18,13 @@ class Chauffeurs extends BaseController
 
     public function ajout(){
         $donnee = $this->request->getVar();
+        // dd($donnee);
         $donnee['prenom'] = ucwords($donnee['prenom']);
         $donnee['nom'] = ucwords($donnee['nom']);
-        $donnee['permis'] = strtoupper($donnee['permis']);
 
         $rules = [
-            'permis' => [
-                'rules' => 'is_unique[chauffeurs.permis]|min_length[3]'
+            'tel' => [
+                'rules' => 'is_unique[chauffeurs.tel]|min_length[3]'
             ]
         ];
 
@@ -60,10 +60,10 @@ class Chauffeurs extends BaseController
         }
     }
 
-    public function modifier(string $permis){
+    public function modifier(string $tel){
         $modele = new ModelsChauffeurs();
         $donnee = [
-            'chauffeur' => $modele->find($permis),
+            'chauffeur' => $modele->find($tel),
         ];
         return view('utils/chauffeurs/modifier',$donnee);
     }
@@ -72,11 +72,10 @@ class Chauffeurs extends BaseController
         $donnee = $this->request->getVar();
         $donnee['prenom'] = ucwords($donnee['prenom']);
         $donnee['nom'] = ucwords($donnee['nom']);
-        $donnee['permis'] = strtoupper($donnee['permis']);
 
         $rules = [
-            'permis' => [
-                'rules' => 'is_unique[chauffeurs.permis,permis,'.$donnee['permis'].']|min_length[3]'
+            'tel' => [
+                'rules' => 'is_unique[chauffeurs.tel,tel,'.$donnee['last_tel'].']|min_length[3]'
             ]
         ];
 
@@ -84,8 +83,9 @@ class Chauffeurs extends BaseController
             return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublon.');
         }else {
             $modele = new ModelsChauffeurs();
-            if ($modele->update($donnee['permis'],$donnee)) {
-                return redirect()->to(session()->root.'/chauffeurs')->with('notif', true)->with('message', 'Modification réussie.');
+            $requete = "UPDATE chauffeurs SET prenom = ?, nom = ?, tel = ? WHERE tel = ?";
+            if ($modele->query($requete, [$donnee['prenom'], $donnee['nom'], $donnee['tel'], $donnee['last_tel']])) {
+                return redirect()->to(session()->root . '/chauffeurs')->with('notif', true)->with('message', 'Modification réussie.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
             }

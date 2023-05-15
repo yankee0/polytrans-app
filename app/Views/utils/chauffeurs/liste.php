@@ -31,7 +31,7 @@ Liste des chauffeurs
           <input type="text" class="form-control" required name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required name="permis" id="permis" aria-describedby="helpId" placeholder="Numéro du permis de conduire">
+          <input type="tel" class="form-control" required name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro de téléphone">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
@@ -81,7 +81,7 @@ Liste des chauffeurs
           <th class="d-table-cell d-xl-none">Nom</th>
           <th class="d-none d-xl-table-cell">Prénom</th>
           <th class="d-none d-xl-table-cell">Nom</th>
-          <th class="d-none d-sm-table-cell">Numéros de permis</th>
+          <th class="d-none d-sm-table-cell">Téléphone</th>
           <th></th>
         </tr>
       </thead>
@@ -89,22 +89,22 @@ Liste des chauffeurs
         <?php foreach ($liste as $ligne) : ?>
 
           <tr class=" align-items-center">
-            <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['permis'] ?>" type="checkbox" value="<?= $ligne['permis'] ?>"></td>
+            <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['tel'] ?>" type="checkbox" value="<?= $ligne['tel'] ?>"></td>
             <td class="d-table-cell d-xl-none "><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['prenom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['permis'] ?></td>
+            <td class="d-none d-xl-table-cell"><?= $ligne['tel'] ?></td>
             <td class="d-flex gap-3 ">
-              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/modifier/' . $ligne['permis']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
-              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerchauffeur<?= $ligne['permis'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
+              <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/modifier/' . $ligne['tel']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
+              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerchauffeur<?= $ligne['tel'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>
             </td>
           </tr>
           <!-- Modal -->
-          <div class="modal fade" id="Supprimerchauffeur<?= $ligne['permis'] ?>" tabindex="-1" aria-labelledby="Supprimerchauffeur<?= $ligne['permis'] ?>Label" aria-hidden="true">
+          <div class="modal fade" id="Supprimerchauffeur<?= $ligne['tel'] ?>" tabindex="-1" aria-labelledby="Supprimerchauffeur<?= $ligne['tel'] ?>Label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title fs-5" id="Supprimerchauffeur<?= $ligne['permis'] ?>Label">Supprimer chauffeur</h3>
+                  <h3 class="modal-title fs-5" id="Supprimerchauffeur<?= $ligne['tel'] ?>Label">Supprimer chauffeur</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -115,7 +115,7 @@ Liste des chauffeurs
                   <form action="<?= base_url(session()->root . '/chauffeurs/supprimer/') ?>" class="d-flex gap-3" method="post">
                     <?= csrf_field() ?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non, annuler</button>
-                    <button type="submit" name="id" value="<?= $ligne['permis'] ?>" class="btn btn-primary">Oui, supprimer!</button>
+                    <button type="submit" name="id" value="<?= $ligne['tel'] ?>" class="btn btn-primary">Oui, supprimer!</button>
                   </form>
                 </div>
               </div>

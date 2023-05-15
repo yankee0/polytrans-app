@@ -9,7 +9,7 @@ class Chaffeurs extends Migration
     public function up()
     {
         $this->forge->addField([
-            'permis' => [
+            'tel' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => false,
@@ -25,12 +25,12 @@ class Chaffeurs extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addPrimaryKey('permis');
+        $this->forge->addPrimaryKey('tel');
         $this->forge->createTable('chauffeurs',true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('permis',true);
+        $this->forge->dropTable('chauffeurs',true);
     }
 }

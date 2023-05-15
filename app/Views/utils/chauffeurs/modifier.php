@@ -31,12 +31,12 @@ Liste des chauffeurs
           <input type="text" class="form-control" required value="<?= set_value('nom',$chauffeur['nom']) ?>" name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required value="<?= set_value('permis',$chauffeur['permis']) ?>" name="permis" id="permis" aria-describedby="helpId" placeholder="Numéro du permis de conduire">
+          <input type="tel" class="form-control" required value="<?= set_value('tel',$chauffeur['tel']) ?>" name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro du tel de conduire">
         </div>
         <div class="mb-3 col-sm-6 col-lg-3">
-          <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
+          <button type="submit" name="last_tel" value="<?= $chauffeur['tel']?>" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
             <i class="align-middle" data-feather="user-check"></i>
-            Enregistrer les modifications
+            Enregistrer
           </button>
         </div>
         <?= csrf_field() ?>

@@ -8,12 +8,12 @@ class Chauffeurs extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'chauffeurs';
-    protected $primaryKey       = 'permis';
+    protected $primaryKey       = 'tel';
     // protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['permis','prenom','nom'];
+    protected $allowedFields    = ['tel','prenom','nom'];
 
     // Dates
     protected $useTimestamps = false;
