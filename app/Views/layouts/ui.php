@@ -122,7 +122,7 @@ session()->root = $root;
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
             <!-- notifs -->
-            <!-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                 <div class="position-relative">
                   <i class="align-middle" data-feather="bell"></i>
@@ -253,7 +253,7 @@ session()->root = $root;
                   <a href="#" class="text-muted">Show all messages</a>
                 </div>
               </div>
-            </li> -->
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
@@ -316,19 +316,7 @@ session()->root = $root;
       </div>
     </div>
   <?php endif ?>
-  <!-- Le modal -->
-  <!-- <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Chargement en cours...</span>
-          </div>
-          <p class="mt-3">Chargement en cours...</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
 
   <script src="<?= base_url('js/app.js') ?>"></script>
 

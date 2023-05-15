@@ -25,7 +25,7 @@ Dashboard
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3">[Nombre]</h1>
+                <h1 class="mt-1 mb-3"><?=$livraisons?></h1>
                 <div class="mb-0">
                   <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> [%valeur] </span>
                   <span class="text-muted">/ semaine dernière</span>
@@ -87,7 +87,7 @@ Dashboard
                     </div>
                   </div>
                 </div>
-                <h1 class="mt-1 mb-3">[Nombre]</h1>
+                <h1 class="mt-1 mb-3"><?=$camions?></h1>
                 <div class="mb-0">
                   <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> [nombre] </span>
                   <span class="text-muted">sont innopérationnels</span>
@@ -103,7 +103,7 @@ Dashboard
       <div class="card flex-fill w-100">
         <div class="card-header">
 
-          <h5 class="card-title mb-0">Mouvements rescents</h5>
+          <h5 class="card-title mb-0">Mouvements</h5>
         </div>
         <div class="card-body py-3">
           <div class="chart chart-sm">
@@ -178,7 +178,7 @@ Dashboard
   </div>
 
   <div class="row">
-    <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+    <div class="col-12 d-flex">
       <div class="card flex-fill">
         <div class="card-header">
 
@@ -242,7 +242,7 @@ Dashboard
         </table>
       </div>
     </div>
-    <div class="col-12 col-lg-4 col-xxl-3 d-flex">
+    <!-- <div class="col-12 col-lg-4 col-xxl-3 d-flex">
       <div class="card flex-fill w-100">
         <div class="card-header">
 
@@ -254,100 +254,13 @@ Dashboard
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-    gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-    gradient.addColorStop(1, "rgba(215, 227, 244, 0.2)");
-    // Line chart
-    new Chart(document.getElementById("chartjs-dashboard-line"), {
-      type: "line",
-      data: {
-        labels: ["Jan", "Fév", "Mar", "Avr", "Mai", "Jui", "Jlt", "Aou", "Sep", "Oct", "Nov", "Déc"],
-        datasets: [{
-          label: "Livraisons",
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: window.theme.primary,
-          data: [
-            2115,
-            1562,
-            1584,
-            1892,
-            1587,
-            1923,
-            2566,
-            2448,
-            2805,
-            3438,
-            2917,
-            3327
-          ]
-        }, {
-          label: "Transferts",
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: window.theme.primary,
-          data: [
-            354,
-            2003,
-            3147,
-            2320,
-            3847,
-            2468,
-            2677,
-            3629,
-            2369,
-            1168,
-            3300,
-            2661
 
-          ]
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          intersect: false
-        },
-        hover: {
-          intersect: true
-        },
-        plugins: {
-          filler: {
-            propagate: false
-          }
-        },
-        scales: {
-          xAxes: [{
-            reverse: true,
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              stepSize: 1000
-            },
-            display: true,
-            borderDash: [3, 3],
-            gridLines: {
-              color: "rgba(0,0,0,0.0)"
-            }
-          }]
-        }
-      }
-    });
-  });
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -377,60 +290,11 @@ Dashboard
     });
   });
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Bar chart
-    new Chart(document.getElementById("chartjs-dashboard-bar"), {
-      type: "bar",
-      data: {
-        labels: ["Jan", "Fév", "Mar", "Avr", "Mai", "Jui", "Jlt", "Aou", "Sep", "Oct", "Nov", "Déc"],
-        datasets: [{
-            label: "gains",
-            backgroundColor: window.theme.primary,
-            borderColor: window.theme.primary,
-            hoverBackgroundColor: window.theme.primary,
-            hoverBorderColor: window.theme.primary,
-            data: [34, 67, 21, 45, 12, 15, 35, 23, 40, 36, 28, 19],
-            barPercentage: .75,
-            categoryPercentage: .5
-          },
-          {
-            label: "Dépences",
-            backgroundColor: window.theme.warning,
-            borderColor: window.theme.warning,
-            hoverBackgroundColor: window.theme.warning,
-            hoverBorderColor: window.theme.warning,
-            data: [94, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-            barPercentage: .75,
-            categoryPercentage: .5
-          },
 
-        ]
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [{
-            gridLines: {
-              display: false
-            },
-            stacked: false,
-            ticks: {
-              stepSize: 20
-            }
-          }],
-          xAxes: [{
-            stacked: false,
-            gridLines: {
-              color: "transparent"
-            }
-          }]
-        }
-      }
-    });
+<script src="<?= base_url('js/graph.js') ?>"></script>
+<script>
+  $(document).ready(function () {
+    drawLineChart("<?=base_url('graphs/line')?>");
   });
 </script>
 <script>

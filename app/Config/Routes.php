@@ -38,6 +38,12 @@ $routes->get('/activer/(:segment)','Utilisateurs::lien_activation/$1');
 //il faudra s'authentifier pour acceder à ces routes
 $routes->group('',['filter' => 'authentifie'], function($routes)
 {
+    //graphs
+    $routes->group('graphs', function($routes)
+    {
+        $routes->add('line','Graph::line');
+    });
+
     //routes du super admins
     $routes->group('/super-admin', function($routes)
     {
