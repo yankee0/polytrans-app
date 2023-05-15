@@ -63,7 +63,7 @@ class Livraisons extends BaseController
             'livraison' => (new ModelsLivraisons())
                 ->where('conteneur', $id)
                 ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur, utilisateurs.prenom AS prenom_utilisateur, utilisateurs.nom AS nom_utilisateur')
-                ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.permis')
+                ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                 ->join('utilisateurs', 'livraisons.auteur = utilisateurs.email')
                 ->findAll(),
         ];

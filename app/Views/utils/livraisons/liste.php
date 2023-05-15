@@ -106,7 +106,7 @@ Liste des livraisons
                     <select name="chauffeur" class="form-select ">
                       <option disabled selected>Sélectionnez le chauffeur</option>
                       <?php foreach ($liste_chauffeur as $ligne) : ?>
-                        <option value="<?= $ligne['permis'] ?>"><?= $ligne['permis'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
+                        <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
                       <?php endforeach ?>
                     </select>
                   </label>
@@ -234,7 +234,7 @@ Liste des livraisons
                 <input class="form-check-input" name="rapport" type="radio" required value="a"> Annuel
               </label>
             </div>
-            <div class="form-label d-flex gap-2">
+            <div class="form-label d-grid gap-2">
               <input type="date" name="date" id="" class="form-control" required>
               <button type="submit" class="d-flex gap-2 align-items-center justify-content-center btn btn-primary "><i class="align-middle" data-feather="download"></i> Télécharger</button>
             </div>
