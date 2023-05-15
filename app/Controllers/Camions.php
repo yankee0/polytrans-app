@@ -29,7 +29,7 @@ class Camions extends BaseController
             return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublons.');
         } else {
             $donnee['immatriculation'] = strtoupper($donnee['immatriculation']);
-            if ((new ModelsCamions())->insert($donnee) == 0) {
+            if ((new ModelsCamions())->insert($donnee)) {
                 return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');
