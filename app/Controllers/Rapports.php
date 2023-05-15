@@ -120,12 +120,7 @@ class Rapports extends BaseController
         header('Content-Disposition: attachment;filename="' . $filename . '"');
         header('Cache-Control: max-age=0');
         $writer = new Xls($spreadsheet);
-        if ($writer->save('php://output')) {
-
-            return redirect()->to(session()->root . '/livraisons')->with('notif', true)->with('message', 'Téléchargement lancé.');
-        } else {
-            return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Echec lors du téléchargement.');
-        }
+        $writer->save('php://output');
     }
 
     public function decomposerDate($date)
