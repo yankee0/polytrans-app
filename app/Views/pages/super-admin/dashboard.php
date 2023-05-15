@@ -78,7 +78,9 @@ Dashboard
 
                   <div class="col-auto">
                     <div class="stat text-primary">
-                    <svg class=" align-middle" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"></path></svg>
+                      <svg class=" align-middle" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"></path>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -170,61 +172,28 @@ Dashboard
       <div class="card flex-fill">
         <div class="card-header">
 
-          <h5 class="card-title mb-0">En attente de paiement</h5>
+          <h5 class="card-title mb-0">Livraisons en attente de paiement</h5>
         </div>
         <table class="table table-hover my-0">
           <thead>
             <tr>
               <th>Conteneur</th>
-              <th class="d-none d-xl-table-cell">Enregistrement</th>
-              <th class="d-none d-xl-table-cell">Montant (FCFA)</th>
-              <th>Statut</th>
+              <th class="d-none d-xl-table-cell">Compagnie</th>
+              <th>Paiement</th>
+              <td class="d-none d-md-table-cell">Enregistrement</td>
               <th class="d-none d-md-table-cell">Client</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
-            <tr>
-              <td>MBG038CJE5</td>
-              <td class="d-none d-xl-table-cell">01/01/2021</td>
-              <td class="d-none d-xl-table-cell">2 600 000</td>
-              <td><span class="badge bg-danger">Non payé</span></td>
-              <td class="d-none d-md-table-cell">Modou Modou</td>
-            </tr>
+            <?php foreach ($non_payes as $n) : ?>
+              <tr>
+                <td><a href="<?= base_url(session()->root . '/livraisons/info/' . $n['conteneur']) ?>"><?= $n['conteneur'] ?></a></td>
+                <td class="d-none d-xl-table-cell"><?= $n['compagnie'] ?></td>
+                <td><span class="badge bg-danger"><?= $n['reglement'] ?></span></td>
+                <td class="d-none d-md-table-cell"><?= $n['created_at'] ?></td>
+                <td class="d-none d-md-table-cell"><?= $n['client'] ?></td>
+              </tr>
+            <?php endforeach ?>
 
           </tbody>
         </table>

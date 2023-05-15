@@ -13,10 +13,12 @@ class SuperAdmin extends BaseController
         $donnee = [
             'livraisons' => (new Livraisons())->countAll(),
             'camions' => (new Camions())->countAll(),
+            'non_payes' => (new Livraisons())->where('paiement','non')->find()
         ];
         session()->set('position', 'dashboard');
         return view('pages/super-admin/dashboard', $donnee);
     }
+
 
 
 }
