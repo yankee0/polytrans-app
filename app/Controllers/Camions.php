@@ -48,15 +48,16 @@ class Camions extends BaseController
         }
     }
 
-    public function supprimer_groupe(){
+    public function supprimer_groupe()
+    {
         $ids = $this->request->getPost('liste');
         // dd($ids);
         $modele = new ModelsCamions();
 
-        if($modele->delete($ids)){
-            return redirect()->back()->with('notif',true)->with('message','Suppressions réussies.');
+        if ($modele->delete($ids)) {
+            return redirect()->back()->with('notif', true)->with('message', 'Suppressions réussies.');
         } else {
-            return redirect()->back()->with('notif',false)->with('message','Echec des suppressions.');
+            return redirect()->back()->with('notif', false)->with('message', 'Echec des suppressions.');
         }
     }
 
@@ -81,7 +82,9 @@ class Camions extends BaseController
         } else {
             $modele = new ModelsCamions();
             // dd($donnee);
-            if ($modele->where('immatriculation',$donnee['immatriculation'])->set($donnee)->update()) {
+            $requete = "UPDATE camions SET immatriculation = ? WHERE id = ?";
+
+            if ($modele->query($requete, [strtoupper($donnee['immatriculation']), $donnee['id']])) {
                 return redirect()->to(session()->root . '/camions')->with('notif', true)->with('message', 'Modification réussie.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
@@ -89,7 +92,8 @@ class Camions extends BaseController
         }
     }
 
-    public function dossier(){
+    public function dossier()
+    {
         return 'Gotta finish';
     }
 }

@@ -9,6 +9,12 @@ class Camions extends Migration
     public function up()
     {
         $this->forge->addField([
+            'id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
+                'auto_increment' => true,
+            ],
             'immatriculation' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -31,7 +37,8 @@ class Camions extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addPrimaryKey('immatriculation');
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addUniqueKey('immatriculation');
         $this->forge->createTable('camions',true);
     }
 
