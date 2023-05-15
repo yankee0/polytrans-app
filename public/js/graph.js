@@ -124,3 +124,43 @@ function drawLineChart(url = null) {
   // console.log(seeds);
 }
 
+//Pie cart
+function drawPieChart(url = null) {
+  $.ajax({
+    type: "get",
+    url: url,
+    data: {},
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      // Pie chart
+      new Chart(document.getElementById("chartjs-dashboard-pie"), {
+        type: "pie",
+        data: {
+          labels: ["Livraisons", "Transferts TOM", "Transferts WALL"],
+          datasets: [{
+            data: [
+              response.livraisons,
+              response.autres,
+            ],
+            backgroundColor: [
+              window.theme.primary,
+              window.theme.warning,
+              window.theme.danger
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: !window.MSInputMethodContext,
+          maintainAspectRatio: false,
+          legend: {
+            display: false
+          },
+          cutoutPercentage: 75
+        }
+      });
+    }
+  });
+}
+

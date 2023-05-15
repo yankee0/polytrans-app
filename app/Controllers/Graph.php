@@ -29,4 +29,13 @@ class Graph extends BaseController
         $this->response->setJSON($donnee);
         $this->response->send();
     }
+
+    public function pie(){
+        $donnee = [
+            'livraisons' => (new Livraisons())->countAll(),
+            'autres' => 1
+        ];
+        $this->response->setJSON($donnee);
+        $this->response->send();
+    }
 }

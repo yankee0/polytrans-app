@@ -42,6 +42,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
     $routes->group('graphs', function($routes)
     {
         $routes->add('line','Graph::line');
+        $routes->add('pie','Graph::pie');
     });
 
     //routes du super admins
