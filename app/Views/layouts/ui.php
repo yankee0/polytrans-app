@@ -6,6 +6,9 @@ switch (session()->donnee_utilisateur['profil']) {
   case 'SUPER ADMIN':
     $root  = '/super-admin';
     break;
+  case 'OPS FLOTTE':
+    $root  = '/ops-flotte';
+    break;
 
   default:
     $root = null;
@@ -66,37 +69,45 @@ session()->root = $root;
             </a>
           </li>
 
-          <li class="sidebar-header">
-            Administration
+          <?php if ($root == '/super-admin') : ?>
+            <li class="sidebar-header">
+              Administration
+            </li>
             <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
               <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
               </a>
             </li>
-          </li>
+          <?php endif ?>
+          <?php if (
+            $root == '/ops-flotte'
+            or $root == '/super-admin'
+          ) : ?>
 
-          <li class="sidebar-header">
-            Flotte
-          </li>
+            <li class="sidebar-header">
+              Flotte
+            </li>
+
+            <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
+                <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
+                <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
+              </a>
+            </li>
+          <?php endif; ?>
 
 
-
-          <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
-            </a>
-          </li>
-
+          <?php if (
+            $root == '/super-admin'
+          ) : ?>
           <li class="sidebar-header">
             Opérations
           </li>
-
           <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
             <a class="sidebar-link" href="<?= base_url($root . '/livraisons') ?>">
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
@@ -107,6 +118,7 @@ session()->root = $root;
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Transferts</span>
             </a>
           </li>
+          <?php endif; ?>
 
         </ul>
 

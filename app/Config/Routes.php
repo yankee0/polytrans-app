@@ -46,7 +46,7 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
     });
 
     //routes du super admins
-    $routes->group('/super-admin', function($routes)
+    $routes->group('/super-admin',['filter' => 'superAdmin'], function($routes)
     {
         $routes->get('/','SuperAdmin::index');
         $routes->get('profil/(:segment)','Utilisateurs::profil/$1');
@@ -99,6 +99,32 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
         });
 
 
+    });
+
+    $routes->group('ops-flotte',['filter' => 'opsFlotte'], function($routes)
+    {
+        $routes->get('/','OpsFlotte::index');
+
+        $routes->group('chauffeurs', function($routes)
+        {
+            $routes->get('/','Chauffeurs::liste');
+            $routes->post('/','Chauffeurs::ajout');
+            $routes->post('supprimer','Chauffeurs::supprimer');
+            $routes->post('supprimer_groupe','Chauffeurs::supprimer_groupe');
+            $routes->get('modifier/(:segment)','Chauffeurs::modifier/$1');
+            $routes->post('modifier','Chauffeurs::enregistrer');
+        });
+
+        $routes->group('camions', function($routes)
+        {
+            $routes->get('/','Camions::liste');
+            $routes->post('/','Camions::ajout');
+            $routes->post('supprimer','Camions::supprimer');
+            $routes->post('supprimer_groupe','Camions::supprimer_groupe');
+            $routes->get('modifier/(:segment)','Camions::modifier/$1');
+            $routes->post('modifier','Camions::enregistrer');
+            $routes->get('dossier/(:segment)','Camions::dossier/$1');
+        });
     });
 
     //routes communs

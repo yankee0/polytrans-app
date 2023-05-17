@@ -28,6 +28,7 @@ Liste des utilisateurs
           <select class="form-select " name="profil" id="profil" required>
             <option disabled selected>Choisir un profil</option>
             <option value="SUPER ADMIN">Super Administrateur</option>
+            <option value="OPS FLOTTER">Opérateur flotte</option>
           </select>
         </div>
         <div class="mb-3 col-sm-6 col-lg-4">

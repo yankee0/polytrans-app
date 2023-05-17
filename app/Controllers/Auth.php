@@ -29,7 +29,7 @@ class Auth extends BaseController
         } else {
             if ($resultat['compte_actif'] == 'non') {
                 return redirect()->back()->with('activation', true);
-            }else {
+            } else {
                 session()->donnee_utilisateur = $resultat;
                 return redirect()->to('/dispatcher');
             }
@@ -42,6 +42,9 @@ class Auth extends BaseController
         switch ($profil) {
             case 'SUPER ADMIN':
                 return redirect()->to('/super-admin');
+                break;
+            case 'OPS FLOTTE':
+                return redirect()->to('/ops-flotte');
                 break;
 
             default:
