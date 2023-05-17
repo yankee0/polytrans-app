@@ -13,7 +13,7 @@ class Chauffeurs extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['tel','prenom','nom'];
+    protected $allowedFields    = ['tel','prenom','nom','camion'];
 
     // Dates
     protected $useTimestamps = false;

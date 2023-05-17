@@ -24,8 +24,14 @@ class Chaffeurs extends Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'camion' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
         ]);
         $this->forge->addPrimaryKey('tel');
+        $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','SET NULL');
         $this->forge->createTable('chauffeurs',true);
     }
 

@@ -92,8 +92,21 @@ class Camions extends BaseController
         }
     }
 
-    public function dossier()
+    public function dossier($id)
     {
-        return 'Gotta finish';
+
+        $c = (new ModelsCamions())->find($id);
+
+        if (!$c){
+            return view('errors/html/error_404', [
+                'message' => 'Cette utilisateur n\'existe pas',
+            ]);
+        } else {
+
+            return view('utils/camions/dossier',[
+                'camion'=> $c
+            ]);
+        }
+        
     }
 }

@@ -24,17 +24,26 @@ Liste des chauffeurs
       <h5 class="card-title">Ajouter un chauffeur</h5>
 
       <form class="row" action="<?= base_url(session()->root . '/chauffeurs/') ?>" method="post">
-        <div class="mb-3 col-sm-6 col-lg-3">
+        <div class="mb-3 col-sm-6 ">
           <input type="text" class="form-control" required name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 col-lg-3">
+        <div class="mb-3 col-sm-6 ">
           <input type="text" class="form-control" required name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 col-lg-3">
+        <div class="mb-3 col-sm-6 ">
           <input type="tel" class="form-control" required name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro de téléphone">
         </div>
-        <div class="mb-3 col-sm-6 col-lg-3">
-          <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
+        <div class="mb-3 col-sm-6  ">
+          <select class="form-select " name="camion" id="">
+            <option hidden>Camions</option>
+            <option value="">Laisser vide</option>
+            <?php foreach ($camions as $camion) : ?>
+              <option value="<?= $camion['immatriculation'] ?>"><?= $camion['immatriculation'] ?></option>
+            <?php endforeach ?>
+          </select>
+        </div>
+        <div class="mb-3 col">
+          <button type="submit" class="m-auto btn btn-primary d-flex justify-content-center align-items-center gap-2">
             <i class="align-middle" data-feather="user-plus"></i>
             Ajouter le chauffeur
           </button>
@@ -81,6 +90,7 @@ Liste des chauffeurs
           <th class="d-table-cell d-xl-none">Nom</th>
           <th class="d-none d-xl-table-cell">Prénom</th>
           <th class="d-none d-xl-table-cell">Nom</th>
+          <th class="d-none d-sm-table-cell">Camion</th>
           <th class="d-none d-sm-table-cell">Téléphone</th>
           <th></th>
         </tr>
@@ -88,12 +98,13 @@ Liste des chauffeurs
       <tbody>
         <?php foreach ($liste as $ligne) : ?>
 
-          <tr class=" align-items-center">
+          <tr class=" align-items-center" title="">
             <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['tel'] ?>" type="checkbox" value="<?= $ligne['tel'] ?>"></td>
             <td class="d-table-cell d-xl-none "><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['prenom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= $ligne['tel'] ?></td>
+            <td class="d-none d-sm-table-cell"><?= (empty($ligne['camion'])) ? '<span class="badge bg-secondary">Pas de camions</span>' : $ligne['camion'] ?></td>
+            <td class="d-none d-sm-table-cell"><?= $ligne['tel'] ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/chauffeurs/modifier/' . $ligne['tel']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
               <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerchauffeur<?= $ligne['tel'] ?>" title="Supprimer"><i class="align-middle" data-feather="user-minus"></i></button>

@@ -104,6 +104,8 @@ $routes->group('',['filter' => 'authentifie'], function($routes)
     $routes->group('ops-flotte',['filter' => 'opsFlotte'], function($routes)
     {
         $routes->get('/','OpsFlotte::index');
+        $routes->get('profil/(:segment)','Utilisateurs::profil/$1');
+
 
         $routes->group('chauffeurs', function($routes)
         {
