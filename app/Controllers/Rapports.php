@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Models\Livraisons;
+use App\Controllers\BaseController;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -67,7 +67,7 @@ class Rapports extends BaseController
                 break;
 
             default:
-                dd($timing);
+                // dd($timing);
                 return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
@@ -103,7 +103,7 @@ class Rapports extends BaseController
             $body[] = [
                 $t['conteneur'],
                 $t['camion'],
-                $t['prenom_chauffeur']." ".$t['nom_chauffeur'],
+                $t['prenom_chauffeur'] . " " . $t['nom_chauffeur'],
                 $t['compagnie'],
                 $t['zone'],
                 $t['client'],
@@ -121,7 +121,10 @@ class Rapports extends BaseController
         header('Content-Disposition: attachment;filename="' . $filename . '"');
         header('Cache-Control: max-age=0');
         $writer = new Xls($spreadsheet);
+        ob_clean();
         $writer->save('php://output');
+        // $objWriter = PHPExcel_IOFactory::createWriter($spreadsheet, 'Excel5');
+        // $objWriter->save('php://output');
     }
 
     public function decomposerDate($date)
