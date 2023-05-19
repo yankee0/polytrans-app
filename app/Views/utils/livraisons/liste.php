@@ -41,131 +41,134 @@ Liste des livraisons
             <div class="alert alert-warning" role="alert">
               <strong>Urgent!</strong> Aucun véhicule ou chauffeur n'a été enregistré dans la base de donnée. Merci de vous reférer à l'utilisateur disposant des droits de gestion de la flotte, sinon contacter <a href="<?= base_url('/support') ?>" class=" alert-link">le support.</a>
             </div>
-            <?php else: ?>
-              <div class="row">
-                <div class="col-sm">
+          <?php else : ?>
+            <div class="row">
+              <div class="col-sm">
 
-                  <h6 class=" mt-3 text-primary">Informations sur le conteneur</h6>
+                <h6 class=" mt-3 text-primary">Informations sur le conteneur</h6>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Numéro du conteneur <span class="text-primary">*</span></span>
+                  <input type="text" name="conteneur" value="<?= set_value('conteneur', '') ?>" class="form-control " placeholder="Numéro du conteneur" required>
+                </label>
+
+                <label class="form-label d-grid">
+                  <span class="text-sm">Type de conteneur <span class="text-primary">*</span></span>
+                  <select name="type" class="form-select " id="" required>
+                    <option hidden>Selectionnez le type</option>
+                    <option value="20">20'</option>
+                    <option value="40">40'</option>
+                  </select>
+                </label>
+
+                <label class="form-label d-grid">
+                  <span class="text-sm">Nom de la compagnie <span class="text-primary">*</span></span>
+                  <input value="<?= set_value('compagnie', '') ?>" type="text" name="compagnie" class="form-control " placeholder="Compagnie" required>
+                </label>
+
+                <h6 class=" mt-3 text-primary">Information sur le client</h6>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Client <span class="text-primary">*</span></span>
+                  <input value="<?= set_value('client', '') ?>" type="text" name="client" class="form-control " placeholder="Nom du client" required>
+                </label>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Nom du contact </span>
+                  <input value="<?= set_value('nom_contact', '') ?>" type="text" name="nom_contact" class="form-control " placeholder=" Nom du contact">
+                </label>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Téléphone du contact</span>
+                  <input value="<?= set_value('tel_contact', '') ?>" type="tel" name="tel_contact" class="form-control " placeholder="Téléphone du contact">
+                </label>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Email du contact</span>
+                  <input value="<?= set_value('email_contact', '') ?>" type="email" name="email_contact" class="form-control " placeholder="Email du contact">
+                </label>
+
+                <h6 class=" mt-3 text-primary">Informations sur le B.L.</h6>
+                <label class="form-label d-grid">
+                  <span class="text-sm">B.L.</span>
+                  <input value="<?= set_value('bl', '') ?>" type="text" name="bl" class="form-control " placeholder="B.L.">
+                </label>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Deadline</span>
+                  <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
+                </label>
+
+                <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Numéro E.I.R.</span>
+                  <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
+                </label>
+              </div>
+              <?php if (
+                session()->root != '/ops-reception'
+                and session()->root != '/ops-mvt'
+                ) : ?>
+                <div class="col-sm">
+                  <h6 class=" mt-3 text-primary">Transport</h6>
                   <label class="form-label d-grid">
-                    <span class="text-sm">Numéro du conteneur <span class="text-primary">*</span></span>
-                    <input type="text" name="conteneur" value="<?= set_value('conteneur', '') ?>" class="form-control " placeholder="Numéro du conteneur" required>
-                  </label>
-    
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Type de conteneur <span class="text-primary">*</span></span>
-                    <select name="type" class="form-select " id="" required>
-                      <option disabled selected>Selectionnez le type</option>
-                      <option value="20">20'</option>
-                      <option value="40">40'</option>
+                    <span class="text-sm">Nom du chauffeur</span>
+                    <select name="chauffeur" class="form-select ">
+                      <option disabled selected>Sélectionnez le chauffeur</option>
+                      <?php foreach ($liste_chauffeur as $ligne) : ?>
+                        <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
+                      <?php endforeach ?>
                     </select>
                   </label>
-    
                   <label class="form-label d-grid">
-                    <span class="text-sm">Nom de la compagnie <span class="text-primary">*</span></span>
-                    <input value="<?= set_value('compagnie', '') ?>" type="text" name="compagnie" class="form-control " placeholder="Compagnie" required>
-                  </label>
-    
-                  <h6 class=" mt-3 text-primary">Information sur le client</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Client <span class="text-primary">*</span></span>
-                    <input value="<?= set_value('client', '') ?>" type="text" name="client" class="form-control " placeholder="Numéro du client" required>
+                    <span class="text-sm">Immatriculation du camion</span>
+                    <select name="camion" class="form-select ">
+                      <option disabled selected>Sélectionnez le camion</option>
+                      <?php foreach ($liste_camion as $ligne) : ?>
+                        <option value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
+                      <?php endforeach ?>
+                    </select>
                   </label>
                   <label class="form-label d-grid">
-                    <span class="text-sm">Nom du contact </span>
-                    <input value="<?= set_value('nom_contact', '') ?>" type="text" name="nom_contact" class="form-control " placeholder=" Nom du contact">
+                    <span class="text-sm">Zone de livraison</span>
+                    <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
                   </label>
+                  <label class=" form-label d-grid">
+                    <span class="text-sm">Commentaire</span>
+                    <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
+                  </label>
+                  <h6 class=" mt-3 text-primary">Paiement</h6>
                   <label class="form-label d-grid">
-                    <span class="text-sm">Téléphone du contact</span>
-                    <input value="<?= set_value('tel_contact', '') ?>" type="tel" name="tel_contact" class="form-control " placeholder="Téléphone du contact">
+                    <span class="text-sm">Règlement <span class="text-primary">*</span></span>
+                    <select name="reglement" class="form-select " id="reglement" required>
+                      <option hidden disabled>Choisir le type de règlement</option>
+                      <option value="COMPTANT">COMPTANT</option>
+                      <option value="À CRÉDIT">À CRÉDIT</option>
+                    </select>
                   </label>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Email du contact</span>
-                    <input value="<?= set_value('email_contact', '') ?>" type="email" name="email_contact" class="form-control " placeholder="Email du contact">
-                  </label>
-    
-                  <h6 class=" mt-3 text-primary">Informations sur le B.L.</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">B.L.</span>
-                    <input value="<?= set_value('bl', '') ?>" type="text" name="bl" class="form-control " placeholder="B.L.">
-                  </label>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Deadline</span>
-                    <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
-                  </label>
-    
-                  <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Numéro E.I.R.</span>
-                    <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
-                  </label>
-                </div>
-                <?php if (session()->root != '/ops-reception') : ?>
-                  <div class="col-sm">
-                    <h6 class=" mt-3 text-primary">Transport</h6>
+                  <div class="paye" style="display: none;">
                     <label class="form-label d-grid">
-                      <span class="text-sm">Nom du chauffeur</span>
-                      <select name="chauffeur" class="form-select ">
-                        <option disabled selected>Sélectionnez le chauffeur</option>
-                        <?php foreach ($liste_chauffeur as $ligne) : ?>
-                          <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </label>
-                    <label class="form-label d-grid">
-                      <span class="text-sm">Immatriculation du camion</span>
-                      <select name="camion" class="form-select ">
-                        <option disabled selected>Sélectionnez le camion</option>
-                        <?php foreach ($liste_camion as $ligne) : ?>
-                          <option value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
-                        <?php endforeach ?>
-                      </select>
-                    </label>
-                    <label class="form-label d-grid">
-                      <span class="text-sm">Zone de livraison</span>
-                      <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
-                    </label>
-                    <label class=" form-label d-grid">
-                      <span class="text-sm">Commentaire</span>
-                      <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
-                    </label>
-                    <h6 class=" mt-3 text-primary">Paiement</h6>
-                    <label class="form-label d-grid">
-                      <span class="text-sm">Règlement <span class="text-primary">*</span></span>
-                      <select name="reglement" class="form-select " id="reglement" required>
-                        <option disabled selected>Choisir le type de règlement</option>
-                        <option value="COMPTANT">COMPTANT</option>
-                        <option value="À CRÉDIT">À CRÉDIT</option>
-                      </select>
-                    </label>
-                    <div class="paye" style="display: none;">
-                      <label class="form-label d-grid">
-                        <span class="text-sm">La livraison a-t-elle été payée?</span>
-                        <div class="d-flex gap-3">
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader"> Non
-                            </label>
-                          </div>
+                      <span class="text-sm">La livraison a-t-elle été payée?</span>
+                      <div class="d-flex gap-3">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
+                          </label>
                         </div>
-                      </label>
-                      <label class="form-label d-grid payeDate" style="display: none;">
-                        <span class="text-sm">Date de paiement</span>
-                        <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
-                      </label>
-                    </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader"> Non
+                          </label>
+                        </div>
+                      </div>
+                    </label>
+                    <label class="form-label d-grid payeDate" style="display: none;">
+                      <span class="text-sm">Date de paiement</span>
+                      <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
+                    </label>
                   </div>
-                  <?php endif ?>
-    
-                <div class="col-md-12 mt-3 text-center md-flex justify-content-center ">
-                  <button type="submit" class="btn btn-primary">Enregister</button>
-                  <button type="reset" class="btn btn-secondary">Effacer</button>
                 </div>
+              <?php endif ?>
+
+              <div class="col-md-12 mt-3 text-center md-flex justify-content-center ">
+                <button type="submit" class="btn btn-primary">Enregister</button>
+                <button type="reset" class="btn btn-secondary">Effacer</button>
               </div>
+            </div>
           <?php endif ?>
         </form>
       </div>

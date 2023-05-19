@@ -74,7 +74,7 @@ class Livraisons extends BaseController
                     ->join('utilisateurs', 'livraisons.auteur = utilisateurs.email')
                     ->find(),
             ];
-        }else {
+        } else {
             $donnee = [
                 'livraison' => $occ,
             ];
@@ -103,7 +103,7 @@ class Livraisons extends BaseController
 
         $recherche = $this->request->getGet('recherche');
         $modele = new ModelsLivraisons();
-        $resultat = $modele->like('conteneur', strtoupper('' . $recherche))->paginate(10);
+        $resultat = $modele->like('conteneur', strtoupper('' . $recherche))->orderBy('created_at', 'DESC')->paginate(20);
         $page = $modele->pager;
         $donnee = [
             'recherche' => $recherche,
@@ -111,5 +111,31 @@ class Livraisons extends BaseController
             'page' => $page
         ];
         return view('utils/livraisons/recherche', $donnee);
+    }
+
+    public function enregistrer()
+    {
+        $donnee = $this->request->getPost();
+        if (isset($donnee['bl'])) {
+            $donnee['bl'] = strtoupper($donnee['bl']);
+        }
+        if (isset($donnee['eir'])) {
+            $donnee['eir'] = strtoupper($donnee['eir']);
+        }
+        $requete = "UPDATE livraisons SET bl = ?, eir = ? WHERE conteneur = ?";
+        if (
+            (new ModelsLivraisons())->query(
+                $requete,
+                [
+                    $donnee['bl'],
+                    $donnee['eir'],
+                    $donnee['conteneur'],
+                ]
+            )
+        ) {
+            return redirect()->back()->with('notif', true)->with('message', 'Mise à jour réussie.');
+        } else {
+            return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
+        }
     }
 }

@@ -41,16 +41,24 @@ class Auth extends BaseController
         $profil = session()->donnee_utilisateur['profil'];
         switch ($profil) {
             case 'SUPER ADMIN':
+                session()->set('root', '/super-admin');
                 return redirect()->to('/super-admin');
                 break;
             case 'OPS FLOTTE':
+                session()->set('root', '/ops-flotte');
                 return redirect()->to('/ops-flotte');
                 break;
             case 'OPS RECEPTION':
+                session()->set('root', '/ops-reception');
                 return redirect()->to('/ops-reception');
+                break;
+            case 'OPS MVT':
+                session()->set('root', '/ops-mvt');
+                return redirect()->to('/ops-mvt');
                 break;
 
             default:
+                session()->set('root', null);
                 $this->se_deconnecter();
                 break;
         }

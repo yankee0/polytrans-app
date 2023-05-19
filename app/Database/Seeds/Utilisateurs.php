@@ -13,7 +13,8 @@ class Utilisateurs extends Seeder
         $profils = [
             'SUPER ADMIN',
             'OPS FLOTTE',
-            'OPS RECEPTION'
+            'OPS RECEPTION',
+            'OPS MVT'
         ];
 
 
@@ -43,6 +44,15 @@ class Utilisateurs extends Seeder
                 'email' => 'reception@poly-trans.sn',
                 'telephone' => $faker->phoneNumber(),
                 'profil' => $profils[2],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'mvt@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[3],
                 'mot_de_passe' => sha1('yankee'),
                 'compte_actif' => 'oui'
             ],

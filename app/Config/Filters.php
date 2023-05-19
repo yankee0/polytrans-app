@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Filters\Auth;
 use App\Filters\OpsFlotte;
+use App\Filters\OpsMvt;
 use App\Filters\OpsReception;
 use App\Filters\SuperAdmin;
 use CodeIgniter\Config\BaseConfig;
@@ -28,7 +29,8 @@ class Filters extends BaseConfig
         'authentifie'   => Auth::class,
         'superAdmin'    => SuperAdmin::class,
         'opsFlotte'     => OpsFlotte::class,
-        'opsReception'  => OpsReception::class
+        'opsReception'  => OpsReception::class,
+        'opsMvt'        => OpsMvt::class
     ];
 
     /**
