@@ -59,7 +59,7 @@ class Liv extends Migration
                 'null' => true,
             ],
             'deadline' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'null' => true,
             ],
             'client' => [
@@ -84,11 +84,11 @@ class Liv extends Migration
             ],
             'paiement' => [
                 'type' => 'ENUM("oui","non")',
+                'default' => 'non'
 
             ],
             'reglement' => [
                 'type' => 'ENUM("COMPTANT","À CRÉDIT")',
-
             ],
             'date_paiement' => [
                 'type' => 'DATE',

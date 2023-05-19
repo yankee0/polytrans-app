@@ -9,6 +9,9 @@ switch (session()->donnee_utilisateur['profil']) {
   case 'OPS FLOTTE':
     $root  = '/ops-flotte';
     break;
+    case 'OPS RECEPTION':
+      $root  = '/ops-reception';
+      break;
 
   default:
     $root = null;
@@ -104,6 +107,7 @@ session()->root = $root;
 
           <?php if (
             $root == '/super-admin'
+            or $root == '/ops-reception'
           ) : ?>
           <li class="sidebar-header">
             Opérations
@@ -113,11 +117,7 @@ session()->root = $root;
               <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
             </a>
           </li>
-          <li class="sidebar-item <?= (session()->position == 'transferts') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/transferts') ?>">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Transferts</span>
-            </a>
-          </li>
+
           <?php endif; ?>
 
         </ul>

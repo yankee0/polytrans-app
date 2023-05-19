@@ -46,6 +46,9 @@ class Auth extends BaseController
             case 'OPS FLOTTE':
                 return redirect()->to('/ops-flotte');
                 break;
+            case 'OPS RECEPTION':
+                return redirect()->to('/ops-reception');
+                break;
 
             default:
                 $this->se_deconnecter();

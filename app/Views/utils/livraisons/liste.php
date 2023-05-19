@@ -43,8 +43,8 @@ Liste des livraisons
             </div>
             <?php else: ?>
               <div class="row">
-                <div class="col-sm-6">
-    
+                <div class="col-sm">
+
                   <h6 class=" mt-3 text-primary">Informations sur le conteneur</h6>
                   <label class="form-label d-grid">
                     <span class="text-sm">Numéro du conteneur <span class="text-primary">*</span></span>
@@ -99,76 +99,67 @@ Liste des livraisons
                     <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
                   </label>
                 </div>
-                <div class="col-sm-6">
-                  <h6 class=" mt-3 text-primary">Transport</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Nom du chauffeur</span>
-                    <select name="chauffeur" class="form-select ">
-                      <option disabled selected>Sélectionnez le chauffeur</option>
-                      <?php foreach ($liste_chauffeur as $ligne) : ?>
-                        <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
-                      <?php endforeach ?>
-                    </select>
-                  </label>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Immatriculation du camion</span>
-                    <select name="camion" class="form-select ">
-                      <option disabled selected>Sélectionnez le camion</option>
-                      <?php foreach ($liste_camion as $ligne) : ?>
-                        <option value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
-                      <?php endforeach ?>
-                    </select>
-                  </label>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Zone de livraison</span>
-                    <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
-                  </label>
-                  <label class=" form-label d-grid">
-                    <span class="text-sm">Commentaire</span>
-                    <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
-                  </label>
-                  <h6 class=" mt-3 text-primary">Paiement</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Règlement <span class="text-primary">*</span></span>
-                    <select name="reglement" class="form-select " id="reglement" required>
-                      <option disabled selected>Choisir le type de règlement</option>
-                      <option value="COMPTANT">COMPTANT</option>
-                      <option value="À CRÉDIT">À CRÉDIT</option>
-                    </select>
-                  </label>
-    
-                  <div class="paye" style="display: none;">
+                <?php if (session()->root != '/ops-reception') : ?>
+                  <div class="col-sm">
+                    <h6 class=" mt-3 text-primary">Transport</h6>
                     <label class="form-label d-grid">
-                      <span class="text-sm">La livraison a-t-elle été payée?</span>
-                      <div class="d-flex gap-3">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader"> Non
-                          </label>
-                        </div>
-                      </div>
+                      <span class="text-sm">Nom du chauffeur</span>
+                      <select name="chauffeur" class="form-select ">
+                        <option disabled selected>Sélectionnez le chauffeur</option>
+                        <?php foreach ($liste_chauffeur as $ligne) : ?>
+                          <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
+                        <?php endforeach ?>
+                      </select>
                     </label>
-                    <label class="form-label d-grid payeDate" style="display: none;">
-                      <span class="text-sm">Date de paiement</span>
-                      <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
+                    <label class="form-label d-grid">
+                      <span class="text-sm">Immatriculation du camion</span>
+                      <select name="camion" class="form-select ">
+                        <option disabled selected>Sélectionnez le camion</option>
+                        <?php foreach ($liste_camion as $ligne) : ?>
+                          <option value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
+                        <?php endforeach ?>
+                      </select>
                     </label>
+                    <label class="form-label d-grid">
+                      <span class="text-sm">Zone de livraison</span>
+                      <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
+                    </label>
+                    <label class=" form-label d-grid">
+                      <span class="text-sm">Commentaire</span>
+                      <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
+                    </label>
+                    <h6 class=" mt-3 text-primary">Paiement</h6>
+                    <label class="form-label d-grid">
+                      <span class="text-sm">Règlement <span class="text-primary">*</span></span>
+                      <select name="reglement" class="form-select " id="reglement" required>
+                        <option disabled selected>Choisir le type de règlement</option>
+                        <option value="COMPTANT">COMPTANT</option>
+                        <option value="À CRÉDIT">À CRÉDIT</option>
+                      </select>
+                    </label>
+                    <div class="paye" style="display: none;">
+                      <label class="form-label d-grid">
+                        <span class="text-sm">La livraison a-t-elle été payée?</span>
+                        <div class="d-flex gap-3">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader"> Non
+                            </label>
+                          </div>
+                        </div>
+                      </label>
+                      <label class="form-label d-grid payeDate" style="display: none;">
+                        <span class="text-sm">Date de paiement</span>
+                        <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
+                      </label>
+                    </div>
                   </div>
-                  <h6 class=" mt-3 text-primary">Documents</h6>
-                  <div class="alert alert-warning" role="alert">
-                    <span>En conception</span>
-                  </div>
-    
-    
-                </div>
-                <div class="col-sm-6">
-    
-    
-                </div>
+                  <?php endif ?>
     
                 <div class="col-md-12 mt-3 text-center md-flex justify-content-center ">
                   <button type="submit" class="btn btn-primary">Enregister</button>
@@ -180,7 +171,7 @@ Liste des livraisons
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md">
       <div class="card flex-fill">
         <div class="card-header">
           <h5 class="card-title">Livraisons en attente de paiement</h5>
@@ -190,6 +181,8 @@ Liste des livraisons
             <tr>
               <th class="d-table-cell">Conteneur</th>
               <th class="d-table-cell">Client</th>
+              <th class="d-table-cell d-none d-lg-table-cell">Deadline</th>
+              <th class="d-table-cell d-none d-md-table-cell">Date d'enregistrement</th>
               <th></th>
             </tr>
           </thead>
@@ -198,6 +191,8 @@ Liste des livraisons
               <tr>
                 <td class="d-table-cell"><?= $ligne['conteneur'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
+                <td class="d-none d-sm-table-cell"><?= $ligne['deadline'] ?></td>
+                <td class="d-none d-sm-table-cell"><?= $ligne['created_at'] ?></td>
                 <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>" role="button">Consulter</a></td>
               </tr>
             <?php endforeach ?>
@@ -206,7 +201,7 @@ Liste des livraisons
         </table>
       </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Générer un rapport</h5>
@@ -241,7 +236,7 @@ Liste des livraisons
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
 
