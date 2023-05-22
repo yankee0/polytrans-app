@@ -10,7 +10,7 @@ Dashboard
   <div class="col-12">
     <div class="card flex-fill">
       <div class="card-body">
-        <h5 class="card-title">En information de transport (<span class="text-primary"><?= sizeof($transports_liv) ?></span>)</h5>
+        <h5 class="card-title">En attentes informations de transport (<span class="text-primary"><?= sizeof($transports_liv) ?></span>)</h5>
         <div class="d-flex justify-content-end">
           <div class="flex-grow-0">
             <input type="search" class="form-control" id="search" placeholder="Rechercher">
