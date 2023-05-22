@@ -92,11 +92,11 @@ Liste des livraisons
                   <span class="text-sm">Deadline</span>
                   <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
                 </label>
-                  <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Numéro E.I.R.</span>
-                    <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
-                  </label>
+                <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
+                <label class="form-label d-grid">
+                  <span class="text-sm">Numéro E.I.R.</span>
+                  <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
+                </label>
               </div>
               <?php if (
                 session()->root != '/ops-reception'
@@ -105,9 +105,17 @@ Liste des livraisons
                 <div class="col-sm">
                   <h6 class=" mt-3 text-primary">Transport</h6>
                   <label class="form-label d-grid">
+                    <span class="text-sm">Date ALLER</span>
+                    <input type="date" name="date_sortie" class="form-control" placeholder="Téléphone du contact">
+                  </label>
+                  <label class="form-label d-grid">
+                    <span class="text-sm">Date de RETOUR</span>
+                    <input type="date" name="date_retour" class="form-control" placeholder="Téléphone du contact">
+                  </label>
+                  <label class="form-label d-grid">
                     <span class="text-sm">Nom du chauffeur</span>
                     <select name="chauffeur" class="form-select ">
-                      <option disabled selected>Sélectionnez le chauffeur</option>
+                      <option value="" hidden selected>Sélectionnez le chauffeur</option>
                       <?php foreach ($liste_chauffeur as $ligne) : ?>
                         <option value="<?= $ligne['tel'] ?>"><?= $ligne['tel'] . ' - ' . $ligne['prenom'] . ' ' . $ligne['nom'] ?></option>
                       <?php endforeach ?>
@@ -116,7 +124,7 @@ Liste des livraisons
                   <label class="form-label d-grid">
                     <span class="text-sm">Immatriculation du camion</span>
                     <select name="camion" class="form-select ">
-                      <option disabled selected>Sélectionnez le camion</option>
+                      <option value="" hidden selected>Sélectionnez le camion</option>
                       <?php foreach ($liste_camion as $ligne) : ?>
                         <option value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
                       <?php endforeach ?>

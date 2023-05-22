@@ -43,7 +43,6 @@ Information conteneur
             <span class="text-sm">Deadline:</span>
             <span class="text-primary"><?= (!empty($l['deadline'])) ? $l['deadline'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
-
         </div>
         <div class="col-md">
           <h6 class="text-primary fw-bold">informations sur le client</h6>
@@ -62,19 +61,6 @@ Information conteneur
           <p class="d-grid">
             <span class="text-sm">Email du contact</span>
             <span class="text-primary"><?= (!empty($l['email_contact'])) ? $l['email_contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
-          </p>
-          <h6 class="text-primary fw-bold">informations sur le paiement</h6>
-          <p class="d-grid">
-            <span class="text-sm">Payé ?</span>
-            <span class="text-primary"><?= (!empty($l['paiement'])) ? $l['paiement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
-          </p>
-          <p class="d-grid">
-            <span class="text-sm">Réglement</span>
-            <span class="text-primary"><?= (!empty($l['reglement'])) ? $l['reglement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
-          </p>
-          <p class="d-grid">
-            <span class="text-sm">Date de paiement</span>
-            <span class="text-primary"><?= (!empty($l['date_paiement'])) ? $l['date_paiement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
         </div>
         <div class="col-md">
@@ -107,6 +93,22 @@ Information conteneur
             <span class="text-sm">Créé le:</span>
             <span class="text-primary"><?= (!empty($l['auteur'])) ? $l['created_at'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
+        </div>
+        <div class="col-md">
+          <h6 class="text-primary fw-bold">informations sur le paiement</h6>
+          <p class="d-grid">
+            <span class="text-sm">Payé ?</span>
+            <span class="text-primary"><?= (!empty($l['paiement'])) ? $l['paiement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+          </p>
+          <p class="d-grid">
+            <span class="text-sm">Réglement</span>
+            <span class="text-primary"><?= (!empty($l['reglement'])) ? $l['reglement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+          </p>
+          <p class="d-grid">
+            <span class="text-sm">Date de paiement</span>
+            <span class="text-primary"><?= (!empty($l['date_paiement'])) ? $l['date_paiement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+          </p>
+
         </div>
       </div>
       <div class="d-grid d-sm-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">

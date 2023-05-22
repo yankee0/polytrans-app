@@ -6,18 +6,7 @@ Dashboard
 <h1 class="h3 mb-3"><strong>Statistiques</strong> Dashboard</h1>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Rechercher une livraison</h5>
-        <form action="<?= base_url(session()->root . '/livraisons/recherche/') ?>" class="d-flex gap-2">
-          <input type="search" class="form-control" name="recherche" id="recherche" placeholder="Numéro du conteneur">
-          <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center gap-2"><i class="align-middle" data-feather="search"></i><span class="d-none d-md-flex">Rechercher</span></button>
-        </form>
 
-      </div>
-    </div>
-  </div>
   <div class="col-12">
     <div class="card flex-fill">
       <div class="card-body">
@@ -72,7 +61,7 @@ Dashboard
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" name="conteneur" value="<?= $ligne['id'] ?>" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" name="id" value="<?= $ligne['id'] ?>" class="btn btn-primary">Enregistrer</button>
                       </div>
                       <?= form_close() ?>
                     </div>

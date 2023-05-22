@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Camions;
 use App\Models\Chauffeurs;
 use App\Models\Livraisons as ModelsLivraisons;
+use PhpParser\Node\Stmt\TryCatch;
 
 class Livraisons extends BaseController
 {
@@ -25,6 +26,7 @@ class Livraisons extends BaseController
     {
         $donnee = $this->request->getPost();
 
+        $donnee['client'] = strtoupper($donnee['client']);
         $donnee['conteneur'] = strtoupper($donnee['conteneur']);
         $donnee['compagnie'] = strtoupper($donnee['compagnie']);
         $donnee['bl'] = strtoupper($donnee['bl']);
@@ -125,7 +127,9 @@ class Livraisons extends BaseController
         } else {
 
             return view('utils/livraisons/modifier', [
-                'l' => $l
+                'l' => $l,
+                'liste_camion' => (new Camions())->orderBy('immatriculation', 'ASC')->findAll(),
+                'liste_chauffeur' => (new Chauffeurs())->orderBy('nom', 'ASC')->findAll(),
             ]);
         }
     }
@@ -139,20 +143,43 @@ class Livraisons extends BaseController
         if (isset($donnee['eir'])) {
             $donnee['eir'] = strtoupper($donnee['eir']);
         }
-        $requete = "UPDATE livraisons SET bl = ?, eir = ? WHERE id = ?";
-        if (
-            (new ModelsLivraisons())->query(
-                $requete,
-                [
-                    $donnee['bl'],
-                    $donnee['eir'],
-                    $donnee['conteneur'],
-                ]
-            )
-        ) {
-            return redirect()->to(session()->root.'/livraisons/info/'.$donnee['conteneur'])->with('notif', true)->with('message', 'Mise à jour réussie.');
-        } else {
+        if (isset($donnee['compagnie'])) {
+            $donnee['compagnie'] = strtoupper($donnee['compagnie']);
+        }
+        if (isset($donnee['client'])) {
+            $donnee['client'] = strtoupper($donnee['client']);
+        }
+        // $requete = "UPDATE livraisons SET bl = ?, eir = ? WHERE id = ?";
+        // if (
+        //     (new ModelsLivraisons())->query(
+        //         $requete,
+        //         [
+        //             $donnee['bl'],
+        //             $donnee['eir'],
+        //             $donnee['conteneur'],
+        //         ]
+        //     )
+        // ) {
+        //     return redirect()->to(session()->root . '/livraisons/info/' . $donnee['conteneur'])->with('notif', true)->with('message', 'Mise à jour réussie.');
+        // } else {
+        //     return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
+        // }
+        // dd($donnee);
+
+        $modele = new ModelsLivraisons();
+        if (!isset($donnee['chauffeur']) or empty($donnee['chauffeur'])) {
+            unset($donnee['chauffeur']);
+        }
+        if (!isset($donnee['camion']) or empty($donnee['camion'])) {
+            unset($donnee['camion']);
+        }
+        // $op = $modele->update($donnee['id'], $donnee);
+        // dd($op);
+        try {
+            $modele->update($donnee['id'], $donnee);
+        } catch ( \Error $err) {
             return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
         }
+        return redirect()->to(session()->root . '/livraisons/info/' . $donnee['id'])->with('notif', true)->with('message', 'Mise à jour réussie.');
     }
 }
