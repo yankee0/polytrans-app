@@ -59,20 +59,20 @@ Dashboard
                         <?= csrf_field() ?>
                         <div class="mb-3">
                           <label for="eir<?= $ligne['conteneur'] ?>" class="form-label">E.I.R.</label>
-                          <input type="text" class="form-control" name="eir" id="eir<?= $ligne['conteneur'] ?>">
+                          <input type="text" class="form-control" name="eir" value="<?= $ligne['eir'] ?>" id="eir<?= $ligne['conteneur'] ?>">
                         </div>
                         <div class="mb-3">
                           <label for="bl<?= $ligne['conteneur'] ?>" class="form-label">B.L.</label>
-                          <input type="text" class="form-control" name="bl" id="bl<?= $ligne['conteneur'] ?>">
+                          <input type="text" class="form-control" name="bl" value="<?= $ligne['bl'] ?>" id="bl<?= $ligne['conteneur'] ?>">
                         </div>
                         <div class="mb-3">
                           <label for="dead<?= $ligne['conteneur'] ?>" class="form-label">Deadline</label>
-                          <input type="datetime-local" class="form-control" name="deadline" id="dead<?= $ligne['conteneur'] ?>">
+                          <input type="datetime-local" class="form-control" name="deadline" value="<?= $ligne['deadline'] ?>" id="dead<?= $ligne['conteneur'] ?>">
                         </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" name="conteneur" value="<?= $ligne['conteneur'] ?>" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" name="conteneur" value="<?= $ligne['id'] ?>" class="btn btn-primary">Enregistrer</button>
                       </div>
                       <?= form_close() ?>
                     </div>

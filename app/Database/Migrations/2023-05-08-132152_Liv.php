@@ -88,7 +88,8 @@ class Liv extends Migration
 
             ],
             'reglement' => [
-                'type' => 'ENUM("COMPTANT","À CRÉDIT")',
+                'type' => 'ENUM("COMPTANT","À CRÉDIT","NON PAYÉ")',
+                'default' => 'NON PAYÉ'
             ],
             'date_paiement' => [
                 'type' => 'DATE',
@@ -162,9 +163,9 @@ class Liv extends Migration
             'scan_bo',
         ]);
 
-        $this->forge->addForeignKey('chauffeur','chauffeurs','tel','CASCADE','NO ACTION');
-        $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','NO ACTION');
-        $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','NO ACTION');
+        $this->forge->addForeignKey('chauffeur','chauffeurs','tel','CASCADE','SET NULL');
+        $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','SET NULL');
+        $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','SET NULL');
 
         $this->forge->createTable('livraisons',true);
     }

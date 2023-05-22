@@ -92,17 +92,16 @@ Liste des livraisons
                   <span class="text-sm">Deadline</span>
                   <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
                 </label>
-
-                <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
-                <label class="form-label d-grid">
-                  <span class="text-sm">Numéro E.I.R.</span>
-                  <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
-                </label>
+                  <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
+                  <label class="form-label d-grid">
+                    <span class="text-sm">Numéro E.I.R.</span>
+                    <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
+                  </label>
               </div>
               <?php if (
                 session()->root != '/ops-reception'
                 and session()->root != '/ops-mvt'
-                ) : ?>
+              ) : ?>
                 <div class="col-sm">
                   <h6 class=" mt-3 text-primary">Transport</h6>
                   <label class="form-label d-grid">
@@ -135,7 +134,7 @@ Liste des livraisons
                   <label class="form-label d-grid">
                     <span class="text-sm">Règlement <span class="text-primary">*</span></span>
                     <select name="reglement" class="form-select " id="reglement" required>
-                      <option hidden disabled>Choisir le type de règlement</option>
+                      <option hidden selected value="NON PAYÉ">Choisir le type de règlement</option>
                       <option value="COMPTANT">COMPTANT</option>
                       <option value="À CRÉDIT">À CRÉDIT</option>
                     </select>
@@ -151,7 +150,7 @@ Liste des livraisons
                         </div>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader"> Non
+                            <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader" checked> Non
                           </label>
                         </div>
                       </div>
@@ -194,9 +193,9 @@ Liste des livraisons
               <tr>
                 <td class="d-table-cell"><?= $ligne['conteneur'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
-                <td class="d-none d-sm-table-cell"><?= $ligne['deadline'] ?></td>
+                <td class="d-none d-sm-table-cell"><?= (empty($ligne['deadline'])) ? '<span class="badge bg-warning">Indéfini</span>' : $ligne['deadline'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['created_at'] ?></td>
-                <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['conteneur']) ?>" role="button">Consulter</a></td>
+                <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['id']) ?>" role="button">Consulter</a></td>
               </tr>
             <?php endforeach ?>
 
