@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\Auth;
+use App\Filters\OpsFinance;
 use App\Filters\OpsFlotte;
 use App\Filters\OpsMvt;
 use App\Filters\OpsReception;
@@ -30,7 +31,8 @@ class Filters extends BaseConfig
         'superAdmin'    => SuperAdmin::class,
         'opsFlotte'     => OpsFlotte::class,
         'opsReception'  => OpsReception::class,
-        'opsMvt'        => OpsMvt::class
+        'opsMvt'        => OpsMvt::class,
+        'opsFinance'    => OpsFinance::class
     ];
 
     /**

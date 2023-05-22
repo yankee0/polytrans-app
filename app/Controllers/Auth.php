@@ -56,6 +56,10 @@ class Auth extends BaseController
                 session()->set('root', '/ops-mvt');
                 return redirect()->to('/ops-mvt');
                 break;
+            case 'OPS FINANCE':
+                session()->set('root', '/ops-finance');
+                return redirect()->to('/ops-finance');
+                break;
 
             default:
                 session()->set('root', null);

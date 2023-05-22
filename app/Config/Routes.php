@@ -148,6 +148,38 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    $routes->group('ops-finance', ['filter' => 'opsFinance'], function ($routes) {
+        $routes->get('/', 'OpsFinance::index');
+        $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+
+        $routes->group('livraisons', function ($routes) {
+            $routes->get('/', 'Livraisons::liste');
+            $routes->post('ajout', 'Livraisons::ajout');
+            $routes->post('supprimer/(:segment)', 'Livraisons::supprimer/$1');
+            $routes->post('supprimer_groupe', 'Livraisons::supprimer_groupe');
+            $routes->get('modifier/(:segment)', 'Livraisons::modifier/$1');
+            $routes->post('modifier', 'Livraisons::enregistrer');
+            $routes->get('info/(:segment)', 'Livraisons::info/$1');
+            $routes->get('recherche', 'Livraisons::recherche');
+        });
+    });
+
+    $routes->group('ops-transport', ['filter' => 'opsTransport'], function ($routes) {
+        $routes->get('/', 'OpsTransport::index');
+        $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+
+        $routes->group('livraisons', function ($routes) {
+            $routes->get('/', 'Livraisons::liste');
+            $routes->post('ajout', 'Livraisons::ajout');
+            $routes->post('supprimer/(:segment)', 'Livraisons::supprimer/$1');
+            $routes->post('supprimer_groupe', 'Livraisons::supprimer_groupe');
+            $routes->get('modifier/(:segment)', 'Livraisons::modifier/$1');
+            $routes->post('modifier', 'Livraisons::enregistrer');
+            $routes->get('info/(:segment)', 'Livraisons::info/$1');
+            $routes->get('recherche', 'Livraisons::recherche');
+        });
+    });
+
     //routes communs
 
 });
