@@ -16,7 +16,7 @@ Liste des livraisons
 
 <div class="container-fluid p-0">
 
-  <h1 class="h3 mb-3"><strong>Modifier</strong> Livraison <span class="text-primary">yeet</span></h1>
+  <h1 class="h3 mb-3"><strong>Livraison</strong> Conteneur <span class="text-primary"><?= $l['conteneur'] ?></span></h1>
 
   <div class="row">
 
@@ -117,6 +117,10 @@ Liste des livraisons
                         <option <?= ($l['camion'] == $ligne['immatriculation']) ? 'selected' : '' ?> value="<?= $ligne['immatriculation'] ?>"><?= $ligne['immatriculation'] ?></option>
                       <?php endforeach ?>
                     </select>
+                  </label>
+                  <label class="form-label d-grid">
+                    <span class="text-sm">Litres de carburant</span>
+                    <input type="number" value="<?= set_value('litre_carburant',$l['litre_carburant']) ?>" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Zone de livraison</span>

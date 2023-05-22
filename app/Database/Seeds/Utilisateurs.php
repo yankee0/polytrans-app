@@ -16,6 +16,7 @@ class Utilisateurs extends Seeder
             'OPS RECEPTION',
             'OPS MVT',
             'OPS FINANCE',
+            'OPS TRANSPORT',
         ];
 
 
@@ -63,6 +64,15 @@ class Utilisateurs extends Seeder
                 'email' => 'finance@poly-trans.sn',
                 'telephone' => $faker->phoneNumber(),
                 'profil' => $profils[4],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'transport@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[5],
                 'mot_de_passe' => sha1('yankee'),
                 'compte_actif' => 'oui'
             ],

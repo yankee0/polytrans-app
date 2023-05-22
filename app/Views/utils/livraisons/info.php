@@ -62,6 +62,10 @@ Information conteneur
             <span class="text-sm">Email du contact</span>
             <span class="text-primary"><?= (!empty($l['email_contact'])) ? $l['email_contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
+          <p class="d-grid">
+            <span class="text-sm">Enregistré le:</span>
+            <span class="text-primary"><?= (!empty($l['auteur'])) ? $l['created_at'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+          </p>
         </div>
         <div class="col-md">
           <h6 class="text-primary fw-bold">informations sur le transport</h6>
@@ -72,6 +76,10 @@ Information conteneur
           <p class="d-grid">
             <span class="text-sm">Camion</span>
             <span class="text-primary"><?= (!empty($l['camion'])) ? $l['camion'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+          </p>
+          <p class="d-grid">
+            <span class="text-sm">Litres de carburant</span>
+            <span class="text-primary"><?= (!empty($l['litre_carburant'])) ? $l['litre_carburant'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
           <p class="d-grid">
             <span class="text-sm">Zone</span>
@@ -88,10 +96,6 @@ Information conteneur
           <p class="d-grid">
             <span class="text-sm">Commentaire</span>
             <span class="text-primary"><?= (!empty($l['commentaire'])) ? $l['commentaire'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
-          </p>
-          <p class="d-grid">
-            <span class="text-sm">Créé le:</span>
-            <span class="text-primary"><?= (!empty($l['auteur'])) ? $l['created_at'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
         </div>
         <div class="col-md">
@@ -111,6 +115,7 @@ Information conteneur
 
         </div>
       </div>
+      <hr>
       <div class="d-grid d-sm-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
         <a href="<?= base_url(session()->root . '/livraisons/modifier/' . $l['id']) ?>" class="btn btn-warning d-flex align-items-center justify-content-center gap-2"><i class="align-middle" data-feather="edit"></i>Modifier</a>
         <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#modalId"><i class="align-middle" data-feather="trash"></i>Supprimer</button>

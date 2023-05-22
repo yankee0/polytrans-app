@@ -60,6 +60,10 @@ class Auth extends BaseController
                 session()->set('root', '/ops-finance');
                 return redirect()->to('/ops-finance');
                 break;
+            case 'OPS TRANSPORT':
+                session()->set('root', '/ops-transport');
+                return redirect()->to('/ops-transport');
+                break;
 
             default:
                 session()->set('root', null);

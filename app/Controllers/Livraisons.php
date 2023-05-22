@@ -24,6 +24,7 @@ class Livraisons extends BaseController
     public function ajout()
     {
         $donnee = $this->request->getPost();
+        // dd($donnee);
 
         $donnee['client'] = strtoupper($donnee['client']);
         $donnee['conteneur'] = strtoupper($donnee['conteneur']);
@@ -54,6 +55,12 @@ class Livraisons extends BaseController
             }
             if (isset($donnee['paiement']) and $donnee['paiement'] == 'non') {
                 unset($donnee['date_paiement']);
+            }
+            if (!isset($donnee['chauffeur']) or empty($donnee['chauffeur'])) {
+                unset($donnee['chauffeur']);
+            }
+            if (!isset($donnee['camion']) or empty($donnee['camion'])) {
+                unset($donnee['camion']);
             }
             $modele = new ModelsLivraisons();
             if ($modele->insert($donnee, false)) {

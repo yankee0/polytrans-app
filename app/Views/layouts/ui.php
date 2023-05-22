@@ -86,6 +86,7 @@
             session()->root == '/super-admin'
             or session()->root == '/ops-reception'
             or session()->root == '/ops-mvt'
+            or session()->root == '/ops-transport'
           ) : ?>
             <li class="sidebar-header">
               Opérations

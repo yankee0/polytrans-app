@@ -7,6 +7,7 @@ use App\Filters\OpsFinance;
 use App\Filters\OpsFlotte;
 use App\Filters\OpsMvt;
 use App\Filters\OpsReception;
+use App\Filters\OpsTransport;
 use App\Filters\SuperAdmin;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -32,7 +33,8 @@ class Filters extends BaseConfig
         'opsFlotte'     => OpsFlotte::class,
         'opsReception'  => OpsReception::class,
         'opsMvt'        => OpsMvt::class,
-        'opsFinance'    => OpsFinance::class
+        'opsFinance'    => OpsFinance::class,
+        'opsTransport'  => OpsTransport::class,
     ];
 
     /**

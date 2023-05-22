@@ -106,11 +106,11 @@ Liste des livraisons
                   <h6 class=" mt-3 text-primary">Transport</h6>
                   <label class="form-label d-grid">
                     <span class="text-sm">Date ALLER</span>
-                    <input type="date" name="date_sortie" class="form-control" placeholder="Téléphone du contact">
+                    <input type="date" name="date_sortie" class="form-control" placeholder="Date de sortie">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Date de RETOUR</span>
-                    <input type="date" name="date_retour" class="form-control" placeholder="Téléphone du contact">
+                    <input type="date" name="date_retour" class="form-control" placeholder="Date de retour">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Nom du chauffeur</span>
@@ -131,6 +131,10 @@ Liste des livraisons
                     </select>
                   </label>
                   <label class="form-label d-grid">
+                    <span class="text-sm">Litres de carburant</span>
+                    <input type="number" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
+                  </label>
+                  <label class="form-label d-grid">
                     <span class="text-sm">Zone de livraison</span>
                     <input value="<?= set_value('zone', '') ?>" type="text" name="zone" id="" class="form-control" placeholder="Nom de la zone">
                   </label>
@@ -138,36 +142,40 @@ Liste des livraisons
                     <span class="text-sm">Commentaire</span>
                     <textarea value="<?= set_value('commentaire', '') ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
                   </label>
-                  <h6 class=" mt-3 text-primary">Paiement</h6>
-                  <label class="form-label d-grid">
-                    <span class="text-sm">Règlement <span class="text-primary">*</span></span>
-                    <select name="reglement" class="form-select " id="reglement" required>
-                      <option hidden selected value="NON PAYÉ">Choisir le type de règlement</option>
-                      <option value="COMPTANT">COMPTANT</option>
-                      <option value="À CRÉDIT">À CRÉDIT</option>
-                    </select>
-                  </label>
-                  <div class="paye" style="display: none;">
+                  <?php if (
+                    session()->root != '/ops-transport'
+                  ) : ?>
+                    <h6 class=" mt-3 text-primary">Paiement</h6>
                     <label class="form-label d-grid">
-                      <span class="text-sm">La livraison a-t-elle été payée?</span>
-                      <div class="d-flex gap-3">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader" checked> Non
-                          </label>
-                        </div>
-                      </div>
+                      <span class="text-sm">Règlement <span class="text-primary">*</span></span>
+                      <select name="reglement" class="form-select " id="reglement" required>
+                        <option hidden selected value="NON PAYÉ">Choisir le type de règlement</option>
+                        <option value="COMPTANT">COMPTANT</option>
+                        <option value="À CRÉDIT">À CRÉDIT</option>
+                      </select>
                     </label>
-                    <label class="form-label d-grid payeDate" style="display: none;">
-                      <span class="text-sm">Date de paiement</span>
-                      <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
-                    </label>
-                  </div>
+                    <div class="paye" style="display: none;">
+                      <label class="form-label d-grid">
+                        <span class="text-sm">La livraison a-t-elle été payée?</span>
+                        <div class="d-flex gap-3">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" name="paiement" type="radio" id="oui" value="oui" aria-label="Text for screen reader"> Oui
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" name="paiement" type="radio" id="non" value="non" aria-label="Text for screen reader" checked> Non
+                            </label>
+                          </div>
+                        </div>
+                      </label>
+                      <label class="form-label d-grid payeDate" style="display: none;">
+                        <span class="text-sm">Date de paiement</span>
+                        <input type="date" name="date_paiement" class="form-control" placeholder="Téléphone du contact">
+                      </label>
+                    </div>
+                  <?php endif; ?>
                 </div>
               <?php endif ?>
 
