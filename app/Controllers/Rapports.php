@@ -123,7 +123,7 @@ class Rapports extends BaseController
 
 
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Content-Disposition: attachment;filename="'. $filename .'"');
         header('Cache-Control: max-age=0');
         $writer = new Xls($spreadsheet);
         $writer->save('php://output');
