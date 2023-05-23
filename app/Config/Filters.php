@@ -3,6 +3,12 @@
 namespace Config;
 
 use App\Filters\Auth;
+use App\Filters\OpsFinance;
+use App\Filters\OpsFlotte;
+use App\Filters\OpsMvt;
+use App\Filters\OpsReception;
+use App\Filters\OpsTransport;
+use App\Filters\SuperAdmin;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -22,7 +28,13 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'authentifie'   => Auth::class
+        'authentifie'   => Auth::class,
+        'superAdmin'    => SuperAdmin::class,
+        'opsFlotte'     => OpsFlotte::class,
+        'opsReception'  => OpsReception::class,
+        'opsMvt'        => OpsMvt::class,
+        'opsFinance'    => OpsFinance::class,
+        'opsTransport'  => OpsTransport::class,
     ];
 
     /**

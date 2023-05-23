@@ -59,7 +59,7 @@ class Liv extends Migration
                 'null' => true,
             ],
             'deadline' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'null' => true,
             ],
             'client' => [
@@ -84,22 +84,23 @@ class Liv extends Migration
             ],
             'paiement' => [
                 'type' => 'ENUM("oui","non")',
+                'default' => 'non'
 
             ],
             'reglement' => [
-                'type' => 'ENUM("COMPTANT","À CRÉDIT")',
-
+                'type' => 'ENUM("COMPTANT","À CRÉDIT","NON PAYÉ")',
+                'default' => 'NON PAYÉ'
             ],
             'date_paiement' => [
                 'type' => 'DATE',
                 'null' => true,
             ],
             'date_sortie' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
                 'null' => true,
             ],
             'date_retour' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
                 'null' => true,
             ],
             'zone' => [
@@ -162,9 +163,9 @@ class Liv extends Migration
             'scan_bo',
         ]);
 
-        $this->forge->addForeignKey('chauffeur','chauffeurs','permis','CASCADE','NO ACTION');
-        $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','NO ACTION');
-        $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','NO ACTION');
+        $this->forge->addForeignKey('chauffeur','chauffeurs','tel','CASCADE','SET NULL');
+        $this->forge->addForeignKey('camion','camions','immatriculation','CASCADE','SET NULL');
+        $this->forge->addForeignKey('auteur','utilisateurs','email','CASCADE','SET NULL');
 
         $this->forge->createTable('livraisons',true);
     }

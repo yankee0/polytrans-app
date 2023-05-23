@@ -16,7 +16,7 @@ class Livraisons extends BaseController
         $donnee = [
             'liste_camion' => (new Camions())->orderBy('immatriculation', 'ASC')->findAll(),
             'liste_chauffeur' => (new Chauffeurs())->orderBy('nom', 'ASC')->findAll(),
-            'liste_non_paye' => (new ModelsLivraisons())->where('paiement', 'non')->find(),
+            'liste_non_paye' => (new ModelsLivraisons())->orderBy('created_at', 'DESC')->where('paiement', 'non')->find(),
         ];
         return view('utils/livraisons/liste', $donnee);
     }
@@ -24,7 +24,9 @@ class Livraisons extends BaseController
     public function ajout()
     {
         $donnee = $this->request->getPost();
+        // dd($donnee);
 
+        $donnee['client'] = strtoupper($donnee['client']);
         $donnee['conteneur'] = strtoupper($donnee['conteneur']);
         $donnee['compagnie'] = strtoupper($donnee['compagnie']);
         $donnee['bl'] = strtoupper($donnee['bl']);
@@ -40,12 +42,25 @@ class Livraisons extends BaseController
             return redirect()->back()->withInput()->with('notif', false)->with('message', 'EIR en doublon!');
         } else {
             $donnee['auteur'] = session()->donnee_utilisateur['email'];
-            $donnee['paiement'] = ($donnee['reglement'] == "À CRÉDIT") ? 'non' : $donnee['paiement'];
+            if (isset($donnee['reglement'])) {
+                if (!isset($donnee['paiement'])) {
+                    $donnee['paiement'] = '';
+                }
+                $donnee['paiement'] = ($donnee['reglement'] == "À CRÉDIT") ? 'non' : $donnee['paiement'];
+            } else {
+                $donnee['paiement'] = 'non';
+            }
             if (empty($donnee['bl'])) {
                 unset($donnee['deadline']);
             }
-            if ($donnee['paiement'] == 'non') {
+            if (isset($donnee['paiement']) and $donnee['paiement'] == 'non') {
                 unset($donnee['date_paiement']);
+            }
+            if (!isset($donnee['chauffeur']) or empty($donnee['chauffeur'])) {
+                unset($donnee['chauffeur']);
+            }
+            if (!isset($donnee['camion']) or empty($donnee['camion'])) {
+                unset($donnee['camion']);
             }
             $modele = new ModelsLivraisons();
             if ($modele->insert($donnee, false)) {
@@ -58,20 +73,30 @@ class Livraisons extends BaseController
 
     public function info(string $id)
     {
+        $occ = (new ModelsLivraisons())
+            ->where('id', $id)
+            ->first();
 
-        $donnee = [
-            'livraison' => (new ModelsLivraisons())
-                ->where('conteneur', $id)
-                ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur, utilisateurs.prenom AS prenom_utilisateur, utilisateurs.nom AS nom_utilisateur')
-                ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.permis')
-                ->join('utilisateurs', 'livraisons.auteur = utilisateurs.email')
-                ->findAll(),
-        ];
-        if (empty($donnee['livraison'])) {
+        //permet d'eviter des erreurs avec le join du chauffeur
+        if (!empty($occ) and !empty($occ['chauffeur'])) {
+            $donnee = [
+                'l' => (new ModelsLivraisons())
+                    ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur, utilisateurs.prenom AS prenom_utilisateur, utilisateurs.nom AS nom_utilisateur')
+                    ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
+                    ->join('utilisateurs', 'livraisons.auteur = utilisateurs.email')
+                    ->find($id),
+            ];
+        } else {
+            $donnee = [
+                'l' => $occ,
+            ];
+        }
+
+        // dd($donnee);
+        if (empty($donnee['l'])) {
             return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Informations indisponibles ou supprimées.');
         } else {
 
-            // dd($donnee);
             return view('utils/livraisons/info', $donnee);
         }
     }
@@ -81,7 +106,7 @@ class Livraisons extends BaseController
         if (!(new ModelsLivraisons())->delete($id)) {
             return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Erreur 404.');
         } else {
-            return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie');
+            return redirect()->to(session()->root . '/livraisons')->with('notif', true)->with('message', 'Suppression réussie');
         }
     }
 
@@ -90,13 +115,77 @@ class Livraisons extends BaseController
 
         $recherche = $this->request->getGet('recherche');
         $modele = new ModelsLivraisons();
-        $resultat = $modele->like('conteneur', strtoupper(''.$recherche))->paginate(10);
+        $resultat = $modele->like('conteneur', strtoupper('' . $recherche))->orderBy('created_at', 'DESC')->paginate(20);
         $page = $modele->pager;
         $donnee = [
+            'recherche' => $recherche,
             'resultat' => $resultat,
             'page' => $page
         ];
-        return view('utils/livraisons/recherche',$donnee);
+        return view('utils/livraisons/recherche', $donnee);
+    }
 
+    public function modifier($id)
+    {
+        $l = (new ModelsLivraisons())->find($id);
+        if (empty($l)) {
+            return redirect()->back()->with('notif', false)->with('message', '404 NOT FOUND');
+        } else {
+
+            return view('utils/livraisons/modifier', [
+                'l' => $l,
+                'liste_camion' => (new Camions())->orderBy('immatriculation', 'ASC')->findAll(),
+                'liste_chauffeur' => (new Chauffeurs())->orderBy('nom', 'ASC')->findAll(),
+            ]);
+        }
+    }
+
+    public function enregistrer()
+    {
+        $donnee = $this->request->getPost();
+        if (isset($donnee['bl'])) {
+            $donnee['bl'] = strtoupper($donnee['bl']);
+        }
+        if (isset($donnee['eir'])) {
+            $donnee['eir'] = strtoupper($donnee['eir']);
+        }
+        if (isset($donnee['compagnie'])) {
+            $donnee['compagnie'] = strtoupper($donnee['compagnie']);
+        }
+        if (isset($donnee['client'])) {
+            $donnee['client'] = strtoupper($donnee['client']);
+        }
+        // $requete = "UPDATE livraisons SET bl = ?, eir = ? WHERE id = ?";
+        // if (
+        //     (new ModelsLivraisons())->query(
+        //         $requete,
+        //         [
+        //             $donnee['bl'],
+        //             $donnee['eir'],
+        //             $donnee['conteneur'],
+        //         ]
+        //     )
+        // ) {
+        //     return redirect()->to(session()->root . '/livraisons/info/' . $donnee['conteneur'])->with('notif', true)->with('message', 'Mise à jour réussie.');
+        // } else {
+        //     return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
+        // }
+        // dd($donnee);
+
+        $modele = new ModelsLivraisons();
+        if (!isset($donnee['chauffeur']) or empty($donnee['chauffeur'])) {
+            unset($donnee['chauffeur']);
+        }
+        if (!isset($donnee['camion']) or empty($donnee['camion'])) {
+            unset($donnee['camion']);
+        }
+        // $op = $modele->update($donnee['id'], $donnee);
+        // dd($op);
+        try {
+            $modele->update($donnee['id'], $donnee);
+        } catch ( \Error $err) {
+            return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
+        }
+        return redirect()->to(session()->root . '/livraisons/info/' . $donnee['id'])->with('notif', true)->with('message', 'Mise à jour réussie.');
     }
 }

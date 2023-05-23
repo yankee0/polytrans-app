@@ -12,20 +12,74 @@ class Utilisateurs extends Seeder
         $faker = Factory::create();
         $profils = [
             'SUPER ADMIN',
+            'OPS FLOTTE',
+            'OPS RECEPTION',
+            'OPS MVT',
+            'OPS FINANCE',
+            'OPS TRANSPORT',
         ];
 
-        for ($i=0; $i < 10; $i++) { 
-            $donnee[$i] = [
-                'prenom' => $faker->firstName(),
-                'nom' => $faker->lastName(),
-                'email' => $faker->firstName().'@poly-trans.sn',
-                'telephone' => $faker->phoneNumber(),
+
+        $donnee = [
+            [
+
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'yankee' . '@poly-trans.sn',
+                'telephone' => 776998882,
                 'profil' => $profils[0],
                 'mot_de_passe' => sha1('yankee'),
-            ];
-        }
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'flotte@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[1],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'reception@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[2],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'mvt@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[3],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'finance@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[4],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+            [
+                'prenom' => 'Elhadji Gorgui',
+                'nom' => 'Faye',
+                'email' => 'transport@poly-trans.sn',
+                'telephone' => $faker->phoneNumber(),
+                'profil' => $profils[5],
+                'mot_de_passe' => sha1('yankee'),
+                'compte_actif' => 'oui'
+            ],
+        ];
+
+
 
         $this->db->table('utilisateurs')->insertBatch($donnee);
-        
     }
 }

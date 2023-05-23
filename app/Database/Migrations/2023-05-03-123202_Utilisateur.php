@@ -36,9 +36,7 @@ class Utilisateur extends Migration
                 'null' => true,
             ],
             'profil' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
+                'type' => 'ENUM("SUPER ADMIN","OPS FLOTTE","OPS RECEPTION","OPS MVT","OPS FINANCE","OPS TRANSPORT")',
             ],
             'mot_de_passe' => [
                 'type' => 'VARCHAR',

@@ -9,7 +9,7 @@ Profil
 <div class="container-fluid p-0">
 
   <div class="row">
-    <div class="col-md-4 col-xl-3">
+    <div class="col-md-4 col-xl-4">
       <div class="card mb-3">
         <div class="card-header">
           <h5 class="card-title mb-0">Détails du profil</h5>
@@ -30,26 +30,20 @@ Profil
           <?php endif ?>
 
         </div>
-        <hr class="my-0" />
-        <div class="card-body">
-          <h5 class="h6 card-title">Services</h5>
-          <span class="badge bg-primary me-1 my-1">Transit</span>
-          <span class="badge bg-primary me-1 my-1">Transport</span>
-          <span class="badge bg-primary me-1 my-1">Finance</span>
-        </div>
+        
         <hr class="my-0" />
         <div class="card-body">
           <h5 class="h6 card-title">Contact</h5>
           <ul class="list-unstyled mb-0">
-            <li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> Email <a href="mailto:<?= $u['email'] ?>"><?= $u['email'] ?></a></li>
-            <li class="mb-1"><span data-feather="phone" class="feather-sm me-1"></span> Téléphone <a href="tel:<?= $u['telephone'] ?>"><?= $u['telephone'] ?></a></li>
+            <li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> <a href="mailto:<?= $u['email'] ?>"><?= $u['email'] ?></a></li>
+            <li class="mb-1"><span data-feather="phone" class="feather-sm me-1"></span> <a href="tel:<?= $u['telephone'] ?>"><?= $u['telephone'] ?></a></li>
           </ul>
         </div>
 
       </div>
     </div>
 
-    <div class="col-md-8 col-xl-9">
+    <div class="col-md-8 col-xl-8">
       <div class="card">
         <div class="card-header">
 

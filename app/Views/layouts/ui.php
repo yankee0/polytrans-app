@@ -1,20 +1,3 @@
-<?php
-$nom_utilisateur = session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'];
-
-switch (session()->donnee_utilisateur['profil']) {
-
-  case 'SUPER ADMIN':
-    $root  = '/super-admin';
-    break;
-
-  default:
-    $root = null;
-    break;
-}
-session()->root = $root;
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -61,52 +44,60 @@ session()->root = $root;
         <ul class="sidebar-nav">
 
           <li class="sidebar-item <?= (session()->position == 'dashboard') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root) ?>">
+            <a class="sidebar-link" href="<?= base_url(session()->root) ?>">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
 
-          <li class="sidebar-header">
-            Administration
+          <?php if (session()->root == '/super-admin') : ?>
+            <li class="sidebar-header">
+              Administration
+            </li>
             <li class="sidebar-item <?= (session()->position == 'utilisateurs') ? 'active' : '' ?>">
-              <a class="sidebar-link" href="<?= base_url($root . '/utilisateurs') ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/utilisateurs') ?>">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs</span>
               </a>
             </li>
-          </li>
+          <?php endif ?>
+          <?php if (
+            session()->root == '/ops-flotte'
+            or session()->root == '/super-admin'
+          ) : ?>
 
-          <li class="sidebar-header">
-            Flotte
-          </li>
+            <li class="sidebar-header">
+              Flotte
+            </li>
+
+            <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/chauffeurs') ?>">
+                <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/camions') ?>">
+                <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
+              </a>
+            </li>
+          <?php endif; ?>
 
 
+          <?php if (
+            session()->root == '/super-admin'
+            or session()->root == '/ops-reception'
+            or session()->root == '/ops-mvt'
+            or session()->root == '/ops-transport'
+          ) : ?>
+            <li class="sidebar-header">
+              Opérations
+            </li>
+            <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/livraisons') ?>">
+                <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
+              </a>
+            </li>
 
-          <li class="sidebar-item <?= (session()->position == 'chauffeurs') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/chauffeurs') ?>">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Chauffeurs</span>
-            </a>
-          </li>
-
-          <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/camions') ?>">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
-            </a>
-          </li>
-
-          <li class="sidebar-header">
-            Opérations
-          </li>
-
-          <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/livraisons') ?>">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
-            </a>
-          </li>
-          <li class="sidebar-item <?= (session()->position == 'transferts') ? 'active' : '' ?>">
-            <a class="sidebar-link" href="<?= base_url($root . '/transferts') ?>">
-              <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Transferts</span>
-            </a>
-          </li>
+          <?php endif; ?>
 
         </ul>
 
@@ -122,7 +113,7 @@ session()->root = $root;
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
             <!-- notifs -->
-            <!-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                 <div class="position-relative">
                   <i class="align-middle" data-feather="bell"></i>
@@ -253,15 +244,15 @@ session()->root = $root;
                   <a href="#" class="text-muted">Show all messages</a>
                 </div>
               </div>
-            </li> -->
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-flex gap-2 align-items-center" href="#" data-bs-toggle="dropdown">
-                <img src="<?= base_url('img/avatars/' . session()->donnee_utilisateur['pp_url']) ?>" class="avatar img-fluid rounded me-1" alt="<?= $nom_utilisateur ?>" />
-                <span class="text-dark"><?= $nom_utilisateur ?></span>
+                <img src="<?= base_url('img/avatars/' . session()->donnee_utilisateur['pp_url']) ?>" class="avatar img-fluid rounded me-1" alt="<?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?>" />
+                <span class="text-dark"><?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
 
@@ -316,19 +307,7 @@ session()->root = $root;
       </div>
     </div>
   <?php endif ?>
-  <!-- Le modal -->
-  <!-- <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Chargement en cours...</span>
-          </div>
-          <p class="mt-3">Chargement en cours...</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
 
   <script src="<?= base_url('js/app.js') ?>"></script>
 

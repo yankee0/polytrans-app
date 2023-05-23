@@ -29,7 +29,7 @@ class Camions extends BaseController
             return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublons.');
         } else {
             $donnee['immatriculation'] = strtoupper($donnee['immatriculation']);
-            if ((new ModelsCamions())->insert($donnee) == 0) {
+            if ((new ModelsCamions())->insert($donnee)) {
                 return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');
@@ -48,15 +48,16 @@ class Camions extends BaseController
         }
     }
 
-    public function supprimer_groupe(){
+    public function supprimer_groupe()
+    {
         $ids = $this->request->getPost('liste');
         // dd($ids);
         $modele = new ModelsCamions();
 
-        if($modele->delete($ids)){
-            return redirect()->back()->with('notif',true)->with('message','Suppressions réussies.');
+        if ($modele->delete($ids)) {
+            return redirect()->back()->with('notif', true)->with('message', 'Suppressions réussies.');
         } else {
-            return redirect()->back()->with('notif',false)->with('message','Echec des suppressions.');
+            return redirect()->back()->with('notif', false)->with('message', 'Echec des suppressions.');
         }
     }
 
@@ -81,7 +82,9 @@ class Camions extends BaseController
         } else {
             $modele = new ModelsCamions();
             // dd($donnee);
-            if ($modele->where('immatriculation',$donnee['immatriculation'])->set($donnee)->update()) {
+            $requete = "UPDATE camions SET immatriculation = ? WHERE id = ?";
+
+            if ($modele->query($requete, [strtoupper($donnee['immatriculation']), $donnee['id']])) {
                 return redirect()->to(session()->root . '/camions')->with('notif', true)->with('message', 'Modification réussie.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
@@ -89,7 +92,21 @@ class Camions extends BaseController
         }
     }
 
-    public function dossier(){
-        return 'Gotta finish';
+    public function dossier($id)
+    {
+
+        $c = (new ModelsCamions())->find($id);
+
+        if (!$c){
+            return view('errors/html/error_404', [
+                'message' => 'Cette utilisateur n\'existe pas',
+            ]);
+        } else {
+
+            return view('utils/camions/dossier',[
+                'camion'=> $c
+            ]);
+        }
+        
     }
 }

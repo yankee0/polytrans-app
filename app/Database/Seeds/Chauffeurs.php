@@ -15,7 +15,7 @@ class Chauffeurs extends Seeder
             $donnee[$i] = [
                 'prenom' => $faker->firstName(),
                 'nom' => $faker->lastName(),
-                'permis' => $faker->buildingNumber()
+                'tel' => $faker->phoneNumber()
             ];
         }
 
