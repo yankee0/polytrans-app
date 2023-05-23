@@ -76,7 +76,9 @@ class Utilisateurs extends BaseController
                 $courriel = [
                     'email' => $donnee['email'],
                     'objet' => 'Activation de compte',
-                    'message' => base_url('/activer/' . $donnee['email']),
+                    'message' => view('utils/mail/activation', [
+                        'link' => base_url('/activer/' . $donnee['email'])
+                    ]),
                 ];
                 if ($this->envoyer_email($courriel)) {
                     return redirect()->back()->with('notif', true)->with('message', 'Création du compte réussie, un email d\'activation a été envoyez à l\'utilisateur concerné.');

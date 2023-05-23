@@ -45,7 +45,7 @@ Liste des utilisateurs
           <input type="email" class="form-control" required name="email" id="email" aria-describedby="helpId" placeholder="email @poly-trans.sn">
         </div>
         <div class="mb-3 col-sm-6 col-lg-4">
-          <input type="text" class="form-control" required name="telephone" id="telephone" aria-describedby="helpId" placeholder="Numéro téléphone de l'utilisateur">
+          <input type="tel" class="form-control" required name="telephone" id="telephone" aria-describedby="helpId" placeholder="Numéro téléphone de l'utilisateur">
         </div>
         <div class="mb-3 col-sm-6 col-lg-4">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
