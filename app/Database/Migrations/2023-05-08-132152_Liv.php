@@ -96,11 +96,11 @@ class Liv extends Migration
                 'null' => true,
             ],
             'date_sortie' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
                 'null' => true,
             ],
             'date_retour' => [
-                'type' => 'DATETIME',
+                'type' => 'DATE',
                 'null' => true,
             ],
             'zone' => [

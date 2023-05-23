@@ -3,7 +3,7 @@
 Dashboard
 <?= $this->endSection(); ?>
 <?= $this->section('contenu'); ?>
-<h1 class="h3 mb-3"><strong>Statistiques</strong> Dashboard</h1>
+<h1 class="h3 mb-3"><strong>OPS TRANSPORT</strong> Dashboard</h1>
 
 <div class="row">
 
@@ -48,11 +48,11 @@ Dashboard
                         <?= csrf_field() ?>
                         <label class="form-label d-grid">
                           <span class="text-sm">Date ALLER</span>
-                          <input value="<?= set_value('date_sortie',$ligne['date_sortie']) ?>" type="date" name="date_sortie" class="form-control" placeholder="Date de sortie">
+                          <input value="<?= set_value('date_sortie', $ligne['date_sortie']) ?>" type="date" name="date_sortie" class="form-control" placeholder="Date de sortie">
                         </label>
                         <label class="form-label d-grid">
                           <span class="text-sm">Date de RETOUR</span>
-                          <input value="<?= set_value('date_retour',$ligne['date_retour']) ?>" type="date" name="date_retour" class="form-control" placeholder="Date de retour">
+                          <input value="<?= set_value('date_retour', $ligne['date_retour']) ?>" type="date" name="date_retour" class="form-control" placeholder="Date de retour">
                         </label>
                         <label class="form-label d-grid">
                           <span class="text-sm">Nom du chauffeur</span>
@@ -74,7 +74,7 @@ Dashboard
                         </label>
                         <label class="form-label d-grid">
                           <span class="text-sm">Litres de carburant</span>
-                          <input value="<?= set_value('litre_carburant',$ligne['litre_carburant']) ?>" type="number" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
+                          <input value="<?= set_value('litre_carburant', $ligne['litre_carburant']) ?>" type="number" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
                         </label>
                         <label class="form-label d-grid">
                           <span class="text-sm">Zone de livraison</span>

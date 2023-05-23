@@ -3,7 +3,7 @@
 Dashboard
 <?= $this->endSection(); ?>
 <?= $this->section('contenu'); ?>
-<h1 class="h3 mb-3"><strong>Statistiques</strong> Dashboard</h1>
+<h1 class="h3 mb-3"><strong>OPS MVT</strong> Dashboard</h1>
 
 <div class="row">
 
