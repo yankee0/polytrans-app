@@ -73,7 +73,7 @@ class Rapports extends BaseController
 
             default:
                 // dd($timing);
-                return redirect()->to(session()->root . '/livraisons')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->back()->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
 
@@ -126,10 +126,7 @@ class Rapports extends BaseController
         header('Content-Disposition: attachment;filename="' . $filename . '"');
         header('Cache-Control: max-age=0');
         $writer = new Xls($spreadsheet);
-        ob_clean();
         $writer->save('php://output');
-        // $objWriter = PHPExcel_IOFactory::createWriter($spreadsheet, 'Excel5');
-        // $objWriter->save('php://output');
     }
 
     public function decomposerDate($date)
