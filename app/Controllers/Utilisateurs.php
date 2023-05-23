@@ -49,7 +49,7 @@ class Utilisateurs extends BaseController
         $donnee = $this->request->getVar();
 
         // filter
-        $teste = explode('@', $donnee['email']);
+        // $teste = explode('@', $donnee['email']);
         // $resultat = in_array('poly-trans.sn',$teste);
         // dd($resultat);
 
@@ -58,18 +58,27 @@ class Utilisateurs extends BaseController
 
         $rules = [
             'email' => [
-                'rules' => 'is_unique[utilisateurs.email]'
+                'rules' => 'is_unique[utilisateurs.email]',
+                'errors' => [
+                    'is_unique' => 'Email en doublon!'
+                ]
             ],
             'telephone' => [
-                'rules' =>  'is_unique[utilisateurs.telephone]|min_length[9]'
+                'rules' =>  'is_unique[utilisateurs.telephone]',
+                'errors' => [
+                    'is_unique' => 'Numéro de téléphone en doublon!'
+                ]
             ],
-            'profil' => [
-                'rules' => 'min_length[3]'
-            ],
+            // 'profil' => [
+            //     'rules' => 'min_length[3]',
+            //     'errors' => [
+            //         'is_unique' => 'Numéro de téléphone en doublon!'
+            //     ]
+            // ],
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('operation', false);
+            return redirect()->back()->with('notif', false)->with('message',$this->validator->listErrors());
         } else {
             $donnee['mot_de_passe'] = DEFAULT_PWD;
             if ((new ModelsUtilisateurs())->insert($donnee)) {
