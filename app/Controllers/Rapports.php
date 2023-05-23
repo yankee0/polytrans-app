@@ -73,7 +73,7 @@ class Rapports extends BaseController
 
             default:
                 // dd($timing);
-                return redirect()->back()->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->to(session()->root.'/rapports')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
 

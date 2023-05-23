@@ -163,6 +163,11 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
             $routes->get('info/(:segment)', 'Livraisons::info/$1');
             $routes->get('recherche', 'Livraisons::recherche');
         });
+
+        $routes->group('rapports', function ($routes) {
+            $routes->get('/','Rapports::index');
+            $routes->add('livraisons', 'Rapports::livraison');
+        });
     });
 
     $routes->group('ops-transport', ['filter' => 'opsTransport'], function ($routes) {
