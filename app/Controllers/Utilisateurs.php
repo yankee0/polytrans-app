@@ -39,7 +39,7 @@ class Utilisateurs extends BaseController
     {
         session()->set('position', 'utilisateurs');
         $donnee = [
-            'liste' => (new ModelsUtilisateurs())->orderBy('nom','ASC')->findAll(),
+            'liste' => (new ModelsUtilisateurs())->orderBy('nom', 'ASC')->findAll(),
         ];
         return view('utils/utilisateurs/liste', $donnee);
     }
@@ -141,6 +141,52 @@ class Utilisateurs extends BaseController
             return redirect()->to('/')->with('notif', true)->with('message', 'Activation réussie.');
         } else {
             return redirect()->to('/')->with('notif', false)->with('message', 'Echec de l\'activation.');
+        }
+    }
+
+    public function modifier_mdp()
+    {
+        $data = [
+            'mot_de_passe' => sha1($this->request->getVar('mdpn')),
+            'csrf_test_name' => $this->request->getVar('csrf_test_name'),
+        ];
+        $id = $this->request->getVar('id');
+
+        if (session()->donnee_utilisateur['mot_de_passe'] != sha1($this->request->getVar('mot_de_passe'))) {
+            return redirect()->back()->with('notif', false)->with('message', 'Mot de passe incorrect.');
+        } else {
+
+            $rules = [
+                'mdpn' => [
+                    'rules' => 'min_length[7]',
+                    'errors' => [
+                        'min_length' => 'Mot de passe trop faible.'
+                    ]
+                ],
+                'mdpc' => [
+                    'rules' => 'matches[mdpn]',
+                    'errors' => [
+                        'matches' => 'Echec de la confirmation du mot de passe.'
+                    ]
+                ]
+            ];
+
+            if (!$this->validate($rules)) {
+                return redirect()->back()->with('notif', false)->with('message', $this->validator->listErrors());
+            } else {
+                // dd($data);
+                $op = null;
+                try {
+                    $op = (new ModelsUtilisateurs())->update($id, $data);
+                } catch (\Error $err) {
+                    $op = false;
+                }
+                if ($op) {
+                    return redirect()->back()->with('notif', true)->with('message', 'Mot de passe modifié');
+                } else {
+                    return redirect()->back()->with('notif', false)->with('message', 'Une erreur s\'est produite lors du changement du mot de passe.');
+                }
+            }
         }
     }
 }

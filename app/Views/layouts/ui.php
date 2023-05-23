@@ -9,7 +9,7 @@
   <meta name="author" content="POLY-TRANS DEV TEAM">
   <meta name="keywords" content="polytrans , poly-trans">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="shortcut icon" href="<?= base_url('img/icons/icon-48x48.png') ?>" />
+  <link rel="shortcut icon" href="<?= base_url('img/logo.png') ?>" />
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
   <title>POLYTRANS <?= $this->renderSection('titre'); ?></title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -127,7 +127,7 @@
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
             <!-- notifs -->
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                 <div class="position-relative">
                   <i class="align-middle" data-feather="bell"></i>
@@ -258,7 +258,7 @@
                   <a href="#" class="text-muted">Show all messages</a>
                 </div>
               </div>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
               <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
@@ -270,10 +270,11 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end">
 
-                <a class="dropdown-item" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="settings"></i> Mon profil </a>
+                <a class="dropdown-item disabled" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="settings"></i> Mon profil </a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#pwd"><i class="align-middle me-1" data-feather="lock"></i> Modifier mot de passe </a>
                 <a class="dropdown-item disabled" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Centre d'aide</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?= base_url('/se_deconnecter') ?>">Se déconnecter</a>
+                <a class="dropdown-item link-primary" href="<?= base_url('/se_deconnecter') ?>"><i class="align-middle me-1 " data-feather="log-out"></i> Se déconnecter</a>
               </div>
             </li>
           </ul>
@@ -310,6 +311,45 @@
     </div>
   </div>
 
+
+
+  <!-- Modal Body -->
+  <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+  <div class="modal fade" id="pwd" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bolder text-primary" id="modalTitleId">Modifier mon mot de passe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <?= form_open(base_url(session()->root.'/mot-de-passe')) ?>
+          <?= csrf_field() ?>
+          <div class="mb-3">
+            <input type="password" required class="form-control" name="mot_de_passe" placeholder="Ancien mot de passe">
+          </div>
+          <div class="mb-3">
+            <input type="password" required class="form-control" name="mdpn" placeholder="Nouveau mot de passe">
+          </div>
+          <div class="mb-3">
+            <input type="password" required class="form-control" name="mdpc" placeholder="Confirmez le mot de passe">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" value="<?= session()->donnee_utilisateur['id'] ?>" name="id" class="btn btn-primary">Modifier</button>
+          <?= form_close() ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Optional: Place to the bottom of scripts -->
+  <script>
+    const myModal = new bootstrap.Modal(document.getElementById('pwd'), options)
+  </script>
+
   <?php if (session()->has('notif')) : ?>
 
     <div class="p-3 position-fixed bottom-0 start-0 notif">
@@ -321,6 +361,7 @@
       </div>
     </div>
   <?php endif ?>
+
 
 
   <script src="<?= base_url('js/app.js') ?>"></script>

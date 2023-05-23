@@ -47,6 +47,7 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
     $routes->group('/super-admin', ['filter' => 'superAdmin'], function ($routes) {
         $routes->get('/', 'SuperAdmin::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
 
         $routes->group('utilisateurs', function ($routes) {
             $routes->get('/', 'Utilisateurs::liste');
@@ -92,9 +93,11 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    //ops flotte
     $routes->group('ops-flotte', ['filter' => 'opsFlotte'], function ($routes) {
         $routes->get('/', 'OpsFlotte::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
 
 
         $routes->group('chauffeurs', function ($routes) {
@@ -117,9 +120,11 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    //ops reception
     $routes->group('ops-reception', ['filter' => 'opsReception'], function ($routes) {
         $routes->get('/', 'OpsReception::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');
@@ -133,9 +138,11 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    //ops mvt
     $routes->group('ops-mvt', ['filter' => 'opsMvt'], function ($routes) {
         $routes->get('/', 'OpsMvt::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');
@@ -149,9 +156,12 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    //ops finance
     $routes->group('ops-finance', ['filter' => 'opsFinance'], function ($routes) {
         $routes->get('/', 'OpsFinance::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
+
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');
@@ -170,9 +180,12 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         });
     });
 
+    //ops transport
     $routes->group('ops-transport', ['filter' => 'opsTransport'], function ($routes) {
         $routes->get('/', 'OpsTransport::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
+        $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
+
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');

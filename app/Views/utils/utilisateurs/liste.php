@@ -31,6 +31,8 @@ Liste des utilisateurs
             <option value="OPS FLOTTER">Opérateur flotte</option>
             <option value="OPS RECEPTION">Opérateur réception</option>
             <option value="OPS MVT">Opérateur mouvement</option>
+            <option value="OPS TRANSPORT">Opérateur transport</option>
+            <option value="OPS FINANCE">Opérateur finance</option>
           </select>
         </div>
         <div class="mb-3 col-sm-6 col-lg-4">

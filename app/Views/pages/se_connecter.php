@@ -16,7 +16,7 @@ Se connecter
             <div class="card-body">
               <div class="m-sm-4">
                 <div class="text-center mb-3">
-                  <img src="" alt="Logo poly-trans" class="img-fluid " width="132" height="132" />
+                  <img src="<?= base_url('img/logo.png') ?>" alt="Logo poly-trans" class="img-fluid " width="132" height="132" />
                 </div>
                 
                 <?php if (session()->has('erreurs')) : ?>
@@ -64,9 +64,9 @@ Se connecter
                   <div class="mb-3">
                     <label class="form-label">Mot de passe</label>
                     <input class="form-control form-control-lg" type="password" name="mot_de_passe" placeholder="Votre mot de passe" />
-                    <small>
+                    <!-- <small>
                       <a href="index.html">Mot de passe oublié?</a>
-                    </small>
+                    </small> -->
                     <?= csrf_field() ?>
                   </div>
 

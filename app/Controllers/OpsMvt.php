@@ -21,7 +21,7 @@ class OpsMvt extends BaseController
                 ->orWhere('bl', '')
                 ->findAll()
         ];
-        dd($donnee);
+        // dd($donnee);
         return view('pages/opsMvt/dashboard', $donnee);
     }
 }
