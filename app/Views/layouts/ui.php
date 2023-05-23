@@ -81,12 +81,12 @@
             </li>
           <?php endif; ?>
 
-
           <?php if (
             session()->root == '/super-admin'
             or session()->root == '/ops-reception'
             or session()->root == '/ops-mvt'
             or session()->root == '/ops-transport'
+            or session()->root == '/ops-finance'
           ) : ?>
             <li class="sidebar-header">
               Opérations
@@ -94,6 +94,20 @@
             <li class="sidebar-item <?= (session()->position == 'livraisons') ? 'active' : '' ?>">
               <a class="sidebar-link" href="<?= base_url(session()->root . '/livraisons') ?>">
                 <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Livraisons</span>
+              </a>
+            </li>
+
+          <?php endif; ?>
+          <?php if (
+            session()->root == '/ops-finance'
+            or session()->root == '/super-admin'
+          ) : ?>
+            <li class="sidebar-header">
+              Rapports
+            </li>
+            <li class="sidebar-item <?= (session()->position == 'rapports') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/rapports') ?>">
+                <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Rapports</span>
               </a>
             </li>
 

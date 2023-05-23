@@ -9,9 +9,14 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class Rapports extends BaseController
 {
+    public function index(){
+        session()->position = 'rapports';
+        return view('utils/rapports/dashboard');
+    }
+
     public function livraison()
     {
-        $timing = $this->request->getPost('rapport');
+        $timing = $this->request->getPost('type');
         $date = $this->request->getPost('date');
         $transfers = '';
         $semaine = '';
