@@ -89,7 +89,7 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
 
         $routes->group('rapports', function ($routes) {
             $routes->get('/','Rapports::index');
-            $routes->add('livraisons', 'Rapports::livraison');
+            $routes->post('livraisons', 'Rapports::livraison');
         });
     });
 
@@ -185,7 +185,6 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
         $routes->get('/', 'OpsTransport::index');
         $routes->get('profil/(:segment)', 'Utilisateurs::profil/$1');
         $routes->add('mot-de-passe','Utilisateurs::modifier_mdp');
-
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');

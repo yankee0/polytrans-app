@@ -9,7 +9,8 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class Rapports extends BaseController
 {
-    public function index(){
+    public function index()
+    {
         session()->position = 'rapports';
         return view('utils/rapports/dashboard');
     }
@@ -73,17 +74,9 @@ class Rapports extends BaseController
 
             default:
                 // dd($timing);
-                return redirect()->to(session()->root.'/rapports')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
+                return redirect()->to(session()->root . '/rapports')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
-
-
-        // Récupération des transferts du mois en cours
-
-        // Création du fichier Excel
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setTitle('Rapport transferts');
 
         // Entête du tableau
         $header = [
@@ -99,34 +92,31 @@ class Rapports extends BaseController
             'RETOUR',
             'OBSERVATION',
         ];
-        $sheet->fromArray($header, NULL, 'A1');
 
         // Corps du tableau
         $body = [];
         // dd($transfers);
         foreach ($transfers as $t) {
             $body[] = [
-                $t['conteneur'],
-                $t['camion'],
-                $t['prenom_chauffeur'] . " " . $t['nom_chauffeur'],
-                $t['compagnie'],
-                $t['zone'],
-                $t['client'],
-                $t['type'],
-                $t['litre_carburant'],
-                $t['depart'],
-                $t['arrivee'],
-                $t['commentaire'],
+                'CONTENEURS' => $t['conteneur'],
+                'VEHICULES' => $t['camion'],
+                'CHAUFFEURS' => $t['prenom_chauffeur'] . " " . $t['nom_chauffeur'],
+                'CIE' => $t['compagnie'],
+                'ZONE/DESTIN' => $t['zone'],
+                'CLIENTS' => $t['client'],
+                'TYPES' => $t['type'],
+                'LITRES' => $t['litre_carburant'],
+                'DEPART' => $t['depart'],
+                'RETOUR' => $t['arrivee'],
+                'OBSERVATION' => $t['commentaire'],
             ];
         }
-        $sheet->fromArray($body, NULL, 'A2');
-
-
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'. $filename .'"');
-        header('Cache-Control: max-age=0');
-        $writer = new Xls($spreadsheet);
-        $writer->save('php://output');
+        $response = [
+            'data' => $body,
+            'filename' => $filename
+        ];
+        $this->response->setJSON($response);
+        $this->response->send();
     }
 
     public function decomposerDate($date)

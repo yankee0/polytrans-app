@@ -265,11 +265,14 @@
               </a>
 
               <a class="nav-link dropdown-toggle d-none d-sm-flex gap-2 align-items-center" href="#" data-bs-toggle="dropdown">
-                <img src="<?= base_url('img/avatars/' . session()->donnee_utilisateur['pp_url']) ?>" class="avatar img-fluid rounded me-1" alt="<?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?>" />
+                <!-- <img src="<?= base_url('img/avatars/' . session()->donnee_utilisateur['pp_url']) ?>" class="avatar img-fluid rounded me-1" alt="<?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?>" /> -->
+                <i class="align-middle me-1 text-dark" data-feather="user"></i>
                 <span class="text-dark"><?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
 
+                <a class="dropdown-item disabled text-primary" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="user"></i> <?= session()->donnee_utilisateur['profil'] ?> </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item disabled" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="settings"></i> Mon profil </a>
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#pwd"><i class="align-middle me-1" data-feather="lock"></i> Modifier mot de passe </a>
                 <a class="dropdown-item disabled" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Centre d'aide</a>

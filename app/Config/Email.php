@@ -28,16 +28,18 @@ class Email extends BaseConfig
     /**
      * SMTP Server Address
      */
-    public string $SMTPHost = 'smtp.gmail.com';
+    public string $SMTPHost = 'ssl0.ovh.sn';
 
     /**
      * SMTP Username
      */
     public string $SMTPUser = 'yankeesuprem@gmail.com';
+    // public string $SMTPUser = 'service@poly-trans.sn';
 
     /**
      * SMTP Password
      */
+    // public string $SMTPPass = 'polytrans123';
     public string $SMTPPass = 'zhhhjlvkzujyhuzw';
 
     /**
