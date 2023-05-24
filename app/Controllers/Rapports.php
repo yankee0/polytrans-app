@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Livraisons;
 use App\Controllers\BaseController;
-use PhpOffice\PhpSpreadsheet\Writer\Xls;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class Rapports extends BaseController
 {
@@ -17,8 +15,8 @@ class Rapports extends BaseController
 
     public function livraison()
     {
-        $timing = $this->request->getPost('type');
-        $date = $this->request->getPost('date');
+        $timing = $this->request->getVar('type');
+        $date = $this->request->getVar('date');
         $transfers = '';
         $semaine = '';
         $Mois = '';
