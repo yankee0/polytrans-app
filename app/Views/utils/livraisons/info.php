@@ -52,7 +52,7 @@ Information conteneur
           </p>
           <p class="d-grid">
             <span class="text-sm">Contact</span>
-            <span class="text-primary"><?= (!empty($l['contact'])) ? $l['contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+            <span class="text-primary"><?= (!empty($l['nom_contact'])) ? $l['nom_contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
           <p class="d-grid">
             <span class="text-sm">Téléphone du contact</span>

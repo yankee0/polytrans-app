@@ -128,7 +128,7 @@ Liste des livraisons
                   </label>
                   <label class=" form-label d-grid">
                     <span class="text-sm">Commentaire</span>
-                    <textarea value="<?= set_value('commentaire', $l['commentaire']) ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
+                    <textarea value="<?= set_value('commentaire', $l['commentaire']) ?>" class="form-control" name="commentaire" id="" rows="3"><?= set_value('commentaire', $l['commentaire']) ?></textarea>
                   </label>
                   <h6 class=" mt-3 text-primary">Paiement</h6>
                   <label class="form-label d-grid">
