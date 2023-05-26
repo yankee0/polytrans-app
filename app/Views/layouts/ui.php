@@ -74,9 +74,18 @@
               </a>
             </li>
 
+
             <li class="sidebar-item <?= (session()->position == 'camions') ? 'active' : '' ?>">
               <a class="sidebar-link" href="<?= base_url(session()->root . '/camions') ?>">
                 <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Camions</span>
+              </a>
+            </li>
+            <li class="sidebar-item <?= (session()->position == 'remorques') ? 'active' : '' ?>">
+              <a class="sidebar-link" href="<?= base_url(session()->root . '/remorques') ?>">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M624,320H544V80a16,16,0,0,0-16-16H16A16,16,0,0,0,0,80V368a16,16,0,0,0,16,16H65.61c7.83-54.21,54-96,110.39-96s102.56,41.79,110.39,96H624a16,16,0,0,0,16-16V336A16,16,0,0,0,624,320ZM96,243.68a176.29,176.29,0,0,0-32,20.71V136a8,8,0,0,1,8-8H88a8,8,0,0,1,8,8Zm96-18.54c-5.31-.49-10.57-1.14-16-1.14s-10.69.65-16,1.14V136a8,8,0,0,1,8-8h16a8,8,0,0,1,8,8Zm96,39.25a176.29,176.29,0,0,0-32-20.71V136a8,8,0,0,1,8-8h16a8,8,0,0,1,8,8ZM384,320H352V136a8,8,0,0,1,8-8h16a8,8,0,0,1,8,8Zm96,0H448V136a8,8,0,0,1,8-8h16a8,8,0,0,1,8,8Zm-304,0a80,80,0,1,0,80,80A80,80,0,0,0,176,320Zm0,112a32,32,0,1,1,32-32A32,32,0,0,1,176,432Z"></path>
+                </svg>
+                <span class="align-middle">Remorques</span>
               </a>
             </li>
           <?php endif; ?>
@@ -270,7 +279,6 @@
                 <span class="text-dark"><?= session()->donnee_utilisateur['prenom'] . ' ' . session()->donnee_utilisateur['nom'] ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-end">
-
                 <a class="dropdown-item disabled text-primary" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="user"></i> <?= session()->donnee_utilisateur['profil'] ?> </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item disabled" href="<?= base_url(session()->root . '/profil/') . session()->donnee_utilisateur['id'] ?>"><i class="align-middle me-1" data-feather="settings"></i> Mon profil </a>
@@ -326,7 +334,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <?= form_open(base_url(session()->root.'/mot-de-passe')) ?>
+          <?= form_open(base_url(session()->root . '/mot-de-passe')) ?>
           <?= csrf_field() ?>
           <div class="mb-3">
             <input type="password" required class="form-control" name="mot_de_passe" placeholder="Ancien mot de passe">
