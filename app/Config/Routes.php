@@ -106,6 +106,8 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
             $routes->post('supprimer', 'Chauffeurs::supprimer');
             $routes->post('supprimer_groupe', 'Chauffeurs::supprimer_groupe');
             $routes->get('modifier/(:segment)', 'Chauffeurs::modifier/$1');
+            $routes->post('modifier/vt', 'Camions::enregistrer_vt');
+            $routes->post('modifier/as', 'Camions::enregistrer_as');
             $routes->post('modifier', 'Chauffeurs::enregistrer');
         });
 
