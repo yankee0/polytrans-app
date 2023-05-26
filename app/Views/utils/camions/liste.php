@@ -73,10 +73,8 @@ Liste des camions
           <th class="d-none d-xl-table-cell"></th>
           <!-- <th class="d-table-cell ">Status</th> -->
           <th class="d-table-cell ">Immatriculation</th>
-          <th class="d-none d-xl-table-cell">VT début</th>
-          <th class="d-none d-xl-table-cell">VT fin</th>
-          <th class="d-none d-xl-table-cell">AS début</th>
-          <th class="d-none d-xl-table-cell">AS fin</th>
+          <th class="d-none d-sm-table-cell">VT fin</th>
+          <th class="d-none d-sm-table-cell">AS fin</th>
           <th></th>
         </tr>
       </thead>
@@ -87,10 +85,8 @@ Liste des camions
             <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['immatriculation'] ?>" type="checkbox" value="<?= $ligne['immatriculation'] ?>"></td>
             <!-- <td class="d-table-cell "><span class="badge bg-primary me-1 my-1">yankee</span></td> -->
             <td class="d-table-cell "><?= $ligne['immatriculation'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_debut'])) ? $ligne['vt_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_fin'])) ? $ligne['vt_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_debut'])) ? $ligne['as_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <td class="d-none d-sm-table-cell"><?= (!empty($ligne['vt_fin'])) ? $ligne['vt_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <td class="d-none d-sm-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/dossier/' . $ligne['immatriculation']) ?>" role="button" title="Voir le dossier"><i class="align-middle" data-feather="folder"></i></a>

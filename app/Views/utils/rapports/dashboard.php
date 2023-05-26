@@ -15,13 +15,13 @@ Rapports
             'id' => 'rapportForm',
             'target' => '_blank'
           ]
-          ) ?>
+        ) ?>
         <?= csrf_field() ?>
         <div class="row">
           <div class="col-md mb-3">
             <label for="type" class="form-label">Type </label>
             <select class="form-select" name="type" id="type" required>
-              <option hidden>Sélectionnez un type</option>
+              <option value="" selected hidden>Sélectionnez un type</option>
               <option value="j">Journalier</option>
               <option value="h">Hebdomadaire</option>
               <option value="m">Mensuel</option>

@@ -73,6 +73,8 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
             $routes->post('supprimer_groupe', 'Camions::supprimer_groupe');
             $routes->get('modifier/(:segment)', 'Camions::modifier/$1');
             $routes->post('modifier', 'Camions::enregistrer');
+            $routes->post('modifier/vt', 'Camions::enregistrer_vt');
+            $routes->post('modifier/as', 'Camions::enregistrer_as');
             $routes->get('dossier/(:segment)', 'Camions::dossier/$1');
         });
 

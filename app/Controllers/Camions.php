@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Camions as ModelsCamions;
+use App\Models\Chauffeurs;
 
 class Camions extends BaseController
 {
@@ -85,10 +86,26 @@ class Camions extends BaseController
             $requete = "UPDATE camions SET immatriculation = ? WHERE id = ?";
 
             if ($modele->query($requete, [strtoupper($donnee['immatriculation']), $donnee['id']])) {
-                return redirect()->to(session()->root . '/camions')->with('notif', true)->with('message', 'Modification réussie.');
+                return redirect()->back()->with('notif', true)->with('message', 'Modification réussie.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
             }
+        }
+    }
+
+    public function enregistrer_vt(){
+        if ((new ModelsCamions())->save($this->request->getPost())) {
+            return redirect()->back()->with('notif',true)->with('message','Nouvelle visite technique définie.');
+        } else {
+            return redirect()->back()->with('notif',false)->with('message','Echec lors de la mise à jour.');
+        }
+    }
+
+    public function enregistrer_as(){
+        if ((new ModelsCamions())->save($this->request->getPost())) {
+            return redirect()->back()->with('notif',true)->with('message','Nouvelle assurance.');
+        } else {
+            return redirect()->back()->with('notif',false)->with('message','Echec lors de la mise à jour.');
         }
     }
 
@@ -102,9 +119,10 @@ class Camions extends BaseController
                 'message' => 'Cette utilisateur n\'existe pas',
             ]);
         } else {
-
+            $ch = (new Chauffeurs())->where('camion',$c['immatriculation'])->find();
             return view('utils/camions/dossier',[
-                'camion'=> $c
+                'camion'=> $c,
+                'chauffeurs' => $ch
             ]);
         }
         

@@ -43,7 +43,6 @@
     // Simuler un clic sur le lien pour démarrer le téléchargement
     link.click();
   }
-
 </script>
 
 <nav class="navbar navbar-expand-sm navbar-light bg-white sticky-top p-2">
@@ -67,9 +66,11 @@
 </nav>
 <div class="container-xl pt-3">
   <div class="card flex-fill" style="overflow-x: scroll;">
-    <div class="card-body">
+    <div class="card-header">
+
       <h4 class="card-title text-primary"><?= $filename ?></h4>
     </div>
+
     <table id="tableau" class="table table-hover my-0">
       <thead>
         <tr>
