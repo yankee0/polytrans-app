@@ -64,7 +64,7 @@ class Livraisons extends BaseController
             }
             $modele = new ModelsLivraisons();
             if ($modele->insert($donnee, false)) {
-                return redirect()->back()->with('notif', true)->with('message', 'Engeristrement effectué.');
+                return redirect()->back()->with('notif', true)->with('message', 'Enregistrement effectué.');
             } else {
                 return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'enregistrement.');
             }
@@ -183,7 +183,7 @@ class Livraisons extends BaseController
         // dd($op);
         try {
             $modele->update($donnee['id'], $donnee);
-        } catch ( \Error $err) {
+        } catch (\Error $err) {
             return redirect()->back()->with('notif', false)->with('message', 'Echec de la mise à jour.');
         }
         return redirect()->to(session()->root . '/livraisons/info/' . $donnee['id'])->with('notif', true)->with('message', 'Mise à jour réussie.');

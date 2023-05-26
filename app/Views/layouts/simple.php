@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<body style="background-image: url('https://source.unsplash.com/random/1920x1080')">
+<body>
 
   <?= $this->renderSection('contenu'); ?>
   <?php if (session()->has('notif')) : ?>

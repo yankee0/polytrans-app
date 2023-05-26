@@ -33,7 +33,7 @@ class Rapports extends BaseController
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->findAll();
-                $filename = 'RAPPORT_JOURNALIER_LIVRAISONS_DU_' . date('d-m-Y') . '.xls';
+                $filename = 'RAPPORT_JOURNALIER_LIVRAISONS_DU_' . $date;
                 // dd($transfers);
                 break;
 
@@ -44,7 +44,7 @@ class Rapports extends BaseController
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->findAll();
-                $filename = 'RAPPORT_HEBDOMADAIRE_LIVRAISONS_SEMAINE_' . $this->getSemaine($date) . '_ANNEE_' . $this->getAnnee($date) . '.xls';
+                $filename = 'RAPPORT_HEBDOMADAIRE_LIVRAISONS_SEMAINE_' . $this->getSemaine($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
 
@@ -55,7 +55,7 @@ class Rapports extends BaseController
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->findAll();
-                $filename = 'RAPPORT_MENSUEL_LIVRAISONS_MOIS_' . $this->getMois($date) . '_ANNEE_' . $this->getAnnee($date) . '.xls';
+                $filename = 'RAPPORT_MENSUEL_LIVRAISONS_MOIS_' . $this->getMois($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
 
@@ -66,7 +66,7 @@ class Rapports extends BaseController
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->findAll();
-                $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date) . '.xls';
+                $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
 
@@ -75,22 +75,6 @@ class Rapports extends BaseController
                 return redirect()->to(session()->root . '/rapports')->with('notif', false)->with('message', 'Une erreur s\'est produite, veuillez rééssayer ulterieurement.');
                 break;
         }
-
-        // Entête du tableau
-        $header = [
-            'CONTENEURS',
-            'VEHICULES',
-            'CHAUFFEURS',
-            'CIE',
-            'ZONE/DESTIN',
-            'CLIENTS',
-            'TYPES',
-            'LITRES',
-            'DEPART',
-            'RETOUR',
-            'OBSERVATION',
-        ];
-
         // Corps du tableau
         $body = [];
         // dd($transfers);
@@ -113,8 +97,7 @@ class Rapports extends BaseController
             'data' => $body,
             'filename' => $filename
         ];
-        $this->response->setJSON($response);
-        $this->response->send();
+        return view('utils/rapports/table',$response);
     }
 
     public function decomposerDate($date)
