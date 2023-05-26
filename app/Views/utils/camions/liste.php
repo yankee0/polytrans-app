@@ -23,10 +23,22 @@ Liste des camions
       <h5 class="card-title">Ajouter un camion</h5>
 
       <form class="row" action="<?= base_url(session()->root . '/camions/') ?>" method="post">
-        <div class="mb-3 col-sm-6 col-lg-3">
-          <input type="text" class="form-control" required name="immatriculation" id="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
+        <div class="mb-3 col-sm-6 col-xl-3 col-lg-3">
+          <input type="text" class="form-control" required name="immatriculation" aria-describedby="helpId" placeholder="Immatriculation du camion">
         </div>
-        <div class="mb-3 col-sm-6 col-lg-3">
+        <div class="mb-3 col-sm-6 col-xl-3 col-lg-3">
+          <input type="date" class="form-control" name="vt_fin" aria-describedby="helpId" placeholder="Immatriculation du camion">
+          <p class="form-text text-muted">
+            Date de fin visite technique ( À laisser vide si elle n'est pas disponible. )
+          </p>
+        </div>
+        <div class="mb-3 col-sm-6 col-xl-3 col-lg-3">
+          <input type="date" class="form-control" name="as_fin" aria-describedby="helpId" placeholder="Immatriculation du camion">
+          <p class="form-text text-muted">
+            Date de fin assurance ( À laisser vide si elle n'est pas disponible. )
+          </p>
+        </div>
+        <div class="mb-3 col-sm-6 col-xl-3 col-lg-3">
           <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center gap-2">
             <i class="align-middle" data-feather="plus"></i>
             Ajouter le camion
@@ -73,9 +85,9 @@ Liste des camions
           <th class="d-none d-xl-table-cell"></th>
           <!-- <th class="d-table-cell ">Status</th> -->
           <th class="d-table-cell ">Immatriculation</th>
-          <th class="d-none d-xl-table-cell">VT début</th>
+          <!-- <th class="d-none d-xl-table-cell">VT début</th> -->
           <th class="d-none d-xl-table-cell">VT fin</th>
-          <th class="d-none d-xl-table-cell">AS début</th>
+          <!-- <th class="d-none d-xl-table-cell">AS début</th> -->
           <th class="d-none d-xl-table-cell">AS fin</th>
           <th></th>
         </tr>
@@ -87,9 +99,9 @@ Liste des camions
             <td class="d-none d-xl-table-cell"><input class="form-check-input" form="group" name="liste[]" id="id-<?= $ligne['immatriculation'] ?>" type="checkbox" value="<?= $ligne['immatriculation'] ?>"></td>
             <!-- <td class="d-table-cell "><span class="badge bg-primary me-1 my-1">yankee</span></td> -->
             <td class="d-table-cell "><?= $ligne['immatriculation'] ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_debut'])) ? $ligne['vt_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <!-- <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_debut'])) ? $ligne['vt_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td> -->
             <td class="d-none d-xl-table-cell"><?= (!empty($ligne['vt_fin'])) ? $ligne['vt_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
-            <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_debut'])) ? $ligne['as_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
+            <!-- <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_debut'])) ? $ligne['as_debut'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td> -->
             <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
