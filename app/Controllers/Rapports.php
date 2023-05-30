@@ -32,7 +32,7 @@ class Rapports extends BaseController
                     ->where('YEAR(created_at)', $date_decompose['annee'])
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
-                    ->findAll();
+                    ->find();
                 $filename = 'RAPPORT_JOURNALIER_LIVRAISONS_DU_' . $date;
                 // dd($transfers);
                 break;
@@ -43,7 +43,7 @@ class Rapports extends BaseController
                     ->where('WEEK(created_at)', $semaine)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
-                    ->findAll();
+                    ->find();
                 $filename = 'RAPPORT_HEBDOMADAIRE_LIVRAISONS_SEMAINE_' . $this->getSemaine($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
@@ -54,7 +54,7 @@ class Rapports extends BaseController
                     ->where('MONTH(created_at)', $Mois)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
-                    ->findAll();
+                    ->find();
                 $filename = 'RAPPORT_MENSUEL_LIVRAISONS_MOIS_' . $this->getMois($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
@@ -65,7 +65,7 @@ class Rapports extends BaseController
                     ->where('YEAR(created_at)', $Annee)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
-                    ->findAll();
+                    ->find();
                 $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
                 break;
