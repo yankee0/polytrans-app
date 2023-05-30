@@ -89,17 +89,19 @@
       </thead>
       <tbody>
         <?php foreach ($data as $d) : ?>
-          <td class="table-cell"><?= $d['CONTENEURS'] ?></td>
-          <td class="table-cell"><?= $d['VEHICULES'] ?></td>
-          <td class="table-cell"><?= $d['CHAUFFEURS'] ?></td>
-          <td class="table-cell"><?= $d['CIE'] ?></td>
-          <td class="table-cell"><?= $d['ZONE/DESTIN'] ?></td>
-          <td class="table-cell"><?= $d['CLIENTS'] ?></td>
-          <td class="table-cell"><?= $d['TYPES'] ?></td>
-          <td class="table-cell"><?= $d['LITRES'] ?></td>
-          <td class="table-cell"><?= $d['DEPART'] ?></td>
-          <td class="table-cell"><?= $d['RETOUR'] ?></td>
-          <td class="table-cell"><?= $d['OBSERVATION'] ?></td>
+          <tr>
+            <td class="table-cell"><?= $d['CONTENEURS'] ?></td>
+            <td class="table-cell"><?= $d['VEHICULES'] ?></td>
+            <td class="table-cell"><?= $d['CHAUFFEURS'] ?></td>
+            <td class="table-cell"><?= $d['CIE'] ?></td>
+            <td class="table-cell"><?= $d['ZONE/DESTIN'] ?></td>
+            <td class="table-cell"><?= $d['CLIENTS'] ?></td>
+            <td class="table-cell"><?= $d['TYPES'] ?></td>
+            <td class="table-cell"><?= $d['LITRES'] ?></td>
+            <td class="table-cell"><?= $d['DEPART'] ?></td>
+            <td class="table-cell"><?= $d['RETOUR'] ?></td>
+            <td class="table-cell"><?= $d['OBSERVATION'] ?></td>
+          </tr>
         <?php endforeach ?>
       </tbody>
     </table>

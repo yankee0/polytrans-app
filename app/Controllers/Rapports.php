@@ -21,12 +21,12 @@ class Rapports extends BaseController
         $semaine = '';
         $Mois = '';
         $Annee = '';
+        $modele = new Livraisons();
 
         switch ($timing) {
-
             case 'j':
                 $date_decompose = $this->decomposerDate($date);
-                $transfers = (new Livraisons())
+                $transfers = $modele
                     ->where('DAY(created_at)', $date_decompose['jour'])
                     ->where('MONTH(created_at)', $date_decompose['mois'])
                     ->where('YEAR(created_at)', $date_decompose['annee'])
@@ -39,7 +39,7 @@ class Rapports extends BaseController
 
             case 'h':
                 $semaine = $this->getSemaine($date);
-                $transfers = (new Livraisons())
+                $transfers = $modele
                     ->where('WEEK(created_at)', $semaine)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
@@ -50,7 +50,7 @@ class Rapports extends BaseController
 
             case 'm':
                 $Mois = $this->getMois($date);
-                $transfers = (new Livraisons())
+                $transfers = $modele
                     ->where('MONTH(created_at)', $Mois)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
@@ -61,7 +61,7 @@ class Rapports extends BaseController
 
             case 'a':
                 $Annee = $this->getAnnee($date);
-                $transfers = (new Livraisons())
+                $transfers = $modele
                     ->where('YEAR(created_at)', $Annee)
                     ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
                     ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
