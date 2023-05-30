@@ -78,6 +78,16 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
             $routes->get('dossier/(:segment)', 'Camions::dossier/$1');
         });
 
+        $routes->group('remorques', function ($routes) {
+            $routes->get('/', 'Remorques::liste');
+            $routes->post('/', 'Remorques::ajout');
+            $routes->post('supprimer', 'Remorques::supprimer');
+            $routes->post('supprimer_groupe', 'Remorques::supprimer_groupe');
+            $routes->get('modifier/(:segment)', 'Remorques::modifier/$1');
+            $routes->post('modifier', 'Remorques::enregistrer');
+            $routes->get('dossier/(:segment)', 'Remorques::dossier/$1');
+        });
+
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');
             $routes->post('ajout', 'Livraisons::ajout');
