@@ -18,7 +18,7 @@ class Email extends BaseConfig
     /**
      * The mail sending protocol: mail, sendmail, smtp
      */
-    public string $protocol = 'smtp';
+    public string $protocol = 'mail';
 
     /**
      * The server path to Sendmail.
@@ -28,19 +28,19 @@ class Email extends BaseConfig
     /**
      * SMTP Server Address
      */
-    public string $SMTPHost = 'ssl0.ovh.sn';
+    public string $SMTPHost = 'ssl0.ovh.net';
 
     /**
      * SMTP Username
      */
-    public string $SMTPUser = 'yankeesuprem@gmail.com';
-    // public string $SMTPUser = 'service@poly-trans.sn';
+    // public string $SMTPUser = 'yankeesuprem@gmail.com';
+    public string $SMTPUser = 'service@poly-trans.sn';
 
     /**
      * SMTP Password
      */
-    // public string $SMTPPass = 'polytrans123';
-    public string $SMTPPass = 'zhhhjlvkzujyhuzw';
+    public string $SMTPPass = 'polytrans123';
+    // public string $SMTPPass = 'zhhhjlvkzujyhuzw';
 
     /**
      * SMTP Port

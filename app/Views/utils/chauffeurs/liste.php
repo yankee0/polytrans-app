@@ -24,16 +24,16 @@ Liste des chauffeurs
       <h5 class="card-title">Ajouter un chauffeur</h5>
 
       <form class="row" action="<?= base_url(session()->root . '/chauffeurs/') ?>" method="post">
-        <div class="mb-3 col-sm-6 ">
+        <div class="mb-3 col-sm-6 col-xl-3 ">
           <input type="text" class="form-control" required name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 ">
+        <div class="mb-3 col-sm-6 col-xl-3 ">
           <input type="text" class="form-control" required name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 ">
+        <div class="mb-3 col-sm-6 col-xl-3 ">
           <input type="tel" class="form-control" required name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro de téléphone">
         </div>
-        <div class="mb-3 col-sm-6  ">
+        <div class="mb-3 col-sm-6 col-xl-3  ">
           <select class="form-select " name="camion" id="">
             <option hidden>Camions</option>
             <option value="">Laisser vide</option>
