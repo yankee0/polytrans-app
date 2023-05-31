@@ -27,13 +27,13 @@ class Chauffeurs extends BaseController
 
         $rules = [
             'tel' => [
-                'rules' => 'is_unique[chauffeurs.tel]|min_length[3]'
+                'rules' => 'is_unique[chauffeurs.tel]|min_length[3]|numeric'
             ]
         ];
         $donnee['camion'] = (empty($donnee['camion'])) ? null : $donnee['camion'];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublon.');
+            return redirect()->back()->with('notif', false)->with('message', $this->validator->listErrors());
         } else {
             $modele = new ModelsChauffeurs();
             if ($modele->insert($donnee) == 0) {
