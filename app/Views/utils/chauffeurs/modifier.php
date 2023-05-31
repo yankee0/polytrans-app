@@ -35,7 +35,7 @@ Liste des chauffeurs
         <div class="mb-3 col-sm-6  ">
           <select class="form-select " name="camion" id="">
             <option hidden>Camions</option>
-            <option value="">Laisser vide</option>
+            <option <?= ($chauffeur['camion'] == '') ? 'selected' : '' ?> value="">Laisser vide</option>
             <?php foreach ($camions as $camion) : ?>
               <option value="<?= $camion['immatriculation'] ?>" <?= ($chauffeur['camion'] == $camion['immatriculation']) ? 'selected' : '' ?>><?= $camion['immatriculation'] ?></option>
             <?php endforeach ?>
