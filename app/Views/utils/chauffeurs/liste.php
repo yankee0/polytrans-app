@@ -111,11 +111,11 @@ Liste des chauffeurs
             </td>
           </tr>
           <!-- Modal -->
-          <div class="modal fade" id="Supprimerchauffeur<?= $ligne['tel'] ?>" tabindex="-1" aria-labelledby="Supprimerchauffeur<?= $ligne['tel'] ?>Label" aria-hidden="true">
+          <div class="modal fade" id="Supprimerchauffeur<?= $ligne['id'] ?>" tabindex="-1" aria-labelledby="Supprimerchauffeur<?= $ligne['id'] ?>Label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title fs-5" id="Supprimerchauffeur<?= $ligne['tel'] ?>Label">Supprimer chauffeur</h3>
+                  <h3 class="modal-title fs-5" id="Supprimerchauffeur<?= $ligne['id'] ?>Label">Supprimer chauffeur</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
