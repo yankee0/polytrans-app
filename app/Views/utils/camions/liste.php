@@ -106,11 +106,11 @@ Liste des camions
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/camions/dossier/' . $ligne['immatriculation']) ?>" role="button" title="Voir le dossier"><i class="align-middle" data-feather="folder"></i></a>
-              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimercamion<?= $ligne['immatriculation'] ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
+              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimercamion<?= str_replace(' ','-',$ligne['immatriculation']) ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
             </td>
           </tr>
           <!-- Modal -->
-          <div class="modal fade" id="Supprimercamion<?= $ligne['immatriculation'] ?>" tabindex="-1" aria-labelledby="Supprimercamion<?= $ligne['immatriculation'] ?>Label" aria-hidden="true">
+          <div class="modal fade" id="Supprimercamion<?= str_replace(' ','-',$ligne['immatriculation']) ?>" tabindex="-1" aria-labelledby="Supprimercamion<?= str_replace(' ','-',$ligne['immatriculation']) ?>Label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -132,7 +132,7 @@ Liste des camions
             </div>
           </div>
 
-        <?php endforeach ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
 

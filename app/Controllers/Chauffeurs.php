@@ -12,8 +12,12 @@ class Chauffeurs extends BaseController
     {
         session()->position = 'chauffeurs';
         $donnee = [
-            'liste' => (new ModelsChauffeurs())->orderBy('nom', 'ASC')->findAll(),
-            'camions' => (new Camions())->orderBy('immatriculation')->findAll(),
+            'liste' => (new ModelsChauffeurs())
+                ->orderBy('nom', 'ASC')
+                ->findAll(),
+            'camions' => (new Camions())
+                ->orderBy('immatriculation')
+                ->findAll(),
         ];
         return view('utils/chauffeurs/liste', $donnee);
     }
@@ -33,13 +37,26 @@ class Chauffeurs extends BaseController
         $donnee['camion'] = (empty($donnee['camion'])) ? null : $donnee['camion'];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('notif', false)->with('message', $this->validator->listErrors());
+            return redirect()
+                ->back()
+                ->with('notif', false)
+                ->with(
+                    'message',
+                    $this->validator
+                        ->listErrors()
+                );
         } else {
             $modele = new ModelsChauffeurs();
             if ($modele->insert($donnee) == 0) {
-                return redirect()->back()->with('notif', true)->with('message', 'Ajout réussi.');
+                return redirect()
+                    ->back()
+                    ->with('notif', true)
+                    ->with('message', 'Ajout réussi.');
             } else {
-                return redirect()->back()->with('notif', false)->with('message', 'Echec de l\'ajout.');
+                return redirect()
+                    ->back()
+                    ->with('notif', false)
+                    ->with('message', 'Echec de l\'ajout.');
             }
         }
     }
@@ -49,9 +66,15 @@ class Chauffeurs extends BaseController
         $id = $this->request->getVar('id');
         $modele = new ModelsChauffeurs();
         if ($modele->delete($id)) {
-            return redirect()->back()->with('notif', true)->with('message', 'Suppression réussie.');
+            return redirect()
+                ->back()
+                ->with('notif', true)
+                ->with('message', 'Suppression réussie.');
         } else {
-            return redirect()->back()->with('notif', false)->with('message', 'Echec de la suppression.');
+            return redirect()
+                ->back()
+                ->with('notif', false)
+                ->with('message', 'Echec de la suppression.');
         }
     }
 
@@ -91,7 +114,10 @@ class Chauffeurs extends BaseController
         $donnee['camion'] = (empty($donnee['camion'])) ? null : $donnee['camion'];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('notif', false)->with('message', $this->validator->listErrors());
+            return redirect()
+                ->back()
+                ->with('notif', false)
+                ->with('message', $this->validator->listErrors());
         } else {
             $modele = new ModelsChauffeurs();
             $requete = "UPDATE chauffeurs SET prenom = ?, nom = ?, tel = ? , camion = ? WHERE tel = ?";
@@ -107,9 +133,14 @@ class Chauffeurs extends BaseController
                     ]
                 )
             ) {
-                return redirect()->to(session()->root . '/chauffeurs')->with('notif', true)->with('message', 'Modification réussie.');
+                return redirect()->to(session()->root . '/chauffeurs')
+                    ->with('notif', true)
+                    ->with('message', 'Modification réussie.');
             } else {
-                return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
+                return redirect()
+                    ->back()
+                    ->with('notif', false)
+                    ->with('message', 'Echec de la modification.');
             }
         }
     }

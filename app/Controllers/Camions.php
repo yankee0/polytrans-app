@@ -75,22 +75,23 @@ class Camions extends BaseController
         $donnee = $this->request->getPost();
         $rules = [
             'immatriculation' => [
-                'rules' => 'is_unique[camions.immatriculation,immatriculation,' . $donnee['immatriculation'] . ']|min_length[3]',
+                'rules' => 'is_unique[camions.immatriculation,immatriculation,' . $donnee['immatriculation_n'] . ']|min_length[3]',
             ],
         ];
-        if (!$this->validate($rules)) {
-            return redirect()->back()->with('notif', false)->with('message', 'Identifiants en doublons.');
-        } else {
-            $modele = new ModelsCamions();
-            // dd($donnee);
-            $requete = "UPDATE camions SET immatriculation = ? WHERE id = ?";
 
-            if ($modele->query($requete, [strtoupper($donnee['immatriculation']), $donnee['id']])) {
-                return redirect()->back()->with('notif', true)->with('message', 'Modification réussie.');
-            } else {
-                return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification.');
+            $modele = new ModelsCamions();
+            try {
+                if ($modele->update($donnee['immatriculation_n'],$donnee)) {
+                    return redirect()->to(session()->root.'/camions/')->with('notif', true)->with('message', 'Modification réussie.');
+                } else {
+                    return redirect()->back()->with('notif', false)->withInput()->with('message', 'Echec de la modification.');
+                }
+            } catch (\Throwable $th) {
+                // dd($th);
+                return redirect()->back()->with('notif', false)->with('message', 'Echec de la modification, identifiants en doublon.');
+                
             }
-        }
+
     }
 
     public function enregistrer_vt(){
