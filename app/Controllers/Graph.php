@@ -11,12 +11,15 @@ class Graph extends BaseController
     {
         //livraisons
         $modelLivraison = new Livraisons();
+
         $query = $modelLivraison->select('MONTH(created_at) AS mois, COUNT(*) AS nombre_livraisons')
             ->where('created_at >= DATE_FORMAT(NOW(), "%Y-01-01")')
             ->groupBy('MONTH(created_at)')
             ->get();
+
         $resultats = $query->getResultArray();
         $tableauResultatsLivraison = array_fill(1, 12, 0);
+
         foreach ($resultats as $resultat) {
             $mois = intval($resultat['mois']);
             $nombreLivraisons = intval($resultat['nombre_livraisons']);
@@ -26,11 +29,13 @@ class Graph extends BaseController
         $donnee = [
             'livraisons' => $tableauResultatsLivraison
         ];
+
         $this->response->setJSON($donnee);
         $this->response->send();
     }
 
-    public function pie(){
+    public function pie()
+    {
         $donnee = [
             'livraisons' => (new Livraisons())->countAll(),
             'autres' => 1

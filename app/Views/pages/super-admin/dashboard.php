@@ -136,7 +136,7 @@ Dashboard
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+    <div class="col-12 col-md d-flex order-3 order-xxl-2">
       <div class="card flex-fill w-100">
         <div class="card-header">
 
@@ -144,21 +144,6 @@ Dashboard
         </div>
         <div class="card-body px-4">
           <div id="world_map" style="height:350px;"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-      <div class="card flex-fill">
-        <div class="card-header">
-
-          <h5 class="card-title mb-0">Calendrier</h5>
-        </div>
-        <div class="card-body d-flex">
-          <div class="align-self-center w-100">
-            <div class="chart">
-              <div id="datetimepicker-dashboard"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -256,16 +241,5 @@ Dashboard
     });
   });
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-    var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-    document.getElementById("datetimepicker-dashboard").flatpickr({
-      inline: true,
-      prevArrow: "<span title=\"Mois précédant\">&laquo;</span>",
-      nextArrow: "<span title=\"Mois suivant\">&raquo;</span>",
-      defaultDate: defaultDate
-    });
-  });
-</script>
+
 <?= $this->endSection(); ?>

@@ -104,15 +104,15 @@ Liste des remorques
             <td class="d-none d-xl-table-cell"><?= (!empty($ligne['as_fin'])) ? $ligne['as_fin'] : '<span class="badge bg-warning me-1 my-1">indéfinie</span>' ?></td>
             <td class="d-flex gap-3 ">
               <a class=" flex-grow-0 px-0 btn" href="<?= base_url(session()->root . '/remorques/modifier/' . $ligne['immatriculation']) ?>" role="button" title="Modifier les informations"><i class="align-middle" data-feather="edit"></i></a>
-              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerremorque<?= $ligne['immatriculation'] ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
+              <button type="button" class=" flex-grow-0 px-0 btn " data-bs-toggle="modal" data-bs-target="#Supprimerremorque<?= str_replace(' ','-',$ligne['immatriculation']) ?>" title="Supprimer"><i class="align-middle" data-feather="trash"></i></button>
             </td>
           </tr>
           <!-- Modal -->
-          <div class="modal fade" id="Supprimerremorque<?= $ligne['immatriculation'] ?>" tabindex="-1" aria-labelledby="Supprimerremorque<?= $ligne['immatriculation'] ?>Label" aria-hidden="true">
+          <div class="modal fade" id="Supprimerremorque<?= str_replace(' ','-',$ligne['immatriculation']) ?>" tabindex="-1" aria-labelledby="Supprimerremorque<?= str_replace(' ','-',$ligne['immatriculation']) ?>Label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title fs-5" id="Supprimerremorque<?= $ligne['immatriculation'] ?>Label">Supprimer remorque</h3>
+                  <h3 class="modal-title fs-5" id="Supprimerremorque<?= str_replace(' ','-',$ligne['immatriculation']) ?>Label">Supprimer remorque</h3>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
