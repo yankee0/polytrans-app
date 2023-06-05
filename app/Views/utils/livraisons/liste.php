@@ -89,7 +89,7 @@ Liste des livraisons
                   <input value="<?= set_value('bl', '') ?>" type="text" name="bl" class="form-control " placeholder="B.L.">
                 </label>
                 <label class="form-label d-grid">
-                  <span class="text-sm">Deadline</span>
+                  <span class="text-sm">Date PREGATE</span>
                   <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
                 </label>
                 <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
@@ -199,7 +199,7 @@ Liste des livraisons
             <tr>
               <th class="d-table-cell">Conteneur</th>
               <th class="d-table-cell">Client</th>
-              <th class="d-table-cell d-none d-lg-table-cell">Deadline</th>
+              <th class="d-table-cell d-none d-lg-table-cell">Date Prégate</th>
               <th class="d-table-cell d-none d-md-table-cell">Date d'enregistrement</th>
               <th></th>
             </tr>

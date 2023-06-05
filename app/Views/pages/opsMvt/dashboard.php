@@ -55,7 +55,7 @@ Dashboard
                           <input type="text" class="form-control" name="bl" value="<?= $ligne['bl'] ?>" id="bl<?= $ligne['conteneur'] ?>">
                         </div>
                         <div class="mb-3">
-                          <label for="dead<?= $ligne['conteneur'] ?>" class="form-label">Deadline</label>
+                          <label for="dead<?= $ligne['conteneur'] ?>" class="form-label">Date PREGATE</label>
                           <input type="datetime-local" class="form-control" name="deadline" value="<?= $ligne['deadline'] ?>" id="dead<?= $ligne['conteneur'] ?>">
                         </div>
                       </div>
