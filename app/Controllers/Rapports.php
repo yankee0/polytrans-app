@@ -30,8 +30,6 @@ class Rapports extends BaseController
                     ->where('DAY(created_at)', $date_decompose['jour'])
                     ->where('MONTH(created_at)', $date_decompose['mois'])
                     ->where('YEAR(created_at)', $date_decompose['annee'])
-                    ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
-                    ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->find();
                 $filename = 'RAPPORT_JOURNALIER_LIVRAISONS_DU_' . $date;
                 // dd($transfers);
@@ -41,8 +39,6 @@ class Rapports extends BaseController
                 $semaine = $this->getSemaine($date);
                 $transfers = $modele
                     ->where('WEEK(created_at)', $semaine)
-                    ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
-                    ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->find();
                 $filename = 'RAPPORT_HEBDOMADAIRE_LIVRAISONS_SEMAINE_' . $this->getSemaine($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
@@ -52,8 +48,6 @@ class Rapports extends BaseController
                 $Mois = $this->getMois($date);
                 $transfers = $modele
                     ->where('MONTH(created_at)', $Mois)
-                    ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
-                    ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->find();
                 $filename = 'RAPPORT_MENSUEL_LIVRAISONS_MOIS_' . $this->getMois($date) . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
@@ -63,8 +57,6 @@ class Rapports extends BaseController
                 $Annee = $this->getAnnee($date);
                 $transfers = $modele
                     ->where('YEAR(created_at)', $Annee)
-                    ->select('livraisons.*, chauffeurs.prenom AS prenom_chauffeur, chauffeurs.nom AS nom_chauffeur,')
-                    ->join('chauffeurs', 'livraisons.chauffeur = chauffeurs.tel')
                     ->find();
                 $filename = 'RAPPORT_ANNUEL_LIVRAISONS' . '_ANNEE_' . $this->getAnnee($date);
                 // dd($transfers);
@@ -82,7 +74,6 @@ class Rapports extends BaseController
             $body[] = [
                 'CONTENEURS' => $t['conteneur'],
                 'VEHICULES' => $t['camion'],
-                'CHAUFFEURS' => $t['prenom_chauffeur'] . " " . $t['nom_chauffeur'],
                 'CIE' => $t['compagnie'],
                 'ZONE/DESTIN' => $t['zone'],
                 'CLIENTS' => $t['client'],

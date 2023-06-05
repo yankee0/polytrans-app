@@ -76,7 +76,6 @@
         <tr>
           <th class="table-cell">CONTENEURS</th>
           <th class="table-cell">VEHICULES</th>
-          <th class="table-cell">CHAUFFEURS</th>
           <th class="table-cell">CIE</th>
           <th class="table-cell">ZONE/DESTINATION</th>
           <th class="table-cell">CLIENTS</th>
@@ -92,7 +91,6 @@
           <tr>
             <td class="table-cell"><?= $d['CONTENEURS'] ?></td>
             <td class="table-cell"><?= $d['VEHICULES'] ?></td>
-            <td class="table-cell"><?= $d['CHAUFFEURS'] ?></td>
             <td class="table-cell"><?= $d['CIE'] ?></td>
             <td class="table-cell"><?= $d['ZONE/DESTIN'] ?></td>
             <td class="table-cell"><?= $d['CLIENTS'] ?></td>
