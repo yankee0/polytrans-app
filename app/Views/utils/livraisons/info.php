@@ -40,7 +40,7 @@ Information conteneur
             <span class="text-primary"><?= (!empty($l['eir'])) ? $l['eir'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
           <p class="d-grid">
-            <span class="text-sm">Deadline:</span>
+            <span class="text-sm">Date PREGATE:</span>
             <span class="text-primary"><?= (!empty($l['deadline'])) ? $l['deadline'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
         </div>
