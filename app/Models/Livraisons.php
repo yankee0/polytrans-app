@@ -41,6 +41,7 @@ class Livraisons extends Model
         'arrivee',
         'litre_carburant',
         'auteur',
+        'amendement',
 
     ];
 

@@ -78,10 +78,23 @@ Liste des livraisons
                   <span class="text-sm">Téléphone du contact</span>
                   <input value="<?= set_value('tel_contact', '') ?>" type="tel" name="tel_contact" class="form-control " placeholder="Téléphone du contact">
                 </label>
-                <label class="form-label d-grid">
-                  <span class="text-sm">Email du contact</span>
-                  <input value="<?= set_value('email_contact', '') ?>" type="email" name="email_contact" class="form-control " placeholder="Email du contact">
-                </label>
+                <div class=" form-label">
+                  <span class="text-sm">Amendement</span>
+                  <div class="d-flex gap-2">
+                    <div class="form-check">
+                      <input <?= set_radio('amendement', 'oui') ?> class="form-check-input" value="oui" type="radio" name="amendement" id="amendement">
+                      <label class="form-check-label" for="amendement">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input <?= set_radio('amendement', 'non') ?> class="form-check-input" value="non" type="radio" name="amendement" id="non-amendement" checked>
+                      <label class="form-check-label" for="non-amendement">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
 
                 <h6 class=" mt-3 text-primary">Informations sur le B.L.</h6>
                 <label class="form-label d-grid">
