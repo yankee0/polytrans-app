@@ -66,11 +66,23 @@ Liste des livraisons
                   <span class="text-sm">Téléphone du contact</span>
                   <input value="<?= set_value('tel_contact', $l['tel_contact']) ?>" type="tel" name="tel_contact" class="form-control " placeholder="Téléphone du contact">
                 </label>
-                <label class="form-label d-grid">
-                  <span class="text-sm">Email du contact</span>
-                  <input value="<?= set_value('email_contact', $l['email_contact']) ?>" type="email" name="email_contact" class="form-control " placeholder="Email du contact">
-                </label>
-
+                <div class=" form-label">
+                  <span class="text-sm">Amendement</span>
+                  <div class="d-flex gap-2">
+                    <div class="form-check">
+                      <input <?= set_radio('amendement', 'oui') ?> <?= ($l['amendement'] == 'oui') ? 'checked' : '' ?> class="form-check-input" value="oui" type="radio" name="amendement" id="amendement">
+                      <label class="form-check-label" for="amendement">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input <?= set_radio('amendement', 'non') ?> <?= ($l['amendement'] == 'non') ? 'checked' : '' ?> class="form-check-input" value="non" type="radio" name="amendement" id="non-amendement">
+                      <label class="form-check-label" for="non-amendement">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
                 <h6 class=" mt-3 text-primary">Informations sur le B.L.</h6>
                 <label class="form-label d-grid">
                   <span class="text-sm">B.L.</span>
@@ -94,11 +106,11 @@ Liste des livraisons
                   <h6 class=" mt-3 text-primary">Transport</h6>
                   <label class="form-label d-grid">
                     <span class="text-sm">Date ALLER</span>
-                    <input value="<?= set_value('date_sortie',$l['date_sortie']) ?>" type="date" name="date_sortie" class="form-control" placeholder="Téléphone du contact">
+                    <input value="<?= set_value('date_sortie', $l['date_sortie']) ?>" type="date" name="date_sortie" class="form-control" placeholder="Téléphone du contact">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Date de RETOUR</span>
-                    <input value="<?= set_value('date_retour',$l['date_retour']) ?>" type="date" name="date_retour" class="form-control" placeholder="Téléphone du contact">
+                    <input value="<?= set_value('date_retour', $l['date_retour']) ?>" type="date" name="date_retour" class="form-control" placeholder="Téléphone du contact">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Nom du chauffeur</span>
@@ -120,7 +132,7 @@ Liste des livraisons
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Litres de carburant</span>
-                    <input type="number" value="<?= set_value('litre_carburant',$l['litre_carburant']) ?>" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
+                    <input type="number" value="<?= set_value('litre_carburant', $l['litre_carburant']) ?>" min="0" max="1000" name="litre_carburant" class="form-control" placeholder="En litre">
                   </label>
                   <label class="form-label d-grid">
                     <span class="text-sm">Zone de livraison</span>

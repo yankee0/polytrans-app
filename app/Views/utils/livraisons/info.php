@@ -59,8 +59,8 @@ Information conteneur
             <span class="text-primary"><?= (!empty($l['tel_contact'])) ? $l['tel_contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
           <p class="d-grid">
-            <span class="text-sm">Email du contact</span>
-            <span class="text-primary"><?= (!empty($l['email_contact'])) ? $l['email_contact'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
+            <span class="text-sm">Amendement</span>
+            <span class="text-primary"><?= (!empty($l['amendement'])) ? $l['amendement'] : '<span class="badge bg-warning me-1 my-1">Indéfini(e)</span>' ?></span>
           </p>
           <p class="d-grid">
             <span class="text-sm">Enregistré le:</span>
