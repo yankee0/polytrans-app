@@ -24,16 +24,16 @@ Liste des chauffeurs
       <h5 class="card-title">Ajouter un chauffeur</h5>
 
       <form class="row" action="<?= base_url(session()->root . '/chauffeurs/') ?>" method="post">
-        <div class="mb-3 col-sm-6 col-xl-3 ">
+        <div class="mb-3 col-sm-6 col-xl-4 ">
           <input type="text" class="form-control" required name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 col-xl-3 ">
+        <div class="mb-3 col-sm-6 col-xl-4 ">
           <input type="text" class="form-control" required name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
-        <div class="mb-3 col-sm-6 col-xl-3 ">
+        <div class="mb-3 col-sm-6 col-xl-4 ">
           <input type="tel" class="form-control" required name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro de téléphone">
         </div>
-        <div class="mb-3 col-sm-6 col-xl-3  ">
+        <div class="mb-3 col-sm-6 col-xl-4  ">
           <select class="form-select " name="camion" id="">
             <option hidden>Camions</option>
             <option value="">Laisser vide</option>
@@ -42,7 +42,14 @@ Liste des chauffeurs
             <?php endforeach ?>
           </select>
         </div>
-        <div class="mb-3 col">
+        <div class="mb-3 col-sm-6 col-xl-4  ">
+          <select class="form-select " name="societe" id="" required>
+            <option hidden value="" selected>Société</option>
+            <option value="POLY-TRANS">POLY-TRANS</option>
+            <option value="CMA">CMA</option>
+          </select>
+        </div>
+        <div class="mb-3 col-12">
           <button type="submit" class="m-auto btn btn-primary d-flex justify-content-center align-items-center gap-2">
             <i class="align-middle" data-feather="user-plus"></i>
             Ajouter le chauffeur
@@ -90,6 +97,7 @@ Liste des chauffeurs
           <th class="d-table-cell d-xl-none">Nom</th>
           <th class="d-none d-xl-table-cell">Prénom</th>
           <th class="d-none d-xl-table-cell">Nom</th>
+          <th class="d-none d-xl-table-cell">Société</th>
           <th class="d-none d-sm-table-cell">Camion</th>
           <th class="d-none d-sm-table-cell">Téléphone</th>
           <th></th>
@@ -103,6 +111,7 @@ Liste des chauffeurs
             <td class="d-table-cell d-xl-none "><?= $ligne['prenom'] . ' ' . $ligne['nom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['prenom'] ?></td>
             <td class="d-none d-xl-table-cell"><?= $ligne['nom'] ?></td>
+            <td class="d-none d-xl-table-cell"><?= (empty($ligne['societe'])) ? '<span class="badge bg-warning">indéfinie</span>' : $ligne['societe'] ?></td>
             <td class="d-none d-sm-table-cell"><?= (empty($ligne['camion'])) ? '<span class="badge bg-secondary">Pas de camions</span>' : $ligne['camion'] ?></td>
             <td class="d-none d-sm-table-cell"><?= $ligne['tel'] ?></td>
             <td class="d-flex gap-3 ">

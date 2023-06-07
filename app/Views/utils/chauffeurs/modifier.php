@@ -23,22 +23,29 @@ Liste des chauffeurs
       <h5 class="card-title">Modifer les informations du chauffeur</h5>
 
       <form class="row" action="<?= base_url(session()->root . '/chauffeurs/modifier') ?>" method="post">
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-sm-6 col-xl-4">
           <input type="text" class="form-control" required value="<?= set_value('prenom', $chauffeur['prenom']) ?>" name="prenom" id="prenom" aria-describedby="helpId" placeholder="Prénom du chauffeur">
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-sm-6 col-xl-4">
           <input type="text" class="form-control" required value="<?= set_value('nom', $chauffeur['nom']) ?>" name="nom" id="nom" aria-describedby="helpId" placeholder="Nom du chauffeur">
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-sm-6 col-xl-4">
           <input type="tel" class="form-control" required value="<?= set_value('tel', $chauffeur['tel']) ?>" name="tel" id="tel" aria-describedby="helpId" placeholder="Numéro du tel de conduire">
         </div>
-        <div class="mb-3 col-sm-6  ">
+        <div class="mb-3 col-sm-6 col-xl-4  ">
           <select class="form-select " name="camion" id="">
             <option hidden>Camions</option>
             <option <?= ($chauffeur['camion'] == '') ? 'selected' : '' ?> value="">Laisser vide</option>
             <?php foreach ($camions as $camion) : ?>
               <option value="<?= $camion['immatriculation'] ?>" <?= ($chauffeur['camion'] == $camion['immatriculation']) ? 'selected' : '' ?>><?= $camion['immatriculation'] ?></option>
             <?php endforeach ?>
+          </select>
+        </div>
+        <div class="mb-3 col-sm-6 col-xl-4 ">
+          <select class="form-select " name="societe" id="" required>
+            <option hidden value="" selected>Société</option>
+            <option <?= ($chauffeur['societe'] == 'POLY-TRANS') ? 'selected' : '' ?> value="POLY-TRANS">POLY-TRANS</option>
+            <option <?= ($chauffeur['societe'] == 'CMA') ? 'selected' : '' ?> value="CMA">CMA</option>
           </select>
         </div>
         <div class="mb-3 col-12">
