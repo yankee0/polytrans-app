@@ -73,7 +73,7 @@
 
     <table id="tableau" class="table table-hover my-0">
       <thead>
-        <tr>
+        <!-- <tr>
           <th class="table-cell">CONTENEURS</th>
           <th class="table-cell">VEHICULES</th>
           <th class="table-cell">CIE</th>
@@ -84,11 +84,22 @@
           <th class="table-cell">DEPART</th>
           <th class="table-cell">RETOUR</th>
           <th class="table-cell">OBSERVATION</th>
+        </tr> -->
+        <tr>
+          <th class="table-cell">CONTENEURS</th>
+          <th class="table-cell">TYPE</th>
+          <th class="table-cell">CLIENT</th>
+          <th class="table-cell">CONTACTS</th>
+          <th class="table-cell">BL</th>
+          <th class="table-cell">DO</th>
+          <th class="table-cell">EIRs</th>
+          <th class="table-cell">CAMION</th>
+          <th class="table-cell">COMMENTAIRE</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($data as $d) : ?>
-          <tr>
+          <!-- <tr>
             <td class="table-cell"><?= $d['CONTENEURS'] ?></td>
             <td class="table-cell"><?= $d['VEHICULES'] ?></td>
             <td class="table-cell"><?= $d['CIE'] ?></td>
@@ -99,6 +110,17 @@
             <td class="table-cell"><?= $d['DEPART'] ?></td>
             <td class="table-cell"><?= $d['RETOUR'] ?></td>
             <td class="table-cell"><?= $d['OBSERVATION'] ?></td>
+          </tr> -->
+          <tr>
+            <td class="table-cell"><?= $g['conteneur'] ?></td>
+            <td class="table-cell"><?= $g['type'] ?></td>
+            <td class="table-cell"><?= $g['client'] ?></td>
+            <td class="table-cell"><?= $g['nom_contact'] ?></td>
+            <td class="table-cell"><?= $g['bl'] ?></td>
+            <td class="table-cell"><?= $g['do'] ?></td>
+            <td class="table-cell"><?= $g['eir'] ?></td>
+            <td class="table-cell"><?= $g['camion'] ?></td>
+            <td class="table-cell"><?= $g['commentaire'] ?></td>
           </tr>
         <?php endforeach ?>
       </tbody>

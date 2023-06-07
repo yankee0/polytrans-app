@@ -85,6 +85,7 @@ class Rapports extends BaseController
             ];
         }
         $response = [
+            'g' => $t,
             'data' => $body,
             'filename' => $filename
         ];
