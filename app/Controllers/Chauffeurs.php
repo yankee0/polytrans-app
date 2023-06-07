@@ -120,7 +120,7 @@ class Chauffeurs extends BaseController
                 ->with('message', $this->validator->listErrors());
         } else {
             $modele = new ModelsChauffeurs();
-            $requete = "UPDATE chauffeurs SET prenom = ?, nom = ?, tel = ? , camion = ? WHERE tel = ?";
+            $requete = "UPDATE chauffeurs SET prenom = ?, nom = ?, tel = ? , camion = ?, societe = ? WHERE tel = ?";
             if (
                 $modele->query(
                     $requete,
@@ -129,6 +129,7 @@ class Chauffeurs extends BaseController
                         $donnee['nom'],
                         $donnee['tel'],
                         $donnee['camion'],
+                        $donnee['societe'],
                         $donnee['last_tel']
                     ]
                 )
