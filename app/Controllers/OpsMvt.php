@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Camions;
+use App\Models\Chauffeurs;
 use App\Models\Livraisons;
 use App\Controllers\BaseController;
 
@@ -14,11 +15,12 @@ class OpsMvt extends BaseController
         $donnee = [
             'livraisons' => (new Livraisons())->countAll(),
             'camions' => (new Camions())->countAll(),
+            'liste_camion' => (new Camions())->orderBy('immatriculation', 'ASC')->findAll(),
+            'liste_chauffeur' => (new Chauffeurs())->orderBy('nom', 'ASC')->findAll(),
             'non_eir_bl' => (new Livraisons())
                 ->where('eir', null)
                 ->orWhere('eir', '')
-                ->where('bl', null)
-                ->orWhere('bl', '')
+                ->orWhere('eir', 'NON OK')
                 ->findAll()
         ];
         // dd($donnee);

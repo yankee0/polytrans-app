@@ -105,11 +105,22 @@ Liste des livraisons
                   <span class="text-sm">Date PREGATE</span>
                   <input value="<?= set_value('deadline', '') ?>" type="datetime-local" name="deadline" class="form-control ">
                 </label>
-                <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
-                <label class="form-label d-grid">
-                  <span class="text-sm">Numéro E.I.R.</span>
-                  <input value="<?= set_value('eir', '') ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
-                </label>
+                <h6 class=" mt-3 text-primary">Réception des EIRs</h6>
+                <div class="mb-3">
+                  <label class="form-label">EIRs</label>
+                  <div class="form-check">
+                    <input value="OK" class="form-check-input" type="radio" name="eir" id="OK">
+                    <label class="form-check-label" for="OK">
+                      OK
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="NON OK" class="form-check-input" type="radio" name="eir" id="NOOK" checked>
+                    <label class="form-check-label" for="NOOK">
+                      NON OK
+                    </label>
+                  </div>
+                </div>
               </div>
               <?php if (
                 session()->root != '/ops-reception'
@@ -212,7 +223,7 @@ Liste des livraisons
             <tr>
               <th class="d-table-cell">Conteneur</th>
               <th class="d-table-cell">Client</th>
-              <th class="d-table-cell d-none d-lg-table-cell">Date Prégate</th>
+              <!-- <th class="d-table-cell d-none d-lg-table-cell">Date Prégate</th> -->
               <th class="d-table-cell d-none d-md-table-cell">Date d'enregistrement</th>
               <th></th>
             </tr>
@@ -222,7 +233,7 @@ Liste des livraisons
               <tr>
                 <td class="d-table-cell"><?= $ligne['conteneur'] ?></td>
                 <td class="d-none d-sm-table-cell"><?= $ligne['client'] ?></td>
-                <td class="d-none d-sm-table-cell"><?= (empty($ligne['deadline'])) ? '<span class="badge bg-warning">Indéfini</span>' : $ligne['deadline'] ?></td>
+                <!-- <td class="d-none d-sm-table-cell"><?= (empty($ligne['deadline'])) ? '<span class="badge bg-warning">Indéfini</span>' : $ligne['deadline'] ?></td> -->
                 <td class="d-none d-sm-table-cell"><?= $ligne['created_at'] ?></td>
                 <td><a class="btn btn-primary d-flex align-items-center justify-content-center btn-sm" href="<?= base_url(session()->root . '/livraisons/info/' . $ligne['id']) ?>" role="button">Consulter</a></td>
               </tr>
