@@ -92,11 +92,22 @@ Liste des livraisons
                   <span class="text-sm">Deadline</span>
                   <input value="<?= set_value('deadline', $l['deadline']) ?>" type="datetime-local" name="deadline" class="form-control ">
                 </label>
-                <h6 class=" mt-3 text-primary">Informations sur le E.I.R.</h6>
-                <label class="form-label d-grid">
-                  <span class="text-sm">Numéro E.I.R.</span>
-                  <input value="<?= set_value('eir', $l['eir']) ?>" type="text" name="eir" class="form-control " placeholder="E.I.R">
-                </label>
+                <h6 class=" mt-3 text-primary">Réception des EIRs</h6>
+                <div class="mb-3">
+                  <label class="form-label">EIRs</label>
+                  <div class="form-check">
+                    <input <?= set_radio('eir') ?> <?= ($l['eir'] == 'OK') ? 'checked' : '' ?> value="OK" class="form-check-input" type="radio" name="eir" id="OK">
+                    <label class="form-check-label" for="OK">
+                      OK
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="NON OK" class="form-check-input" type="radio" name="eir" id="NOOK">
+                    <label <?= set_radio('eir') ?> <?= ($l['eir'] == 'NON OK' or empty($l['eir'])) ? 'checked' : '' ?> class="form-check-label" for="NOOK">
+                      NON OK
+                    </label>
+                  </div>
+                </div>
               </div>
               <?php if (
                 session()->root != '/ops-reception'

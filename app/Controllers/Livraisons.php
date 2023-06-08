@@ -35,7 +35,7 @@ class Livraisons extends BaseController
 
         $rules = [
             'eir' => [
-                'rules' => 'is_unique[livraisons.eir]',
+                'rules' => 'required',
             ],
         ];
         if (!empty($donnee['eir']) and !$this->validate($rules)) {
