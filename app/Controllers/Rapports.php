@@ -79,8 +79,8 @@ class Rapports extends BaseController
                 'CLIENTS' => $t['client'],
                 'TYPES' => $t['type'],
                 'LITRES' => $t['litre_carburant'],
-                'DEPART' => $t['depart'],
-                'RETOUR' => $t['arrivee'],
+                'DEPART' => $t['date_sortie'],
+                'RETOUR' => $t['date_retour'],
                 'OBSERVATION' => $t['commentaire'],
             ];
         }
