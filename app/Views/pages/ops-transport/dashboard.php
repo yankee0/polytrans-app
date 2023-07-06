@@ -82,7 +82,7 @@ Dashboard
                         </label>
                         <label class=" form-label d-grid">
                           <span class="text-sm">Commentaire</span>
-                          <textarea value="<?= set_value('commentaire', $ligne['commentaire']) ?>" class="form-control" name="commentaire" id="" rows="3"></textarea>
+                          <textarea class="form-control" name="commentaire" id="" rows="3"><?= set_value('commentaire', $ligne['commentaire']) ?></textarea>
                         </label>
                       </div>
                       <div class="modal-footer">

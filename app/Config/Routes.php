@@ -160,13 +160,13 @@ $routes->group('', ['filter' => 'authentifie'], function ($routes) {
 
         $routes->group('livraisons', function ($routes) {
             $routes->get('/', 'Livraisons::liste');
-            $routes->post('ajout', 'Livraisons::ajout');
-            $routes->post('supprimer/(:segment)', 'Livraisons::supprimer/$1');
-            $routes->post('supprimer_groupe', 'Livraisons::supprimer_groupe');
+            // $routes->post('ajout', 'Livraisons::ajout');
+            // $routes->post('supprimer/(:segment)', 'Livraisons::supprimer/$1');
+            // $routes->post('supprimer_groupe', 'Livraisons::supprimer_groupe');
             $routes->get('modifier/(:segment)', 'Livraisons::modifier/$1');
             $routes->post('modifier', 'Livraisons::enregistrer');
             $routes->get('info/(:segment)', 'Livraisons::info/$1');
-            $routes->get('recherche', 'Livraisons::recherche');
+            // $routes->get('recherche', 'Livraisons::recherche');
         });
     });
 
